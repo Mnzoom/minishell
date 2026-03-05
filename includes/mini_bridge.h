@@ -6,14 +6,15 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 18:02:39 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/05 18:58:55 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_BRIDGE_H
 # define MINI_BRIDGE_H
 
-# include "stddef.h"
+# include <stddef.h>
+# include <stdlib.h>
 
 # define EXIT_SUCCESS 0
 # define EXIT_ERROR 1
@@ -36,5 +37,7 @@ typedef struct s_cmd
 }	t_cmd;
 
 t_cmd	*mini_parse(int argc, char **argv);
+void	mini_exec(t_cmd *cmd_linked_list);
+
 
 #endif

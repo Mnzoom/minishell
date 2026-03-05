@@ -1,19 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 17:58:26 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 17:59:11 by thantoni         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+
+
+
+
+
+
+
 
 #include "minishell.h"
 
 int	main(int argc, char **argv)
 {
-	mini_parse(argc, argv);
+	mini_exec(mini_parse(argc, argv));
 	return (EXIT_SUCCESS);
 }

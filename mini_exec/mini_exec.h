@@ -1,19 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_exec.c                                        :+:      :+:    :+:   */
+/*   mini_exec.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 17:26:35 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/05 17:28:33 by clementngoi      ###   ########.fr       */
+/*   Created: 2026/03/05 17:09:09 by clementngoi       #+#    #+#             */
+/*   Updated: 2026/03/05 17:09:13 by clementngoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_exec.h"
-#include "mini_bridge.h"
-
-t_cmd mini_exec(int ac, char **av)
-{
-    
-}
+#include 

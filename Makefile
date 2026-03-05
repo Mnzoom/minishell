@@ -6,10 +6,9 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/05 16:04:04 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/05 16:56:03 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror

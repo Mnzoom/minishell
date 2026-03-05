@@ -6,22 +6,27 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/05 16:56:03 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/05 18:08:03 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NAME		= minishell
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 RM          = rm -rf
 
 INC_DIR     = includes
-LIBFT_D	IR   = libft
+LIBFT_DIR   = libft
 
 LIBFT       = $(LIBFT_DIR)/libft.a
 IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
 LDFLAGS     = -lreadline
 
-SRCS        = 
+SRCS        =                                         \
+                main.c                                \
+                mini_bridge/mini_parse.c              \
+                mini_bridge/mini_exec.c
 
 OBJS        = $(SRCS:.c=.o)
 

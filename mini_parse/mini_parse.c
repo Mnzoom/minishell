@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   mini_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 16:59:13 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/05 17:01:35 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "mini_bridge.h"
 
-# include "mini_bridge.h"
-
-#endif
+t_cmd	*mini_parse(int argc, char **argv)
+{
+	
+}

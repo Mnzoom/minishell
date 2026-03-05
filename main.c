@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_parse.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 18:09:27 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/05 17:58:26 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/05 17:59:11 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_bridge.h"
-#include "mini_parse.h"
+#include "minishell.h"
 
-t_cmd	*mini_parse(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	
-	return (NULL);
+	mini_parse(argc, argv);
+	return (EXIT_SUCCESS);
 }

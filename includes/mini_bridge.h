@@ -6,12 +6,14 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 17:01:47 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/05 18:02:39 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_BRIDGE_H
 # define MINI_BRIDGE_H
+
+# include "stddef.h"
 
 # define EXIT_SUCCESS 0
 # define EXIT_ERROR 1

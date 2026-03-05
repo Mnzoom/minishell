@@ -6,11 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 17:01:35 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:19:02 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_bridge.h"
+#include "mini_parse.h"
 
 t_cmd	*mini_parse(int argc, char **argv)
 {

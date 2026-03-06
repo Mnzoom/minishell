@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/05 18:08:03 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/06 13:18:54 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,11 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
 LDFLAGS     = -lreadline
 
-SRCS        =                                         \
-                main.c                                \
-                mini_bridge/mini_parse.c              \
-                mini_bridge/mini_exec.c
+SRCS        =											\
+                main.c									\
+				main_inputs_handling.c					\
+                mini_bridge/mini_parse.c              	\
+                mini_bridge/mini_exec.c					\
 
 OBJS        = $(SRCS:.c=.o)
 

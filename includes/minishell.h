@@ -6,13 +6,19 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 16:59:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 13:17:58 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+
 # include "mini_bridge.h"
+# include <signal.h>
+
+void	setup_inputs_signals(void);
+int		handle_input_line_exit(char *line);
+
 
 #endif

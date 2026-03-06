@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_parse.c                                       :+:      :+:    :+:   */
+/*   t_token__m_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 18:53:56 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/06 18:08:12 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/06 18:51:40 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-t_cmd	*mini_parse(char *line)
+void	t_token__m_free(t_token *m_token)
 {
-	t_token	*m_token_list;
-	t_token	*m_token;
-	
-	m_token_list = tokenize(line);
-	m_token = m_token_list;
-	printf("Are tokens valid ?: (%d)\n", token_verifier(m_token));
-	while (m_token != NULL)
-	{
-		t_token__print(m_token);
-		m_token = m_token->next;
-	}
-	t_token__m_free_all(m_token_list);
-	return (NULL);
+	if (m_token == NULL)
+		return ;
+	if (m_token->m_expanded != NULL)
+		free(m_token->m_expanded);
+	free(m_token);
 }

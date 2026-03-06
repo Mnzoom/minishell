@@ -6,14 +6,14 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/06 17:50:02 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/06 18:56:46 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -g3
 RM          = rm -rf
 
 INC_DIR     = includes
@@ -28,8 +28,10 @@ SRCS        =																\
 				main_inputs_handling.c										\
                 mini_bridge/mini_parse.c              						\
                 mini_bridge/mini_exec.c										\
+				mini_parse/t_token/t_token__m_free_all.c					\
+				mini_parse/t_token/t_token__m_free.c						\
+				mini_parse/t_token/t_token__m_new.c							\
 				mini_parse/t_token/t_token__parse_value_str.c				\
-				mini_parse/t_token/t_token.c								\
 				mini_parse/t_token_type/t_token_type__is_redirection.c		\
 				mini_parse/token_verifier/token_verifier.c					\
 				mini_parse/tokenizer/tokenizer.c							\

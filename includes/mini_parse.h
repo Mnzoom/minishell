@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 17:54:42 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:52:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		token_verifier(t_token *tokens);
 
 //--- t_token
 t_token	*t_token__m_new(char *start, size_t len, t_token_type type);
+void	t_token__m_free(t_token *m_token);
+void	t_token__m_free_all(t_token *m_token);
 void	t_token__print(t_token *token);
 t_token	*t_token__parse_value_str(char *start);
 

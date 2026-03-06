@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 17:15:26 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:54:42 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 # include "libft.h"
 # include <stdio.h>
 
+# define ERR_SYNTAX_PIPE "minishell: syntax error near unexpected token `|'\n"
+# define ERR_SYNTAX_NL "minishell: syntax error near unexpected token `newline'\n"
+# define ERR_SYNTAX_GENERIC "minishell: syntax error near unexpected token\n"
+
 typedef enum	e_token_type {
-	PIPE, // |
-	OVERRIDE, // >
-	APPEND, // >>
-	INFILE, // <
-	HEREDOC, // <<
-	STR // anything that's not ' ', '\t' 
+	PIPE = 0, // |
+	OVERRIDE = 1, // >
+	APPEND = 2, // >>
+	INFILE = 3, // <
+	HEREDOC = 4, // <<
+	STR = 5 // anything that's not ' ', '\t' 
 }	t_token_type;
 
 typedef struct	s_token {
@@ -39,9 +43,15 @@ typedef struct	s_token {
 //--- tokenizer
 t_token	*tokenize(char *line);
 
+//--- token_verifier
+int		token_verifier(t_token *tokens);
+
 //--- t_token
 t_token	*t_token__m_new(char *start, size_t len, t_token_type type);
 void	t_token__print(t_token *token);
 t_token	*t_token__parse_value_str(char *start);
+
+//--- t_token_type
+int		t_token_type__is_redirection(t_token_type t);
 
 #endif

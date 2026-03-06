@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 15:40:58 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 17:07:54 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:57:09 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ void	t_token__print(t_token *token)
 	size_t	i;
 
 	i = 0;
-	printf("\ntoken:\t");
+	printf("token:\t");
 	while (i < token->len)
 	{
 		printf("%c", token->start[i]);
 		i++;
 	}
 	printf("\n");
+	printf("type:\t%d\n", token->type);
 }
 
 t_token	*t_token__m_new(char *start, size_t len, t_token_type type)

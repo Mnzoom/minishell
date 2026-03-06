@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:13:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/02/23 13:38:35 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:41:12 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ERROR -1
 # define TRUE 1
 # define FALSE 0
+# define FD_ERR 2
 
 typedef struct s_list
 {

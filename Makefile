@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/06 17:16:42 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/06 17:50:02 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,16 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
 LDFLAGS     = -lreadline
 
-SRCS        =															\
-                main.c													\
-				main_inputs_handling.c									\
-                mini_bridge/mini_parse.c              					\
-                mini_bridge/mini_exec.c									\
-				mini_parse/tokenizer/tokenizer.c						\
-				mini_parse/tokenizer/t_token/t_token.c					\
-				mini_parse/tokenizer/t_token/t_token__parse_value_str.c	\
+SRCS        =																\
+                main.c														\
+				main_inputs_handling.c										\
+                mini_bridge/mini_parse.c              						\
+                mini_bridge/mini_exec.c										\
+				mini_parse/t_token/t_token__parse_value_str.c				\
+				mini_parse/t_token/t_token.c								\
+				mini_parse/t_token_type/t_token_type__is_redirection.c		\
+				mini_parse/token_verifier/token_verifier.c					\
+				mini_parse/tokenizer/tokenizer.c							\
 
 OBJS        = $(SRCS:.c=.o)
 

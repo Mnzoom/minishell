@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 16:56:22 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 17:15:26 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ typedef struct	s_token {
 	struct s_token	*next;
 }	t_token;
 
+//--- tokenizer
+t_token	*tokenize(char *line);
+
+//--- t_token
 t_token	*t_token__m_new(char *start, size_t len, t_token_type type);
 void	t_token__print(t_token *token);
 t_token	*t_token__parse_value_str(char *start);

@@ -6,38 +6,68 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/05 18:56:23 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 16:56:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_bridge.h"
 #include "mini_parse.h"
+#include "libft.h"
+#include <stdio.h>
 
-t_cmd	*mini_parse(int argc, char **argv)
+t_token	*get_current_token(char *line)
 {
-	(void)argc, (void)argv;
-	t_cmd	*debug0;
-	static char	*debug0_args[] = { "ls", "-l", "-a", NULL };
+    if (line[0] == '>' && line[1] == '>')
+        return (t_token__m_new(line, 2, APPEND));
+    if (line[0] == '<' && line[1] == '<')
+        return (t_token__m_new(line, 2, HEREDOC));
+    if (line[0] == '|')
+        return (t_token__m_new(line, 1, PIPE));
+    if (line[0] == '>')
+        return (t_token__m_new(line, 1, OVERRIDE));
+    if (line[0] == '<')
+        return (t_token__m_new(line, 1, INFILE));
+    return (t_token__parse_value_str(line));
+}
 
+t_token	*tokenize(char *line)
+{
+	size_t	i;
+	t_token	*first;
+	t_token	*last;
+	t_token	*current;
+
+	i = 0;
+	first = NULL;
+	last = NULL;
+	while (line[i])
+	{
+		while (line[i] == ' ' || line[i] == '\t')
+			i++;
+		if (line[i] == '\0')
+			break;
+		current = get_current_token(&line[i]);
+		if (current == NULL)
+			return (NULL); //TODO: free first
+		if (first == NULL)
+			first = current;
+		else
+			last->next = current;
+		last = current;
+		i += current->len;
+	}
+	return (first);
+}
+
+t_cmd	*mini_parse(char *line)
+{
+	t_token	*token;
 	
-	debug0 = malloc(sizeof(t_cmd));
-	debug0->args = debug0_args;
-	debug0->infile = NULL;
-	debug0->is_append_mode = FALSE;
-	debug0->is_heredoc_mode = FALSE;
-	debug0->next = NULL;
-	debug0->outfile = NULL;
-//-----------------------------------------------------
-	t_cmd	*debug1;
-	static char	*debug1_args[] = { "wc", "--lekaka", "dans les wc", "tu l'as ?", NULL };
-
-	debug1 = malloc(sizeof(t_cmd));
-	debug1->args = debug1_args;
-	debug1->infile = NULL;
-	debug1->is_append_mode = FALSE;
-	debug1->is_heredoc_mode = FALSE;
-	debug1->next = NULL;
-	debug1->outfile = NULL;
-	debug0->next = debug1;
-	return (debug0);
+	token = tokenize(line);
+	while (token != NULL)
+	{
+		t_token__print(token);
+		token = token->next;
+	}
+	return (NULL);
 }

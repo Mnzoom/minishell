@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 18:59:12 by thantoni          #+#    #+#              #
-#    Updated: 2026/02/27 11:27:58 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/06 14:47:18 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,17 +87,6 @@ SRCS =	ft_isalpha.c							\
 		ter/ter_f.c								\
 		get_next_line/get_next_line.c			\
 		get_next_line/get_next_line_utils.c		\
-		ft_printf/ft_printf.c					\
-		ft_printf/ft_printf_utils.c				\
-		ft_printf/handlers/ft_printdefault.c	\
-		ft_printf/handlers/ft_printchar.c		\
-		ft_printf/handlers/ft_printstr.c		\
-		ft_printf/handlers/ft_printptr.c		\
-		ft_printf/handlers/ft_printdec.c		\
-		ft_printf/handlers/ft_printudec.c		\
-		ft_printf/handlers/ft_printhexlow.c		\
-		ft_printf/handlers/ft_printhexupr.c		\
-		ft_printf/handlers/ft_printpercent.c	\
 		list/t_list__new.c						\
 		list/t_list__add.c						\
 		list/t_list__extract.c					\

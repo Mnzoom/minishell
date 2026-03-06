@@ -6,10 +6,11 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:42 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 13:16:16 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 13:29:20 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #define _POSIX_C_SOURCE 200809L
 #include "minishell.h"
 
@@ -24,7 +25,7 @@ static void _f_handler_sigint_behaviour(int signal)
 	rl_redisplay();
 }
 
-static void	_set_sigaction(int signal, void *f(int))
+static void	_set_sigaction(int signal, void (*f)(int))
 {
 	struct sigaction sa;
 
@@ -36,10 +37,8 @@ static void	_set_sigaction(int signal, void *f(int))
 
 void setup_inputs_signals(void)
 {
-	struct sigaction sa_ignored;
-
 	_set_sigaction(SIGINT, _f_handler_sigint_behaviour);
-	_set_sigaction(SIGQUIT, NULL);
+	_set_sigaction(SIGQUIT, (void *)SIG_IGN);
 }
 
 int	handle_input_line_exit(char *line)

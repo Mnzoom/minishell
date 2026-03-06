@@ -6,15 +6,11 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 13:21:10 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/06 13:27:06 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <readline/readline.h>
-#include <readline/history.h>
 #include "minishell.h"
-
-#include <readline/readline.h>
 
 int g_last_signal = 0;
 

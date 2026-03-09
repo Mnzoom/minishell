@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 16:02:14 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:28:34 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,30 @@ typedef struct s_token
 {
 	char			*raw;
 	size_t			raw_len;
-	char			*m_expanded;
-	int				expanded_len;
-	int				has_expansion;
+	char			*m_value;
+	int				diff_len;
+	int				has_diff;
 	t_token_type	type;
 	struct s_token	*next;
 }	t_token;
 
 //--- tokenizer
-t_token	*tokenize(char *line);
+t_token		*tokenize(char *line);
 
 //--- token_verifier
-int		token_verifier(t_token *m_token_list);
+int			token_verifier(t_token *m_token_list);
 
 //--- token_expander
-void	token_expander(t_token *m_token_list, char **envp);
+void		token_refinery(t_token *m_token_list, char **envp);
 
 //--- t_token
-t_token	*t_token__m_new(char *start, size_t len, t_token_type type);
-void	t_token__m_free(t_token *m_token);
-void	t_token__m_free_all(t_token *m_token_list);
-void	t_token__print(t_token *token);
-t_token	*t_token__parse_value_str(char *start);
+t_token		*t_token__m_new(char *start, size_t len, t_token_type type);
+void		t_token__m_free(t_token *m_token);
+void		t_token__m_free_all(t_token *m_token_list);
+void		t_token__print(t_token *token);
+t_token		*t_token__parse_value_str(char *start);
 
 //--- t_token_type
-int		t_token_type__is_redirection(t_token_type t);
-
+int			t_token_type__is_redirection(t_token_type t);
+const char	*t_token_type__to_str(t_token_type type);
 #endif

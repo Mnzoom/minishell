@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_expander.c                                   :+:      :+:    :+:   */
+/*   token_refinery.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:52:38 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 16:24:39 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/09 17:22:43 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ size_t	_compute_expansion_size(t_token *m_token, char *var_start, char **envp)
 			while (envp[envp_i][skip_key] != '=')
 				skip_key++;
 			skip_key++;
-			m_token->expanded_len += ft_strlen(&envp[envp_i][skip_key]);
+			m_token->diff_len += ft_strlen(&envp[envp_i][skip_key]);
 			break;
 		}
 		envp_i++;
 	}
-	m_token->expanded_len -= var_name_len + 1;
+	m_token->diff_len -= var_name_len + 1;
 	return (var_name_len + 1);
 }
 
@@ -100,10 +100,10 @@ size_t	_insert_var(char *to_insert, char *var_start, char **envp)
 	return (insert_i);
 }
 
-void _handle_expansion(t_token *m_token, char **envp)
+void	_compute_total_len_diff(t_token *m_token, char **envp)
 {
-	size_t  i;
-	char    *raw;
+	size_t	i;
+	char	*raw;
 
 	i = 0;
 	raw = m_token->raw;
@@ -111,55 +111,59 @@ void _handle_expansion(t_token *m_token, char **envp)
 	{
 		if (raw[i] == '$' && raw[i + 1] && raw[i + 1] != ' ' && raw[i + 1] != '$')
 		{
-			m_token->has_expansion = TRUE;
+			m_token->has_diff = TRUE;
 			i += _compute_expansion_size(m_token, &m_token->raw[i], envp);
 		}
 		else
 			i++;
 	}
-	//2. fill
-	if (!m_token->has_expansion)
-		return;
-	size_t  raw_i;
-	size_t  exp_i;
+}
 
-	m_token->m_expanded = malloc(sizeof(char) * (m_token->raw_len + m_token->expanded_len + 1));
-	if (m_token->m_expanded == NULL)
+void _handle_expansion(t_token *m_token, char **envp)
+{
+	size_t	raw_i;
+	size_t	exp_i;
+
+	if (!m_token->has_diff)
 		return ;
-	m_token->m_expanded[m_token->raw_len + m_token->expanded_len] = '\0';
+	m_token->m_value = malloc(sizeof(char) * (m_token->raw_len + m_token->diff_len + 1));
+	if (m_token->m_value == NULL)
+		return ;
+	m_token->m_value[m_token->raw_len + m_token->diff_len] = '\0';
 	raw_i = 0;
 	exp_i = 0;
 	while (m_token->raw[raw_i] && raw_i < m_token->raw_len)
 	{
 		if (m_token->raw[raw_i] == '$')
 		{
-			exp_i += _insert_var(&m_token->m_expanded[exp_i], &m_token->raw[raw_i + 1], envp);
+			exp_i += _insert_var(&m_token->m_value[exp_i], &m_token->raw[raw_i + 1], envp);
 			raw_i += _compute_var_name_len(&m_token->raw[raw_i + 1]) + 1;
 		}
 		else
 		{
-			m_token->m_expanded[exp_i] = m_token->raw[raw_i];
+			m_token->m_value[exp_i] = m_token->raw[raw_i];
 			raw_i++;
 			exp_i++;
 		}
 	}
-	printf("EXPANDED_TOKEN:\t%s\n", m_token->m_expanded);
+	printf("EXPANDED_TOKEN:\t%s\n", m_token->m_value);
 }
 
-
-void	token_expander(t_token *m_token_list, char **envp)
+void	token_refinery(t_token *m_token_list, char **envp)
 {
-
-	t_token *token;
+	t_token	*token;
 
 	token = m_token_list;
 	while (token != NULL)
 	{
 		if (token->type == STR)
+		{
+			_compute_total_len_diff(token, envp);
 			_handle_expansion(token, envp);
+		}
 		token = token->next;
 	}
-} 
+}
 
 //TODO: '$USER' --print-> $USER
 //TODO: $?swagin --print-> <code>swagin

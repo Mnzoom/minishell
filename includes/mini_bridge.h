@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 14:48:02 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/09 11:10:03 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
-t_cmd	*mini_parse(char *line);
+t_cmd	*mini_parse(char *line, char **envp);
 void	mini_exec(t_cmd *cmd_linked_list);
-
 
 #endif

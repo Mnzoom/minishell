@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 18:52:29 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:02:14 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 # define ERR_SYNTAX_PIPE "minishell: syntax error near unexpected token `|'\n"
 # define ERR_SYNTAX_NL "minishell: syntax error near unexpected token `newline'\n"
 # define ERR_SYNTAX_GENERIC "minishell: syntax error near unexpected token\n"
+# define ERR_UNCLOSED_QUOTES "minishell: syntax error unclosed quotes\n"
 
-typedef enum	e_token_type {
+typedef enum e_token_type
+{
 	PIPE = 0, // |
 	OVERRIDE = 1, // >
 	APPEND = 2, // >>
@@ -32,10 +34,13 @@ typedef enum	e_token_type {
 	STR = 5 // anything that's not ' ', '\t' 
 }	t_token_type;
 
-typedef struct	s_token {
-	char			*start;
+typedef struct s_token
+{
+	char			*raw;
+	size_t			raw_len;
 	char			*m_expanded;
-	size_t			len;
+	int				expanded_len;
+	int				has_expansion;
 	t_token_type	type;
 	struct s_token	*next;
 }	t_token;
@@ -44,12 +49,15 @@ typedef struct	s_token {
 t_token	*tokenize(char *line);
 
 //--- token_verifier
-int		token_verifier(t_token *tokens);
+int		token_verifier(t_token *m_token_list);
+
+//--- token_expander
+void	token_expander(t_token *m_token_list, char **envp);
 
 //--- t_token
 t_token	*t_token__m_new(char *start, size_t len, t_token_type type);
 void	t_token__m_free(t_token *m_token);
-void	t_token__m_free_all(t_token *m_token);
+void	t_token__m_free_all(t_token *m_token_list);
 void	t_token__print(t_token *token);
 t_token	*t_token__parse_value_str(char *start);
 

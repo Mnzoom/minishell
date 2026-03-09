@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:14:27 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 17:15:35 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/09 13:22:10 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_token	*tokenize(char *line)
 		else
 			last->next = current;
 		last = current;
-		i += current->len;
+		i += current->raw_len;
 	}
 	return (first);
 }

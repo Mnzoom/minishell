@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_token__m_new.c                                   :+:      :+:    :+:   */
+/*   t_token__print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/06 15:40:58 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 16:26:24 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/09 16:26:30 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/09 16:27:04 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-t_token	*t_token__m_new(char *start, size_t len, t_token_type type)
+void	t_token__print(t_token *token)
 {
-	t_token *m_token;
+	size_t	i;
 
-	m_token = malloc(sizeof(t_token));
-	if (!m_token)
-		return (NULL);
-	m_token->raw = start;
-	m_token->raw_len = len;
-	m_token->m_expanded = NULL;
-	m_token->expanded_len = 0;
-	m_token->has_expansion = FALSE;
-	m_token->type = type;
-	m_token->next = NULL;
-	return (m_token);
+	i = 0;
+	printf("\n>>>>>>>>>>>>> TOKEN:\n");
+	printf("token:\t\t\t");
+	while (i < token->raw_len)
+	{
+		printf("%c", token->raw[i]);
+		i++;
+	}
+	printf("\n");
+	printf("type:\t\t\t%d\n", token->type);
+	printf("expanded:\t\t%s\n", token->m_expanded);
+
 }

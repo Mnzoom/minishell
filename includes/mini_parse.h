@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 17:28:34 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 11:32:55 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ typedef struct s_token
 	char			*raw;
 	size_t			raw_len;
 	char			*m_value;
-	int				diff_len;
-	int				has_diff;
+	int				modifs_len;
 	t_token_type	type;
 	struct s_token	*next;
 }	t_token;

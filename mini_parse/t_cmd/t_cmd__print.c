@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:47:55 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:20:49 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 15:31:36 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,24 @@ void	t_cmd__print(t_cmd *cmd)
 	size_t		i;
 	t_redirect	*m_redirect;
 
-	printf("\n>>>>>>> CMD\n");
+	printf("\n___________ CMD ___________\n");
 	m_redirect = cmd->m_redirect_list;
 	if (m_redirect != NULL)
 	{
-		printf("\nREDIRECTS:\n");
+		printf("\nredirects\t:\n");
 		while (m_redirect != NULL)
 		{
-			printf("\t- (%s) %s\n", t_token_type__to_str(m_redirect->type), m_redirect->m_value);
+			printf(" (%s)\t  %s\n", t_token_type__to_str(m_redirect->type), m_redirect->m_value);
 			m_redirect = m_redirect->next;
 		}
 	}
 	i = 0;
-	printf("\nARGS: ");
+	printf("\nargs\t\t: ");
 	while (cmd->m_args[i] != NULL)
 	{
 		printf("%s ", cmd->m_args[i]);
 		i++;
 	}
 	printf("\n");
-	// m_redirect = cmd->m_redirect_list;
-	// while (m_redirect != NULL)
-	// {
-	// 	printf("3. REDIRECT after cmd\t\t: (%s): %s\n", t_token_type__to_str(m_redirect->type), m_redirect->m_value);
-	// 	m_redirect = m_redirect->next;
-	// }
+	printf("\n___________________________\n");
 }

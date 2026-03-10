@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:46:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:24:22 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 15:25:17 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ size_t	_get_args_count(t_token *m_token_list)
 			m_token = m_token->next;
 		}
 	}
-	printf("cmd argc: %ld\n", arg_count);
 	return (arg_count);
 }
 

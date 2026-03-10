@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_token__m_free.c                                  :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/06 18:08:12 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:07:29 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/10 12:15:24 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/10 12:31:52 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_parse.h"
+#include "stddef.h"
+#include "stdlib.h"
 
-void	t_token__m_free(t_token *m_token, int destroy_value)
+void	*ft_malloc(void **holder, size_t data_size)
 {
-	if (m_token == NULL)
-		return ;
-	if (destroy_value && m_token->m_value != NULL)
-		free(m_token->m_value);
-	free(m_token);
+	char	*m;
+
+	m = malloc(data_size + 1);
+	if (m != NULL)
+		m[data_size] = '\0';
+	*holder = (void *)m;
+	return ((void *)m);
 }

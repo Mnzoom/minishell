@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 11:32:55 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 15:08:16 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@
 # define ERR_SYNTAX_GENERIC "minishell: syntax error near unexpected token\n"
 # define ERR_UNCLOSED_QUOTES "minishell: syntax error unclosed quotes\n"
 
-typedef enum e_token_type
-{
-	PIPE = 0, // |
-	OVERRIDE = 1, // >
-	APPEND = 2, // >>
-	INFILE = 3, // <
-	HEREDOC = 4, // <<
-	STR = 5 // anything that's not ' ', '\t' 
-}	t_token_type;
-
 typedef struct s_token
 {
 	char			*raw;
@@ -50,17 +40,28 @@ t_token		*tokenize(char *line);
 //--- token_verifier
 int			token_verifier(t_token *m_token_list);
 
-//--- token_expander
+//--- token_refinery
 void		token_refinery(t_token *m_token_list, char **envp);
+
+t_cmd		*cmd_shipper(t_token *m_token_list);
 
 //--- t_token
 t_token		*t_token__m_new(char *start, size_t len, t_token_type type);
-void		t_token__m_free(t_token *m_token);
-void		t_token__m_free_all(t_token *m_token_list);
+void		t_token__m_free(t_token *m_token, int destroy_value);
+void		t_token__m_free_all(t_token *m_token_list, int destroy_value);
 void		t_token__print(t_token *token);
 t_token		*t_token__parse_value_str(char *start);
 
 //--- t_token_type
 int			t_token_type__is_redirection(t_token_type t);
 const char	*t_token_type__to_str(t_token_type type);
+
+//--- t_cmd
+t_cmd		*t_cmd__m_new(size_t arg_count);
+t_token		*t_cmd__add_m_redirect(t_cmd *m_cmd, t_token *m_token);
+void		t_cmd__print(t_cmd *cmd);
+
+//--- t_redirect
+t_redirect	*t_redirect__m_new(char *m_name, t_token_type type);
+
 #endif

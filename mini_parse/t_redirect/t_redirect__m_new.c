@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_token__m_free.c                                  :+:      :+:    :+:   */
+/*   t_redirect__m_new.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/06 18:08:12 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:07:29 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/10 14:05:37 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/10 14:32:24 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_parse.h"
+#include "mini_bridge.h"
 
-void	t_token__m_free(t_token *m_token, int destroy_value)
+t_redirect	*t_redirect__m_new(char *m_name, t_token_type type)
 {
-	if (m_token == NULL)
-		return ;
-	if (destroy_value && m_token->m_value != NULL)
-		free(m_token->m_value);
-	free(m_token);
+	t_redirect	*m_redirect;
+
+	m_redirect = malloc(sizeof(t_redirect));
+	m_redirect->m_value = m_name;
+	m_redirect->type = type;
+	m_redirect->next = NULL;
+	return (m_redirect);
 }

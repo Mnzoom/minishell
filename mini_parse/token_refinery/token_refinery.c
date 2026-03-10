@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:52:38 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 12:09:31 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:28:13 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,10 +169,8 @@ void _handle_modifs(t_token *m_token, char **envp)
 	int		in_single;
 	int		in_double;
 
-	m_token->m_value = malloc(sizeof(char) * (m_token->raw_len + m_token->modifs_len + 1));
-	if (m_token->m_value == NULL)
+	if (!ft_malloc((void **)&m_token->m_value, sizeof(char) * (m_token->raw_len + m_token->modifs_len)))
 		return ;
-	m_token->m_value[m_token->raw_len + m_token->modifs_len] = '\0';
 	raw_i = 0;
 	exp_i = 0;
 	in_single = FALSE;
@@ -189,7 +187,6 @@ void _handle_modifs(t_token *m_token, char **envp)
 		}
 		else if (!in_single)
 		{
-			printf("looking for var -----> %s\n", &m_token->raw[raw_i + 1]);
 			exp_i += _insert_var(&m_token->m_value[exp_i], &m_token->raw[raw_i + 1], envp);
 			raw_i += _compute_var_name_len(&m_token->raw[raw_i + 1]) + 1;
 		}

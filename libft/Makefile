@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 18:59:12 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/06 14:47:18 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/10 12:20:20 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRCS =	ft_isalpha.c							\
 		extras/ft_contains.c					\
 		extras/ft_contains_v.c					\
 		extras/ft_contains_at.c					\
+		extras/ft_malloc.c						\
 		extras/ft_startwith.c					\
 		extras/cfirst.c							\
 		extras/clast.c							\

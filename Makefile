@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/11 14:42:12 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/11 14:44:44 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,9 @@ RM          = rm -rf
 INC_DIR     = includes
 LIBFT_DIR   = libft
 
-# 1. On récupère le chemin de readline installé par brew
-READLINE_DIR = $(shell brew --prefix readline)
-
 LIBFT       = $(LIBFT_DIR)/libft.a
-# 2. On ajoute le dossier "include" de readline pour la compilation des .c
-IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR) -I $(READLINE_DIR)/include
-# 3. On ajoute le dossier "lib" de readline pour l'édition de liens finale
-LDFLAGS     = -L $(READLINE_DIR)/lib -lreadline
+IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
+LDFLAGS     = -lreadline
 
 SRCS        =                                                               \
                 main.c                                                      \

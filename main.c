@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 11:29:43 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:32:14 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ int g_last_signal = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
-	char *line;
-
-	(void)argc;
-	(void)argv;
-	(void)envp;
+	t_env	*m_env_list;
+	char	*line;
+	
+	(void)argc, (void)argv, (void)envp;
+	m_env_list = main_cache_envp(envp);
+	t_env__print_all(m_env_list);
 	setup_inputs_signals();
 	while (TRUE)
 	{
@@ -32,5 +33,6 @@ int	main(int argc, char **argv, char **envp)
 		mini_exec(mini_parse(line, envp));
 		free(line);
 	}
+	t_env__free_all(m_env_list);
 	return (EXIT_SUCCESS);
 }

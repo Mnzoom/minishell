@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_builtsin.h                                    :+:      :+:    :+:   */
+/*   t_env__free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 13:43:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/11 16:55:00 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/11 15:16:46 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/11 16:43:16 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_BUILTSIN
-# define MINI_BUILTSIN
-
 #include "minishell.h"
 
-int	mini_echo(char **args, int fd);
-int	mini_unset(char **args, t_env **env_list);
-int	mini_export(char **args, int fd);
-
-#endif
+void	t_env__free(t_env *m_env)
+{
+	if (m_env == NULL)
+		return ;
+	if (m_env->m_key != NULL)
+		free(m_env->m_key);
+	if (m_env->m_val != NULL)
+		free(m_env->m_val);
+	free(m_env);
+}

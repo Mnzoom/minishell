@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/11 14:44:44 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/11 16:53:16 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,14 @@ IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
 LDFLAGS     = -lreadline
 
 SRCS        =                                                               \
-                main.c                                                      \
+                main.c     													\
+				main_cache_envp.c											\
                 main_inputs_handling.c                                      \
                 mini_bridge/mini_parse.c                                    \
                 mini_bridge/mini_exec.c                                     \
 				mini_builtsin/mini_echo.c									\
+				mini_builtsin/mini_export.c									\
+				mini_builtsin/mini_unset.c									\
 				mini_parse/cmd_shipper/cmd_shipper.c						\
 				mini_parse/t_cmd/t_cmd__add_m_redirect.c					\
 				mini_parse/t_cmd/t_cmd__m_new.c								\
@@ -44,6 +47,14 @@ SRCS        =                                                               \
                 mini_parse/token_refinery/token_refinery.c                  \
                 mini_parse/token_verifier/token_verifier.c                  \
                 mini_parse/tokenizer/tokenizer.c                            \
+				t_env/t_env__extract_by_key.c								\
+				t_env/t_env__free_all.c										\
+				t_env/t_env__free.c											\
+				t_env/t_env__get_by_key.c									\
+				t_env/t_env__m_new.c										\
+				t_env/t_env__print_all.c									\
+				t_env/t_env__print.c										\
+				t_env/t_env__remove_by_key.c								\
 
 OBJS        = $(SRCS:.c=.o)
 

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_builtsin.h                                    :+:      :+:    :+:   */
+/*   t_env__print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 13:43:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/11 16:55:00 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/11 15:28:37 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/11 15:34:32 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_BUILTSIN
-# define MINI_BUILTSIN
-
 #include "minishell.h"
 
-int	mini_echo(char **args, int fd);
-int	mini_unset(char **args, t_env **env_list);
-int	mini_export(char **args, int fd);
-
-#endif
+void	t_env__print(t_env *m_env)
+{
+	if (m_env == NULL)
+		return ;
+	printf("\n--------------- ENV --------------\n");
+	if (m_env->m_key != NULL)
+		printf("key: %s\n", m_env->m_key);
+	if (m_env->m_val != NULL)
+		printf("val: %s\n", m_env->m_val);
+}

@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_token__print.c                                   :+:      :+:    :+:   */
+/*   t_cmd__print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 16:26:30 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:37:10 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/10 14:47:55 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/10 15:31:36 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-void	t_token__print(t_token *token)
+void	t_cmd__print(t_cmd *cmd)
 {
-	size_t	i;
+	size_t		i;
+	t_redirect	*m_redirect;
 
-	i = 0;
-	printf("\n__________ TOKEN __________\n");
-	printf("\n(%s)token\t\t: ", t_token_type__to_str(token->type));
-	while (i < token->raw_len)
+	printf("\n___________ CMD ___________\n");
+	m_redirect = cmd->m_redirect_list;
+	if (m_redirect != NULL)
 	{
-		printf("%c", token->raw[i]);
+		printf("\nredirects\t:\n");
+		while (m_redirect != NULL)
+		{
+			printf(" (%s)\t  %s\n", t_token_type__to_str(m_redirect->type), m_redirect->m_value);
+			m_redirect = m_redirect->next;
+		}
+	}
+	i = 0;
+	printf("\nargs\t\t: ");
+	while (cmd->m_args[i] != NULL)
+	{
+		printf("%s ", cmd->m_args[i]);
 		i++;
 	}
 	printf("\n");
-	if (token->type == STR)
-	{
-		printf("\nvalue\t\t: %s\n", token->m_value);
-		printf("\nmodifs_len\t: %d\n", token->modifs_len);
-	}
 	printf("\n___________________________\n");
 }

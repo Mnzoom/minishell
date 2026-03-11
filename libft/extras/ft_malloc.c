@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/03/11 14:33:42 by thantoni         ###   ########.fr       */
-=======
-/*   Updated: 2026/03/09 16:45:47 by thantoni         ###   ########.fr       */
->>>>>>> 41f5738ddd99e60187d2512bce2f5f46c5ae312f
+/*   Created: 2026/03/10 12:15:24 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/10 12:31:52 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "stddef.h"
+#include "stdlib.h"
 
-# include <stdio.h>
-# include "mini_bridge.h"
-# include <signal.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+void	*ft_malloc(void **holder, size_t data_size)
+{
+	char	*m;
 
-void	setup_inputs_signals(void);
-int		handle_input_line_exit(char *line);
-
-
-#endif
+	m = malloc(data_size + 1);
+	if (m != NULL)
+		m[data_size] = '\0';
+	*holder = (void *)m;
+	return ((void *)m);
+}

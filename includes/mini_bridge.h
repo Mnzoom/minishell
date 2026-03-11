@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 11:10:03 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:33:11 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,29 @@
 # define TRUE 1
 # define FALSE 0
 
-/** @brief Parsing data result. Ready to use for execution */
+typedef enum e_token_type
+{
+	PIPE = 0, // |
+	OVERRIDE = 1, // >
+	APPEND = 2, // >>
+	INFILE = 3, // <
+	HEREDOC = 4, // <<
+	STR = 5 // anything that's not ' ', '\t' 
+}	t_token_type;
+
+//forced to malloc, need to store name + type
+typedef struct s_redirect
+{
+	/** Can be in/out filename OR heredoc limiter */
+	char					*m_value;
+	t_token_type			type;
+	struct s_redirect		*next;
+}	t_redirect;
+
 typedef struct s_cmd
 {
-	char			**args;
-	char			*infile;
-	char			*outfile;
-
-	/** @brief Output mode, can be "TRUE (APPEND)" or "FALSE (OVERRIDE)" */
-	int				is_append_mode;
-	/** @brief Input mode, can be "TRUE (HEREDOC)" or "FALSE (READ)" */
-	int				is_heredoc_mode;
-
+	char			**m_args;
+	t_redirect		*m_redirect_list;
 	struct s_cmd	*next;
 }	t_cmd;
 

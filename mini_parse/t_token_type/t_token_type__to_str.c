@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_token__print.c                                   :+:      :+:    :+:   */
+/*   t_token_type__to_str.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 16:26:30 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:37:10 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/09 17:26:21 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/09 17:28:41 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-void	t_token__print(t_token *token)
+const char	*t_token_type__to_str(t_token_type type)
 {
-	size_t	i;
-
-	i = 0;
-	printf("\n__________ TOKEN __________\n");
-	printf("\n(%s)token\t\t: ", t_token_type__to_str(token->type));
-	while (i < token->raw_len)
-	{
-		printf("%c", token->raw[i]);
-		i++;
-	}
-	printf("\n");
-	if (token->type == STR)
-	{
-		printf("\nvalue\t\t: %s\n", token->m_value);
-		printf("\nmodifs_len\t: %d\n", token->modifs_len);
-	}
-	printf("\n___________________________\n");
+	if (type == 0)
+		return ("PIPE");
+	if (type == 1)
+		return ("OVERRIDE");
+	if (type == 2)
+		return ("APPEND");
+	if (type == 3)
+		return ("INFILE");
+	if (type == 4)
+		return ("HEREDOC");
+	if (type == 5)
+		return ("STR");
+	return ("ERROR_UNDEFINED_TOKEN_TYPE");
 }

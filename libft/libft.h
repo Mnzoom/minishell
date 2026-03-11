@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:13:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/06 17:41:12 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/10 12:32:07 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void			*ft_first(void **array, void *ref, \
 int				ft_contains(const char *str, const char *ref);
 int				ft_contains_v(const void *ptr, const void *cmp);
 int				ft_contains_at(char *str, char *cmp, size_t at_index);
+void			*ft_malloc(void **holder, size_t data_size);
 int				ft_startwith(char *str, char *cmp);
 char			*ft_strdecapsulate(char *str, char mark);
 char			cfirst(char *str);

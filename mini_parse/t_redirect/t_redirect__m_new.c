@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   t_redirect__m_new.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/03/11 14:33:42 by thantoni         ###   ########.fr       */
-=======
-/*   Updated: 2026/03/09 16:45:47 by thantoni         ###   ########.fr       */
->>>>>>> 41f5738ddd99e60187d2512bce2f5f46c5ae312f
+/*   Created: 2026/03/10 14:05:37 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/10 14:32:24 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "mini_bridge.h"
 
-# include <stdio.h>
-# include "mini_bridge.h"
-# include <signal.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+t_redirect	*t_redirect__m_new(char *m_name, t_token_type type)
+{
+	t_redirect	*m_redirect;
 
-void	setup_inputs_signals(void);
-int		handle_input_line_exit(char *line);
-
-
-#endif
+	m_redirect = malloc(sizeof(t_redirect));
+	m_redirect->m_value = m_name;
+	m_redirect->type = type;
+	m_redirect->next = NULL;
+	return (m_redirect);
+}

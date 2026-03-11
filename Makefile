@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/09 16:27:30 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/11 14:33:17 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS        =																\
 				main_inputs_handling.c										\
                 mini_bridge/mini_parse.c              						\
                 mini_bridge/mini_exec.c										\
+				mini_builtsin/mini_echo.c									\
 				mini_parse/t_token/t_token__m_free_all.c					\
 				mini_parse/t_token/t_token__m_free.c						\
 				mini_parse/t_token/t_token__m_new.c							\

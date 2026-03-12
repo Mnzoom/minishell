@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__m_new.c                                     :+:      :+:    :+:   */
+/*   mini_export.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:34:02 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/12 12:17:02 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/12 12:40:43 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "utils/env_parsing.h"
+#ifndef MINI_EXPORT_H
+# define MINI_EXPORT_H
 
-t_env	*t_env__m_new(char *env_var)
-{
-	t_env	*m_env;
+# include "minishell.h"
+# include "libft.h"
 
-	if (env_var == NULL)
-		return (NULL);
-	m_env = malloc(sizeof(t_env));
-	if (m_env == NULL)
-		return (NULL);
-	m_env->m_key = env_extract_m_key(env_var);
-	m_env->m_val = env_extract_m_value(env_var);
-	m_env->next = NULL;
-	m_env->prev = NULL;
-	return (m_env);
-}
+int		handle_env_sorted_print(t_env *m_env_list, int fd);
+int		handle_env_export( t_env **m_env_list, char *arg);
+
+#endif

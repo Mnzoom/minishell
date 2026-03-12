@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__m_new.c                                     :+:      :+:    :+:   */
+/*   mini_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:34:02 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/12 12:24:18 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "utils/env_parsing.h"
+#include "mini_builtsin/mini_export.h"
 
-t_env	*t_env__m_new(char *env_var)
+int	mini_export(char **args, t_env **m_env_list, int fd)
 {
-	t_env	*m_env;
+	size_t	i;
+	int		status;
 
-	if (env_var == NULL)
-		return (NULL);
-	m_env = malloc(sizeof(t_env));
-	if (m_env == NULL)
-		return (NULL);
-	m_env->m_key = env_extract_m_key(env_var);
-	m_env->m_val = env_extract_m_value(env_var);
-	m_env->next = NULL;
-	m_env->prev = NULL;
-	return (m_env);
+	if (args[1] == NULL)
+		return (handle_env_sorted_print(*m_env_list, fd));
+	i = 1;
+	status = 0;
+	while (args[i] != NULL)
+	{
+		if (handle_env_export(m_env_list, args[i]) == 1)
+			status = 1;
+		i++;
+	}
+	return (status);
 }

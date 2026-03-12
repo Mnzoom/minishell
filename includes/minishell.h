@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/11 17:22:45 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/12 12:40:51 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ void	t_env__print_all(t_env *m_env);
 t_env	*t_env__get_by_key(t_env *m_env_list, char *key);
 t_env	*t_env__extract_by_key(t_env *m_env_list, char *key);
 void	t_env__remove_by_key(t_env **m_env_list, char *key);
+size_t	t_env__get_size(t_env *m_env_list);
+void	t_env__add_back(t_env **m_env_list, t_env *to_add);
 
 #endif

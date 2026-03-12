@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_builtsin.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 13:43:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/11 16:55:00 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/12 12:19:08 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/12 12:53:52 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_BUILTSIN
-# define MINI_BUILTSIN
+#include "../libft.h"
 
-#include "minishell.h"
+int	ft_strcmp(char *s1, char *s2)
+{
+	size_t	i;
 
-int	mini_echo(char **args, int fd);
-int	mini_unset(char **args, t_env **env_list);
-int	mini_export(char **args, int fd);
-
-#endif
+	i = 0;
+	while (s1[i] != '\0' || s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}

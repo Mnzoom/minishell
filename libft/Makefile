@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 18:59:12 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/10 12:20:20 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/12 12:53:21 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS =	ft_isalpha.c							\
 		ft_lstmap.c								\
 		extras/ft_arraytostr.c					\
 		extras/ft_freesplit.c					\
+		extras/ft_strcmp.c						\
 		extras/ft_strjoin3.c					\
 		extras/ft_strlen_eol.c					\
 		extras/ft_first.c						\

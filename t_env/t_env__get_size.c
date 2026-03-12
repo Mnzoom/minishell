@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__m_new.c                                     :+:      :+:    :+:   */
+/*   t_env__get_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:34:02 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/12 12:08:06 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/12 12:24:31 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "utils/env_parsing.h"
 
-t_env	*t_env__m_new(char *env_var)
+size_t	t_env__get_size(t_env *m_env_list)
 {
 	t_env	*m_env;
+	size_t	count;
 
-	if (env_var == NULL)
-		return (NULL);
-	m_env = malloc(sizeof(t_env));
-	if (m_env == NULL)
-		return (NULL);
-	m_env->m_key = env_extract_m_key(env_var);
-	m_env->m_val = env_extract_m_value(env_var);
-	m_env->next = NULL;
-	m_env->prev = NULL;
-	return (m_env);
+	count = 0;
+	m_env = m_env_list;
+	while (m_env != NULL)
+	{
+		count++;
+		m_env = m_env->next;
+	}
+	return (count);
 }

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__m_new.c                                     :+:      :+:    :+:   */
+/*   env_is_key_valid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:34:02 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/12 12:44:54 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/12 12:48:00 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "utils/env_parsing.h"
+#include "libft.h"
 
-t_env	*t_env__m_new(char *env_var)
+int	env_is_key_valid(char *key)
 {
-	t_env	*m_env;
+	int	i;
 
-	if (env_var == NULL)
-		return (NULL);
-	m_env = malloc(sizeof(t_env));
-	if (m_env == NULL)
-		return (NULL);
-	m_env->m_key = env_extract_m_key(env_var);
-	m_env->m_val = env_extract_m_value(env_var);
-	m_env->next = NULL;
-	m_env->prev = NULL;
-	return (m_env);
+	if (key == NULL || !key[0] || (!ft_isalpha(key[0]) && key[0] != '_'))
+		return (FALSE);
+	i = 1;
+	while (key[i])
+	{
+		if (!ft_isalnum(key[i]) && key[i] != '_')
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

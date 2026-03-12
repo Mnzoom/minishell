@@ -6,28 +6,13 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:01:30 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/11 17:18:53 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/12 12:58:54 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "utils/env_parsing.h"
 #include "libft.h"
-
-int	_is_key_valid(char *key)
-{
-	int	i;
-
-	if (!key || !key[0] || (!ft_isalpha(key[0]) && key[0] != '_'))
-		return (FALSE);
-	i = 1;
-	while (key[i])
-	{
-		if (!ft_isalnum(key[i]) && key[i] != '_')
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
-}
 
 int	mini_unset(char **args, t_env **m_env_list)
 {
@@ -38,11 +23,11 @@ int	mini_unset(char **args, t_env **m_env_list)
 	status = 0;
 	while (args[i] != NULL)
 	{
-		if (!_is_key_valid(args[i]))
+		if (!env_is_key_valid(args[i]))
 		{
-			ft_putstr_fd("minishell: unset: `", 2);
-			ft_putstr_fd(args[i], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_putstr_fd("minishell: unset: `", FD_ERR);
+			ft_putstr_fd(args[i], FD_ERR);
+			ft_putstr_fd("': not a valid identifier\n", FD_ERR);
 			status = 1;
 		}
 		else

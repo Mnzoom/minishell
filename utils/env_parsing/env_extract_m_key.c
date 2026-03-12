@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__m_new.c                                     :+:      :+:    :+:   */
+/*   env_extract_m_key.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:34:02 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/12 12:32:46 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/12 12:48:44 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "utils/env_parsing.h"
+#include "stdlib.h"
 
-t_env	*t_env__m_new(char *env_var)
+char	*env_extract_m_key(char *env_var)
 {
-	t_env	*m_env;
+	size_t	key_len;
+	size_t	cpy_i;
+	char	*m_key;
 
-	if (env_var == NULL)
+	key_len = 0;
+	while (env_var[key_len] && env_var[key_len] != '=')
+		key_len++;
+	m_key = malloc(sizeof(char) * (key_len + 1));
+	if (m_key == NULL)
 		return (NULL);
-	m_env = malloc(sizeof(t_env));
-	if (m_env == NULL)
-		return (NULL);
-	m_env->m_key = env_extract_m_key(env_var);
-	m_env->m_val = env_extract_m_value(env_var);
-	m_env->next = NULL;
-	m_env->prev = NULL;
-	return (m_env);
+	m_key[key_len] = '\0';
+	cpy_i = 0;
+	while (env_var[cpy_i] && env_var[cpy_i] != '=')
+	{
+		m_key[cpy_i] = env_var[cpy_i];
+		cpy_i++;
+	}
+	return (m_key);
 }

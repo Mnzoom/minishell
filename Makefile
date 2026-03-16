@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/12 12:46:16 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/16 11:57:03 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,10 @@ SRCS        =                                                               \
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)
+
+macOS: IFLAGS += -I$(shell brew --prefix readline)/include
+macOS: LDFLAGS += -L$(shell brew --prefix readline)/lib
+macOS: all
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)

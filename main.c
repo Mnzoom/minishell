@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:07:16 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:37:34 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc, (void)argv, (void)envp;
 	m_env_list = main_cache_envp(envp);
-	t_env__print_all(m_env_list);
+	// t_env__print_all(m_env_list);
 	setup_inputs_signals();
 	while (TRUE)
 	{

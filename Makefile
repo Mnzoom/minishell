@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/16 15:53:48 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/16 16:13:15 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,12 @@ SRCS        =                                                               \
                 main.c     													\
 				main_cache_envp.c											\
                 main_inputs_handling.c                                      \
+				mini_bridge/t_cmd/t_cmd__add_m_redirect.c					\
+				mini_bridge/t_cmd/t_cmd__m_new.c							\
+				mini_bridge/t_cmd/t_cmd__print.c							\
+				mini_bridge/t_redirect/t_redirect__m_new.c					\
+                mini_bridge/t_token_type/t_token_type__is_redirection.c     \
+                mini_bridge/t_token_type/t_token_type__to_str.c				\
                 mini_bridge/mini_parse.c                                    \
                 mini_bridge/mini_exec.c                                     \
 				mini_builtsin/mini_echo/mini_echo.c							\
@@ -35,17 +41,11 @@ SRCS        =                                                               \
 				mini_builtsin/mini_export/handle_env_sorted_print.c			\
 				mini_builtsin/mini_unset/mini_unset.c						\
 				mini_parse/cmd_shipper/cmd_shipper.c						\
-				mini_parse/t_cmd/t_cmd__add_m_redirect.c					\
-				mini_parse/t_cmd/t_cmd__m_new.c								\
-				mini_parse/t_cmd/t_cmd__print.c								\
-				mini_parse/t_redirect/t_redirect__m_new.c					\
                 mini_parse/t_token/t_token__m_free_all.c                    \
                 mini_parse/t_token/t_token__m_free.c                        \
                 mini_parse/t_token/t_token__m_new.c                         \
                 mini_parse/t_token/t_token__parse_value_str.c               \
                 mini_parse/t_token/t_token__print.c                         \
-                mini_parse/t_token_type/t_token_type__is_redirection.c      \
-                mini_parse/t_token_type/t_token_type__to_str.c				\
                 mini_parse/token_refinery/token_refinery.c                  \
                 mini_parse/token_refinery/handle_modifs.c					\
                 mini_parse/token_refinery/compute_modifs_len.c				\
@@ -64,7 +64,7 @@ SRCS        =                                                               \
 				t_env/t_env__remove_by_key.c								\
 				utils/env_parsing/env_extract_m_key.c						\
 				utils/env_parsing/env_extract_m_value.c						\
-				utils/env_parsing/env_is_key_valid.c						\
+				utils/env_parsing/env_is_key_valid.c
 
 OBJS        = $(SRCS:.c=.o)
 

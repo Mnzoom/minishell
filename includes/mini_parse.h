@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 15:48:46 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:16:54 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-size_t	get_var_name_len(char *var_name);
+size_t		get_var_name_len(char *var_name);
 
 //--- tokenizer
 t_token		*tokenize(char *line);

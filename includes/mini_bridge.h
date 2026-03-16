@@ -6,13 +6,14 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 14:33:11 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:16:05 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_BRIDGE_H
 # define MINI_BRIDGE_H
 
+# include "minishell.h"
 # include <stddef.h>
 # include <stdlib.h>
 
@@ -47,7 +48,7 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
-t_cmd	*mini_parse(char *line, char **envp);
+t_cmd	*mini_parse(char *line, t_env *m_env_list);
 void	mini_exec(t_cmd *cmd_linked_list);
 
 #endif

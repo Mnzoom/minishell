@@ -6,11 +6,13 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:18:12 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:56:05 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:18:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_builtsin/mini_export.h"
+#include "libft.h"
+#include <stdlib.h>
 
 t_env	**_bubble_sort(t_env **m_sort, size_t env_count)
 {

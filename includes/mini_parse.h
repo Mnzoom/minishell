@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:45:33 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:48:46 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //USED ONLY INSIDE EXEC SCOPE
 //Anything reached/ reaching outside EXEC MUST be DECLARED inside "mini_bridge.h or minishell.h"
 
+# include "minishell.h"
 # include "mini_bridge.h"
 # include "libft.h"
 # include <stdio.h>
@@ -34,16 +35,18 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+size_t	get_var_name_len(char *var_name);
+
 //--- tokenizer
 t_token		*tokenize(char *line);
 
 //--- token_verifier
 int			token_verifier(t_token *m_token_list);
-void		compute_modifs_len(t_token *m_token, char **envp);
-void 		handle_modifs(t_token *m_token, char **envp);
+void		compute_modifs_len(t_token *m_token, t_env *m_env_list);
+void		handle_modifs(t_token *m_token, t_env *m_env_list);
 
 //--- token_refinery
-void		token_refinery(t_token *m_token_list, char **envp);
+void		token_refinery(t_token *m_token_list, t_env *m_env_list);
 
 t_cmd		*cmd_shipper(t_token *m_token_list);
 

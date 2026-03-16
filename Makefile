@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/16 12:44:23 by thantoni         ###   ########.fr        #
+#    Updated: 2026/03/16 15:53:48 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS        =                                                               \
                 mini_parse/token_refinery/token_refinery.c                  \
                 mini_parse/token_refinery/handle_modifs.c					\
                 mini_parse/token_refinery/compute_modifs_len.c				\
+                mini_parse/token_refinery/get_var_name_len.c				\
                 mini_parse/token_verifier/token_verifier.c                  \
                 mini_parse/tokenizer/tokenizer.c                            \
 				t_env/t_env__add_back.c										\

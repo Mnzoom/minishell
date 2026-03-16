@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__free.c                                      :+:      :+:    :+:   */
+/*   get_var_name_len.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 15:16:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 13:22:18 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/16 15:47:25 by thantoni          #+#    #+#             */
+/*   Updated: 2026/03/16 15:50:52 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "mini_parse.h"
 
-void	t_env__free(t_env *m_env)
+size_t	get_var_name_len(char *var_name)
 {
-	if (m_env == NULL)
-		return ;
-	if (m_env->m_key != NULL)
-		free(m_env->m_key);
-	if (m_env->m_val != NULL)
-		free(m_env->m_val);
-	free(m_env);
+	size_t	i;
+
+	i = 0;
+	while (var_name[i] && ft_isalnum(var_name[i]))
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:47:55 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:03:59 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:36:15 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	t_cmd__print(t_cmd *cmd)
 	printf("\nargs\t\t: ");
 	while (cmd->m_args[i] != NULL)
 	{
-		printf("%s ", cmd->m_args[i]);
+		printf("(%p)%s ", &cmd->m_args[i], cmd->m_args[i]);
 		i++;
 	}
 	printf("\n");

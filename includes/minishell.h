@@ -6,15 +6,16 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:32:39 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:22:32 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "libft.h"
 # include <stdio.h>
-# include "mini_bridge.h"
+# include <stdlib.h>
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -41,6 +42,7 @@ void	t_env__free_all(t_env *m_env_list);
 void	t_env__print(t_env *m_env);
 void	t_env__print_all(t_env *m_env);
 t_env	*t_env__get_by_key(t_env *m_env_list, char *key);
+t_env	*t_env__get_by_key1(t_env *m_env_list, char *key, size_t key_n_cmp);
 t_env	*t_env__extract_by_key(t_env *m_env_list, char *key);
 void	t_env__remove_by_key(t_env **m_env_list, char *key);
 size_t	t_env__get_size(t_env *m_env_list);

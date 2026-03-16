@@ -6,54 +6,21 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:47:48 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:49:51 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-static size_t	_compute_var_name_len(char *var)
+static size_t	_compute_expansion_size(t_token *m_token, char *var_start, t_env *m_env_list)
 {
-	size_t	i;
-
-	i = 0;
-	while (var[i] && ft_isalnum(var[i]))
-		i++;
-	return (i);
-}
-
-static int	_equal_until_delim(char *s1, char *s2, char s2_delim, size_t s1_stop)
-{
-	size_t	i;
-
-	i = 0;
-	while (s2[i + 1] != s2_delim && i < s1_stop && s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s2[i + 1] == s2_delim && i + 1 == s1_stop && s1[i] == s2[i]);
-}
-
-static size_t	_compute_expansion_size(t_token *m_token, char *var_start, char **envp)
-{
-	size_t	envp_i;
 	size_t	var_name_len;
-	size_t	skip_key;
+	t_env	*m_found_env;
 
-	var_name_len = _compute_var_name_len(&var_start[1]);
-	envp_i = 0;
-	while (envp[envp_i])
-	{
-		if (_equal_until_delim(&var_start[1], envp[envp_i], '=', var_name_len))
-		{
-			skip_key = 0;
-			while (envp[envp_i][skip_key] != '=')
-				skip_key++;
-			skip_key++;
-			m_token->modifs_len += ft_strlen(&envp[envp_i][skip_key]);
-			break ;
-		}
-		envp_i++;
-	}
-	m_token->modifs_len -= var_name_len + 1;
+	var_name_len = get_var_name_len(var_start);
+	m_found_env = t_env__get_by_key1(m_env_list, var_start, var_name_len);
+	if (m_found_env != NULL)
+		m_token->modifs_len += m_found_env->val_len;
 	return (var_name_len + 1);
 }
 
@@ -63,7 +30,7 @@ static void	_toggle_quote(t_token *m_token, int *quote_bool)
 	*quote_bool = !*quote_bool;
 }
 
-void	compute_modifs_len(t_token *m_token, char **envp)
+void	compute_modifs_len(t_token *m_token, t_env *m_env_list)
 {
 	size_t	i;
 	char	*raw;
@@ -77,7 +44,7 @@ void	compute_modifs_len(t_token *m_token, char **envp)
 	while (raw[i] && i < m_token->raw_len)
 	{
 		if (!in_single && raw[i] == '$' && raw[i + 1] && raw[i + 1] != ' ' && raw[i + 1] != '$')
-			i += _compute_expansion_size(m_token, &m_token->raw[i], envp);
+			i += _compute_expansion_size(m_token, &m_token->raw[i + 1], m_env_list);
 		else
 		{
 			if (!in_double && raw[i] == '\'')

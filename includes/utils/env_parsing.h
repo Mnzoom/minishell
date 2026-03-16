@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:31:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:46:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:32:17 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include "stddef.h"
 
 char	*env_extract_m_value(char *env_var);
+char	*env_extract_m_value1(char *env_var, size_t *return_val_len);
 char	*env_extract_m_key(char *env_var);
+char	*env_extract_m_key1(char *env_var, size_t *return_key_len);
 int		env_is_key_valid(char *key);
 
 #endif

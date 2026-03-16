@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:40:51 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:32:39 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 typedef struct s_env
 {
 	char			*m_key;
+	size_t			key_len;
 	char			*m_val;
+	size_t			val_len;
 	struct s_env	*next;
 	struct s_env	*prev;
 }	t_env;

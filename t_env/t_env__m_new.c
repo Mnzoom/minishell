@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:01:23 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:33:50 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ t_env	*t_env__m_new(char *env_var)
 	m_env = malloc(sizeof(t_env));
 	if (m_env == NULL)
 		return (NULL);
-	m_env->m_key = env_extract_m_key(env_var);
-	m_env->m_val = env_extract_m_value(env_var);
+	m_env->m_key = env_extract_m_key1(env_var, &m_env->key_len);
+	if (m_env->m_key == NULL)
+		return (t_env__free(m_env), NULL);
+	m_env->m_val = env_extract_m_value1(env_var, &m_env->val_len);
+	if (m_env->m_val == NULL)
+		return (t_env__free(m_env), NULL);
 	m_env->next = NULL;
 	m_env->prev = NULL;
 	return (m_env);

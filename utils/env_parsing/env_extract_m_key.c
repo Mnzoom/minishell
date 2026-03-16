@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:32:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:31:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:35:01 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*env_extract_m_key(char *env_var)
 	return (m_key);
 }
 
-char	*env_extract_m_key(char *env_var, size_t *return_key_len)
+char	*env_extract_m_key1(char *env_var, size_t *return_key_len)
 {
 	size_t	key_len;
 	size_t	cpy_i;

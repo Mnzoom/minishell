@@ -6,12 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:43:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:30:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:02:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_BUILTSIN
-# define MINI_BUILTSIN
+#ifndef MINI_BUILTSIN_H
+# define MINI_BUILTSIN_H
 
 # include "minishell.h"
 

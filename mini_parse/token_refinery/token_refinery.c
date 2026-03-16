@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:52:38 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 14:28:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:13:26 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ char	*_get_envp_var(char *var_start, char **envp)
 	while (envp[envp_i])
 	{
 		if (ft_strncmp(var_start, envp[envp_i], var_name_len) == 0 && envp[envp_i][var_name_len] == '=')
-		{
 			return (envp[envp_i]);
-		}
 		envp_i++;
 	}
 	return (envp[envp_i]);

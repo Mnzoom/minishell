@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:42 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 16:42:25 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:07:44 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #define _POSIX_C_SOURCE 200809L
 #include "minishell.h"
 
-extern int g_last_signal;
+extern int	g_last_signal;
 
-static void _f_handler_sigint_behaviour(int signal)
+static void	_f_handler_sigint_behaviour(int signal)
 {
 	g_last_signal = signal;
 	printf("\n");
@@ -27,7 +27,7 @@ static void _f_handler_sigint_behaviour(int signal)
 
 static void	_set_sigaction(int signal, void (*f)(int))
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sa.sa_handler = f;
 	sigemptyset(&sa.sa_mask);
@@ -35,7 +35,7 @@ static void	_set_sigaction(int signal, void (*f)(int))
 	sigaction(signal, &sa, NULL);
 }
 
-void setup_inputs_signals(void)
+void	setup_inputs_signals(void)
 {
 	_set_sigaction(SIGINT, _f_handler_sigint_behaviour);
 	_set_sigaction(SIGQUIT, (void *)SIG_IGN);

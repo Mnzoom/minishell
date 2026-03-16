@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 15:33:01 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:00:21 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_cmd	*mini_parse(char *line, char **envp)
 	t_token	*m_token;
 	t_cmd	*m_cmd_list;
 	t_cmd	*m_cmd;
-	
+
 	m_token_list = tokenize(line);
 	if (!token_verifier(m_token_list))
 		return (NULL);

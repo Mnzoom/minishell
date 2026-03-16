@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:09:20 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 14:28:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:04:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ t_token	*t_token__parse_value_str(char *start)
 		else if (is_inside_single == 0 && is_inside_double == 0)
 		{
 			if (start[len] == ' ' || start[len] == '\t')
-				break;
+				break ;
 			if (start[len] == '|' || start[len] == '<' || start[len] == '>')
-				break;
+				break ;
 		}
 		len++;
 	}

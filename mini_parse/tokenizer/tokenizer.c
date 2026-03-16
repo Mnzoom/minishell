@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:14:27 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/09 13:22:10 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:10:17 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static t_token	*_get_current_token(char *line)
 {
-    if (line[0] == '>' && line[1] == '>')
-        return (t_token__m_new(line, 2, APPEND));
-    if (line[0] == '<' && line[1] == '<')
-        return (t_token__m_new(line, 2, HEREDOC));
-    if (line[0] == '|')
-        return (t_token__m_new(line, 1, PIPE));
-    if (line[0] == '>')
-        return (t_token__m_new(line, 1, OVERRIDE));
-    if (line[0] == '<')
-        return (t_token__m_new(line, 1, INFILE));
-    return (t_token__parse_value_str(line));
+	if (line[0] == '>' && line[1] == '>')
+		return (t_token__m_new(line, 2, APPEND));
+	if (line[0] == '<' && line[1] == '<')
+		return (t_token__m_new(line, 2, HEREDOC));
+	if (line[0] == '|')
+		return (t_token__m_new(line, 1, PIPE));
+	if (line[0] == '>')
+		return (t_token__m_new(line, 1, OVERRIDE));
+	if (line[0] == '<')
+		return (t_token__m_new(line, 1, INFILE));
+	return (t_token__parse_value_str(line));
 }
 
 t_token	*tokenize(char *line)
@@ -42,10 +42,10 @@ t_token	*tokenize(char *line)
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
 		if (line[i] == '\0')
-			break;
+			break ;
 		current = _get_current_token(&line[i]);
 		if (current == NULL)
-			return (NULL); //TODO: free first
+			return (t_token__m_free_all(first, TRUE), NULL);
 		if (first == NULL)
 			first = current;
 		else

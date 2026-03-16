@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 15:40:58 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 11:33:40 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:06:47 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_token	*t_token__m_new(char *start, size_t len, t_token_type type)
 {
-	t_token *m_token;
+	t_token	*m_token;
 
 	m_token = malloc(sizeof(t_token));
 	if (!m_token)

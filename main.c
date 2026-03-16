@@ -6,20 +6,20 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/11 15:32:14 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/03/16 12:07:16 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
 
-int g_last_signal = 0;
+int	g_last_signal = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_env	*m_env_list;
 	char	*line;
-	
+
 	(void)argc, (void)argv, (void)envp;
 	m_env_list = main_cache_envp(envp);
 	t_env__print_all(m_env_list);

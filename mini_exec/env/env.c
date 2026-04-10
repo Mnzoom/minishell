@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:40:34 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/22 19:08:11 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/10 14:43:45 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char    **env_to_tab(t_env *env_list)
 
     envp = malloc(sizeof(char *) * (count_env(env_list) + 1));
     if(!envp)
-        return (EXIT_FAILURE);
+        return (NULL);
     i = 0;
     while(env_list)
     {

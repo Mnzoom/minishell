@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 16:04:01 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/10 15:42:56 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cmd	*mini_parse(char *line, t_env *m_env_list)
 	m_cmd = m_cmd_list;
 	while (m_cmd != NULL)
 	{
-		t_cmd__print(m_cmd);
+		/*t_cmd__print(m_cmd);*/
 		m_cmd = m_cmd->next;
 	}
 	printf("\n\n");

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
+#    By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/16 16:13:15 by thantoni         ###   ########.fr        #
+#    Updated: 2026/04/10 15:18:37 by cn-goie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,48 +23,74 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
 LDFLAGS     = -lreadline
 
-SRCS        =                                                               \
-                main.c     													\
-				main_cache_envp.c											\
-                main_inputs_handling.c                                      \
-				mini_bridge/t_cmd/t_cmd__add_m_redirect.c					\
-				mini_bridge/t_cmd/t_cmd__m_new.c							\
-				mini_bridge/t_cmd/t_cmd__print.c							\
-				mini_bridge/t_redirect/t_redirect__m_new.c					\
-                mini_bridge/t_token_type/t_token_type__is_redirection.c     \
-                mini_bridge/t_token_type/t_token_type__to_str.c				\
-                mini_bridge/mini_parse.c                                    \
-                mini_bridge/mini_exec.c                                     \
-				mini_builtsin/mini_echo/mini_echo.c							\
-				mini_builtsin/mini_export/mini_export.c						\
-				mini_builtsin/mini_export/handle_env_export.c				\
-				mini_builtsin/mini_export/handle_env_sorted_print.c			\
-				mini_builtsin/mini_unset/mini_unset.c						\
-				mini_parse/cmd_shipper/cmd_shipper.c						\
-                mini_parse/t_token/t_token__m_free_all.c                    \
-                mini_parse/t_token/t_token__m_free.c                        \
-                mini_parse/t_token/t_token__m_new.c                         \
-                mini_parse/t_token/t_token__parse_value_str.c               \
-                mini_parse/t_token/t_token__print.c                         \
-                mini_parse/token_refinery/token_refinery.c                  \
-                mini_parse/token_refinery/handle_modifs.c					\
-                mini_parse/token_refinery/compute_modifs_len.c				\
-                mini_parse/token_refinery/get_var_name_len.c				\
-                mini_parse/token_verifier/token_verifier.c                  \
-                mini_parse/tokenizer/tokenizer.c                            \
-				t_env/t_env__add_back.c										\
-				t_env/t_env__extract_by_key.c								\
-				t_env/t_env__free_all.c										\
-				t_env/t_env__free.c											\
-				t_env/t_env__get_by_key.c									\
-				t_env/t_env__get_size.c										\
-				t_env/t_env__m_new.c										\
-				t_env/t_env__print_all.c									\
-				t_env/t_env__print.c										\
-				t_env/t_env__remove_by_key.c								\
-				utils/env_parsing/env_extract_m_key.c						\
-				utils/env_parsing/env_extract_m_value.c						\
-				utils/env_parsing/env_is_key_valid.c
+# --- Chemins vers tes dossiers d'exécution ---
+EXEC_PATH   = mini_exec/env/
+HERE_PATH   = mini_exec/heredocs/
+
+# Fichiers dans mini_exec/env/
+EXEC_SRCS   = $(EXEC_PATH)apply_red.c \
+              $(EXEC_PATH)builtin.c \
+              $(EXEC_PATH)env.c \
+              $(EXEC_PATH)exec_child.c \
+              $(EXEC_PATH)exec_cmd.c \
+              $(EXEC_PATH)get_path.c \
+              $(EXEC_PATH)pipe.c
+
+# Fichiers dans mini_exec/heredocs/
+HERE_SRCS   = $(HERE_PATH)here.c
+
+# --- Nouveaux Builtins ajoutés ---
+BUILTINS_SRCS = mini_builtsin/mini_echo.c \
+                mini_builtsin/mini_cd.c \
+				mini_builtsin/mini_unset.c \
+				mini_builtsin/mini_pwd.c \
+				mini_builtsin/builtin_env.c \
+                mini_builtsin/mini_exit.c
+
+# --- Liste complète des sources ---
+SRCS        = main.c \
+              main_cache_envp.c \
+              main_inputs_handling.c \
+              $(EXEC_SRCS) \
+              $(HERE_SRCS) \
+              $(BUILTINS_SRCS) \
+              mini_bridge/t_cmd/t_cmd__add_m_redirect.c \
+              mini_bridge/t_cmd/t_cmd__m_new.c \
+              mini_bridge/t_cmd/t_cmd__print.c \
+              mini_bridge/t_redirect/t_redirect__m_new.c \
+              mini_bridge/t_token_type/t_token_type__is_redirection.c \
+              mini_bridge/t_token_type/t_token_type__to_str.c \
+              mini_bridge/mini_parse.c \
+              mini_bridge/mini_exec.c \
+              mini_builtsin/mini_export/mini_export.c \
+              mini_builtsin/mini_export/handle_env_export.c \
+              mini_builtsin/mini_export/handle_env_sorted_print.c \
+              mini_builtsin/mini_unset/mini_unset.c \
+              mini_parse/cmd_shipper/cmd_shipper.c \
+              mini_parse/t_token/t_token__m_free_all.c \
+              mini_parse/t_token/t_token__m_free.c \
+              mini_parse/t_token/t_token__m_new.c \
+              mini_parse/t_token/t_token__parse_value_str.c \
+              mini_parse/t_token/t_token__print.c \
+              mini_parse/token_refinery/token_refinery.c \
+              mini_parse/token_refinery/handle_modifs.c \
+              mini_parse/token_refinery/compute_modifs_len.c \
+              mini_parse/token_refinery/get_var_name_len.c \
+              mini_parse/token_verifier/token_verifier.c \
+              mini_parse/tokenizer/tokenizer.c \
+              t_env/t_env__add_back.c \
+              t_env/t_env__extract_by_key.c \
+              t_env/t_env__free_all.c \
+              t_env/t_env__free.c \
+              t_env/t_env__get_by_key.c \
+              t_env/t_env__get_size.c \
+              t_env/t_env__m_new.c \
+              t_env/t_env__print_all.c \
+              t_env/t_env__print.c \
+              t_env/t_env__remove_by_key.c \
+              utils/env_parsing/env_extract_m_key.c \
+              utils/env_parsing/env_extract_m_value.c \
+              utils/env_parsing/env_is_key_valid.c
 
 OBJS        = $(SRCS:.c=.o)
 

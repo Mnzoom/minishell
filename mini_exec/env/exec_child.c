@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_child.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 18:48:28 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/23 12:53:13 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/10 14:44:54 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    exec_child_process(t_cmd *cmd, t_env *env_list)
     
     if (is_builtin(cmd->m_args[0]))
     {
-        exec_builtin(cmd, env_list);
+        exec_builtin(cmd, &env_list);
         exit(0);
     }
     envp = env_to_tab(env_list);

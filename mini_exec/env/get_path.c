@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:51 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/03/23 14:44:46 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/10 14:50:50 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char *join_path_cmd(char *path, char *cmd)
     char *tmp;
     char *full;
 
-    tmp = strjoin(path, "/");
+    tmp = ft_strjoin(path, "/");
     if(!tmp)
         return (NULL);
     full = ft_strjoin(tmp, cmd);
@@ -47,7 +47,7 @@ char *get_path(char *cmd, t_env *m_env_list)
         exec_path = join_path_cmd(all_paths[i], cmd);
         if (access(exec_path, X_OK) == 0)
         {
-            ft_freesplit();
+            ft_freesplit(all_paths);
             return (exec_path);
         }
         free(exec_path);

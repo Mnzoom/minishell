@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_bridge.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 13:16:05 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/10 16:04:46 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ typedef struct s_cmd
 }	t_cmd;
 
 t_cmd	*mini_parse(char *line, t_env *m_env_list);
-void	mini_exec(t_cmd *cmd_linked_list);
+void    mini_exec(t_cmd *cmd_list, t_env **env_list);
 
 #endif

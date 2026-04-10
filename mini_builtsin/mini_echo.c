@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_echo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:55:42 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:01:36 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/10 15:15:32 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mini_exec.h"
 #include "libft.h"
 #include <stddef.h>
 
@@ -29,26 +30,28 @@ int	_is_flag(char *arg)
 	return (TRUE);
 }
 
-int	mini_echo(char **args, int fd)
-{
-	size_t	i;
-	int		put_new_line;
 
-	i = 1;
-	put_new_line = TRUE;
-	while (args[i] != NULL && _is_flag(args[i]))
-	{
-		put_new_line = FALSE;
-		i++;
-	}
-	while (args[i] != NULL)
-	{
-		ft_putstr_fd(args[i], fd);
-		if (args[i + 1] != NULL)
-			ft_putstr_fd(" ", fd);
-		i++;
-	}
-	if (put_new_line)
-		ft_putstr_fd("\n", fd);
-	return (0);
+int builtin_echo(char **args)
+{
+    int i;
+    int n_flag;
+
+    i = 1;
+    n_flag = 0;
+    
+    if (args[i] && ft_strcmp(args[i], "-n") == 0)
+    {
+        n_flag = 1;
+        i++;
+    }
+    while (args[i])
+    {
+        ft_putstr_fd(args[i], 1); 
+        if (args[i + 1])
+            ft_putstr_fd(" ", 1);
+        i++;
+    }
+    if (!n_flag)
+        ft_putstr_fd("\n", 1);
+    return (0);
 }

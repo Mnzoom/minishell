@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exec.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clementngoie <clementngoie@student.42.f    +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/23 13:40:17 by clementngoi      ###   ########.fr       */
+/*   Updated: 2026/04/10 15:27:31 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,32 @@
 # include <unistd.h>  
 #include <fcntl.h>
 #include <readline/readline.h>
+#include <sys/wait.h>
 
-void    apply_redirections(t_redirect *redir_list);
+/* BUILTIN GESTION*/
 int is_builtin(char *cmd);
 int exec_builtin(t_cmd *cmd, t_env **env_list);
+
+/* OH LA TUILE*/
+void    apply_redirections(t_redirect *redir_list);
 char    **env_to_tab(t_env *env_list);
-void    exec_child_process(t_cmd *cmd, t_env *env_list);
-void    exec_cmds(t_cmd *cmd_list, t_env **env_list);
 char *get_path(char *cmd, t_env *m_env_list);
 int read_heredoc(char *lim);
+
+/* EXEC*/
+void    exec_child_process(t_cmd *cmd, t_env *env_list);
+void    exec_cmds(t_cmd *cmd_list, t_env **env_list);
+void    execute_pipe(t_cmd *cmd_list, t_env *env_list);
+
+char *get_path(char *cmd, t_env *m_env_list);
+int read_heredoc(char *lim);
+int mini_export(char **args, t_env **env_list, int fd);
+int    builtin_echo(char **args);
+int    builtin_cd(char **args, t_env **env_list);
+int    builtin_pwd(void);
+int    builtin_export(char **args, t_env **env_list);
+int    builtin_unset(char **args, t_env **env_list);
+int    builtin_env(t_env *env_list);
+int    builtin_exit(char **args);
 
 #endif

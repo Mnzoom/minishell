@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_isenvpattern.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 12:15:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/11 18:18:13 by thantoni         ###   ########.fr       */
+/*   Created: 2026/04/11 14:59:22 by thantoni          #+#    #+#             */
+/*   Updated: 2026/04/11 15:58:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "libft.h"
+#include "mini_parse.h"
 
-void	*ft_malloc(void **holder, size_t data_size)
+int	ft_isenvpattern(char *str)
 {
-	char	*m;
-
-	m = malloc(data_size + 1);
-	if (m != NULL)
-		m[data_size] = '\0';
-	*holder = (void *)m;
-	return ((void *)m);
+	if (!str || str[0] != '$' || str[1] == '\0' || str[1] == ' ')
+		return (FALSE);
+	return (ft_isenvchar(str[1]));
 }

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:18:12 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 13:18:38 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/11 15:46:22 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_env	**_bubble_sort(t_env **m_sort, size_t env_count)
 		cmp_i = 0;
 		while (cmp_i < env_count - i && m_sort[cmp_i + 1])
 		{
-			if (ft_strcmp(m_sort[cmp_i]->m_key, m_sort[cmp_i + 1]->m_key) != 0)
+			if (ft_strcmp(m_sort[cmp_i]->m_key, m_sort[cmp_i + 1]->m_key) > 0)
 			{
 				tmp = m_sort[cmp_i];
 				m_sort[cmp_i] = m_sort[cmp_i + 1];

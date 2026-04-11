@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:42 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:07:44 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/11 16:20:52 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #define _POSIX_C_SOURCE 200809L
 #include "minishell.h"
 
-extern int	g_last_signal;
+extern int	g_lastsignal;
 
 static void	_f_handler_sigint_behaviour(int signal)
 {
-	g_last_signal = signal;
+	g_lastsignal = signal;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);

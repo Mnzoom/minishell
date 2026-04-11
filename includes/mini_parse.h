@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 15:48:46 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/11 17:35:32 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
-size_t	get_var_name_len(char *var_name);
+size_t		get_var_name_len(char *var_name);
+size_t		get_lastsig_len(void);
+
 
 //--- tokenizer
 t_token		*tokenize(char *line);
@@ -43,6 +45,9 @@ t_token		*tokenize(char *line);
 //--- token_verifier
 int			token_verifier(t_token *m_token_list);
 void		compute_modifs_len(t_token *m_token, t_env *m_env_list);
+int			ft_isenvpattern(char *str);
+int			ft_issigpattern(char *str);
+int			ft_isenvchar(char c);
 void		handle_modifs(t_token *m_token, t_env *m_env_list);
 
 //--- token_refinery

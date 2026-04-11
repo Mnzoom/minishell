@@ -6,21 +6,34 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 15:49:51 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/11 18:07:35 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-static size_t	_compute_expansion_size(t_token *m_token, char *var_start, t_env *m_env_list)
+static size_t	_exp_sig(t_token *m_token)
 {
+	size_t	lastsig_len;
+
+	lastsig_len = get_lastsig_len();
+	m_token->modifs_len += lastsig_len - 2;
+	return (2);
+}
+
+static size_t _compute_expansion_size(t_token *m_token, char *var_start, t_env *m_env_list)
+{
+	if (var_start[0] == '?')
+		return (_exp_sig(m_token));
 	size_t	var_name_len;
 	t_env	*m_found_env;
 
 	var_name_len = get_var_name_len(var_start);
 	m_found_env = t_env__get_by_key1(m_env_list, var_start, var_name_len);
 	if (m_found_env != NULL)
-		m_token->modifs_len += m_found_env->val_len;
+		m_token->modifs_len += m_found_env->val_len - (var_name_len + 1);
+	else
+		m_token->modifs_len += -(var_name_len + 1);
 	return (var_name_len + 1);
 }
 
@@ -43,7 +56,7 @@ void	compute_modifs_len(t_token *m_token, t_env *m_env_list)
 	in_double = FALSE;
 	while (raw[i] && i < m_token->raw_len)
 	{
-		if (!in_single && raw[i] == '$' && raw[i + 1] && raw[i + 1] != ' ' && raw[i + 1] != '$')
+		if (!in_single && (ft_issigpattern(&raw[i]) || ft_isenvpattern(&raw[i])))
 			i += _compute_expansion_size(m_token, &m_token->raw[i + 1], m_env_list);
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/11 17:43:35 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/13 17:07:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static size_t	_insert_var(char *holder, char *var_start, t_env *m_env_list)
 
 static void	_expand_env(t_token *m_token, t_env *env, size_t *raw_i, size_t *exp_i)
 {
-	printf("\nexpand ENV\n");
 	*exp_i += _insert_var(&m_token->m_value[*exp_i], &m_token->raw[*raw_i + 1], env);
 	*raw_i += get_var_name_len(&m_token->raw[*raw_i + 1]) + 1;
 }
@@ -66,7 +65,6 @@ static size_t _insert_sig(char *holder)
 
 static void	_expand_sig(t_token *m_token, size_t *raw_i, size_t *exp_i)
 {
-	printf("\nexpand SIGNAL\n");
 	*exp_i += _insert_sig(&m_token->m_value[*exp_i]);
 	*raw_i += 1 + 1;
 }

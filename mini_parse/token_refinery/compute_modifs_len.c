@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compute_modifs_len.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 12:33:59 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:53:05 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static size_t	_exp_sig(t_token *m_token)
 
 static size_t _compute_expansion_size(t_token *m_token, char *var_start, t_env *m_env_list)
 {
-	if (var_start[0] == '?')
-		return (_exp_sig(m_token));
 	size_t	var_name_len;
 	t_env	*m_found_env;
 
+	if (var_start[0] == '?')
+		return (_exp_sig(m_token));
 	var_name_len = get_var_name_len(var_start);
 	m_found_env = t_env__get_by_key1(m_env_list, var_start, var_name_len);
 	if (m_found_env != NULL)

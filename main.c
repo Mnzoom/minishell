@@ -6,13 +6,15 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/10 16:12:11 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 11:09:07 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_bridge.h"
 #include "libft.h" 
+
+int mini_exec(t_cmd *cmd_list, t_env **env_list);
 
 int g_last_signal = 0;
 

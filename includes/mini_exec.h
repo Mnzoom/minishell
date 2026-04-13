@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/10 15:27:31 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 11:05:49 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int read_heredoc(char *lim);
 /* EXEC*/
 void    exec_child_process(t_cmd *cmd, t_env *env_list);
 void    exec_cmds(t_cmd *cmd_list, t_env **env_list);
-void    execute_pipe(t_cmd *cmd_list, t_env *env_list);
+int    execute_pipe(t_cmd *cmd_list, t_env *env_list);
 
 char *get_path(char *cmd, t_env *m_env_list);
 int read_heredoc(char *lim);

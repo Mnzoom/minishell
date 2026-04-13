@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exec.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 11:48:06 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:30:24 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int    builtin_export(char **args, t_env **env_list);
 int    builtin_unset(char **args, t_env **env_list);
 int    builtin_env(t_env *env_list);
 int    builtin_exit(char **args);
+char    *t_env__get_val(t_env *m_env_list, char *key);
+void    t_env__update_var(t_env **m_env_list, char *key, char *new_val);
 
 #endif

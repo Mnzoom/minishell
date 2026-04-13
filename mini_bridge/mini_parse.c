@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:59:40 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 16:37:10 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:59:31 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_cmd	*mini_parse(char *line, t_env *m_env_list)
 	if (!token_verifier(m_token_list))
 		return (NULL);
 	token_refinery(m_token_list, m_env_list);
-	_dbg_print_tokens(m_token_list);
 	m_cmd_list = cmd_shipper(m_token_list);
 	t_token__m_free_all(m_token_list, FALSE);
 	return (m_cmd_list);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:04:28 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/04/13 11:43:59 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:48:45 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdio.h> 
 
-char    *t_env_get_val(t_env *m_env_list, char *key)
+char    *t_env__get_val(t_env *m_env_list, char *key)
 {
     t_env   *curr;
     size_t  target_len;
@@ -63,7 +63,7 @@ int builtin_cd(char **args, t_env **env_list)
 
     if (!args[1])
         return (1);
-    old_pwd_val = t_env_get_val(*env_list, "PWD");
+    old_pwd_val = t_env__get_val(*env_list, "PWD");
     if (chdir(args[1]) != 0)
     {
         perror("minishell: cd");

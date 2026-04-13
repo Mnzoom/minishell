@@ -6,11 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/03/16 16:16:54 by thantoni         ###   ########.fr       */
-=======
-/*   Updated: 2026/04/11 17:35:32 by thantoni         ###   ########.fr       */
->>>>>>> origin/parse
+/*   Updated: 2026/04/13 16:37:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +36,8 @@ typedef struct s_token
 }	t_token;
 
 size_t		get_var_name_len(char *var_name);
-<<<<<<< HEAD
-=======
 size_t		get_lastsig_len(void);
 
->>>>>>> origin/parse
 
 //--- tokenizer
 t_token		*tokenize(char *line);

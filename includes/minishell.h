@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 11:35:29 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:48:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	t_env__remove_by_key(t_env **m_env_list, char *key);
 size_t	t_env__get_size(t_env *m_env_list);
 void	t_env__add_back(t_env **m_env_list, t_env *to_add);
 void    t_env_update_var(t_env **m_env_list, char *key, char *new_val);
-char    *t_env_get_val(t_env *m_env_list, char *key);
+char    *t_env__get_val(t_env *m_env_list, char *key);
 
 #endif

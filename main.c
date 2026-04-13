@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 12:32:56 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 16:39:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int mini_exec(t_cmd *cmd_list, t_env **env_list);
 
-int g_last_signal = 0;
+int g_lastsignal = 0;
 
 int main(int argc, char **argv, char **envp)
 {

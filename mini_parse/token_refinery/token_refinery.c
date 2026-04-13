@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 10:52:38 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 15:30:46 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:52:28 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,3 @@ void	token_refinery(t_token *m_token_list, t_env *m_env_list)
 		token = token->next;
 	}
 }
-
-//TODO: $?swagin --print-> <code>swagin
-//TODO: '$USER' --print-> $USER
-//Quand " open alors ignore '

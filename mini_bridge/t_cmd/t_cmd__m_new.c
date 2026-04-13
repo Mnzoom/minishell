@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:42:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/10 14:17:51 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/11 15:46:08 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_cmd	*t_cmd__m_new(size_t arg_count)
 	t_cmd	*m_cmd;
 
 	m_cmd = malloc(sizeof(t_cmd));
+	if (m_cmd == NULL)
+		return (NULL);
 	m_cmd->m_args = malloc(sizeof(char *) * (arg_count + 1));
 	if (m_cmd->m_args == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 11:09:07 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 12:32:56 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char **argv, char **envp)
             if (cmd_list)
 			{
     			mini_exec(cmd_list, &m_env_list);
-    			t_list__clear_nodes((t_list **)&cmd_list); // Correction ici
+    			t_list__clear_nodes((t_list **)&cmd_list); 
 			}
         }
         free(line);

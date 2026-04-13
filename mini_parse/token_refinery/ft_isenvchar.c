@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_isenvchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 12:15:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/11 18:18:13 by thantoni         ###   ########.fr       */
+/*   Created: 2026/04/11 15:55:19 by thantoni          #+#    #+#             */
+/*   Updated: 2026/04/11 17:44:35 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_malloc(void **holder, size_t data_size)
+int	ft_isenvchar(char c)
 {
-	char	*m;
-
-	m = malloc(data_size + 1);
-	if (m != NULL)
-		m[data_size] = '\0';
-	*holder = (void *)m;
-	return ((void *)m);
+	return (ft_isalnum(c) || c == '_');
 }

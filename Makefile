@@ -6,7 +6,11 @@
 #    By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2026/04/10 15:18:37 by cn-goie          ###   ########.fr        #
+=======
+#    Updated: 2026/04/11 17:34:01 by thantoni         ###   ########.fr        #
+>>>>>>> origin/parse
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,17 +55,17 @@ BUILTINS_SRCS = mini_builtsin/mini_echo.c \
 SRCS        = main.c \
               main_cache_envp.c \
               main_inputs_handling.c \
-              $(EXEC_SRCS) \
-              $(HERE_SRCS) \
-              $(BUILTINS_SRCS) \
+              mini_bridge/mini_exec.c \
+              mini_bridge/mini_parse.c \
               mini_bridge/t_cmd/t_cmd__add_m_redirect.c \
               mini_bridge/t_cmd/t_cmd__m_new.c \
               mini_bridge/t_cmd/t_cmd__print.c \
               mini_bridge/t_redirect/t_redirect__m_new.c \
               mini_bridge/t_token_type/t_token_type__is_redirection.c \
               mini_bridge/t_token_type/t_token_type__to_str.c \
-              mini_bridge/mini_parse.c \
-              mini_bridge/mini_exec.c \
+              mini_builtsin/mini_echo/mini_echo.c \
+              mini_builtsin/mini_cd.c \
+              mini_builtsin/mini_pwd.c \
               mini_builtsin/mini_export/mini_export.c \
               mini_builtsin/mini_export/handle_env_export.c \
               mini_builtsin/mini_export/handle_env_sorted_print.c \
@@ -76,6 +80,10 @@ SRCS        = main.c \
               mini_parse/token_refinery/handle_modifs.c \
               mini_parse/token_refinery/compute_modifs_len.c \
               mini_parse/token_refinery/get_var_name_len.c \
+              mini_parse/token_refinery/get_lastsig_len.c \
+              mini_parse/token_refinery/ft_isenvpattern.c \
+              mini_parse/token_refinery/ft_issigpattern.c \
+              mini_parse/token_refinery/ft_isenvchar.c \
               mini_parse/token_verifier/token_verifier.c \
               mini_parse/tokenizer/tokenizer.c \
               t_env/t_env__add_back.c \
@@ -91,7 +99,7 @@ SRCS        = main.c \
               utils/env_parsing/env_extract_m_key.c \
               utils/env_parsing/env_extract_m_value.c \
               utils/env_parsing/env_is_key_valid.c
-
+              
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)

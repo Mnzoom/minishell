@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 11:05:49 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 14:44:19 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int read_heredoc(char *lim);
 int mini_export(char **args, t_env **env_list, int fd);
 int    builtin_echo(char **args);
 int    builtin_cd(char **args, t_env **env_list);
-int    builtin_pwd(void);
+int    builtin_pwd(t_env *env_list);
 int    builtin_export(char **args, t_env **env_list);
 int    builtin_unset(char **args, t_env **env_list);
 int    builtin_env(t_env *env_list);
 int    builtin_exit(char **args);
+char    *t_env__get_val(t_env *m_env_list, char *key);
+void    t_env__update_var(t_env **m_env_list, char *key, char *new_val);
 
 #endif

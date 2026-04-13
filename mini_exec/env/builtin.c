@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 12:54:41 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/10 15:32:47 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/13 14:44:57 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int exec_builtin(t_cmd *cmd, t_env **env_list)
     if (ft_strcmp(name, "cd") == 0)
         return (builtin_cd(cmd->m_args, env_list));
     if (ft_strcmp(name, "pwd") == 0)
-        return (builtin_pwd());
+        return (builtin_pwd(*env_list));
     if (ft_strcmp(name, "export") == 0)
         return (mini_export(cmd->m_args, env_list, 1));
     if (ft_strcmp(name, "unset") == 0)

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:40:44 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 13:39:15 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:47:19 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-
+#include <stdio.h>
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	const unsigned char	*str1;
@@ -24,6 +24,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	str2 = (const unsigned char *)s2;
 	i = 0;
 	while (i < n - 1 && str1[i] && str2[i] && str1[i] == str2[i])
-		i++;
+        i++;
 	return (str1[i] - str2[i]);
 }

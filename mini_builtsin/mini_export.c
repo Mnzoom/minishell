@@ -3,15 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   mini_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:24:18 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/18 12:48:29 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_builtsin/mini_export.h"
 
+int	is_valid_identifier(char *str)
+{
+	int i;
+	i = 0;
+	if (!str[i] || (!ft_isalpha(str[i]) && str[i] != '_'))
+		return (0);
+	i++;
+	while ((str[i] && str[i] != '='))
+	{
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+			return (0);
+		i++;
+	}
+	return (1);
+	
+} 
 int	mini_export(char **args, t_env **m_env_list, int fd)
 {
 	size_t	i;
@@ -23,7 +39,14 @@ int	mini_export(char **args, t_env **m_env_list, int fd)
 	status = 0;
 	while (args[i] != NULL)
 	{
-		if (handle_env_export(m_env_list, args[i]) == 1)
+		if (!is_valid_identifier(args[i]))
+		{
+			ft_putstr_fd("minishell: export: `", 2);
+			ft_putstr_fd(args[i], 2);
+			ft_putendl_fd("': not a valid identifier", 2);
+			status = 1;
+		}
+		else if (handle_env_export(m_env_list, args[i]) == 1)
 			status = 1;
 		i++;
 	}

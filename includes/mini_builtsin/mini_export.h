@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_export.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:17:02 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 16:16:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/18 12:45:19 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 
 int		handle_env_sorted_print(t_env *m_env_list, int fd);
 int		handle_env_export( t_env **m_env_list, char *arg);
+int	is_valid_identifier(char *str);
 
 #endif

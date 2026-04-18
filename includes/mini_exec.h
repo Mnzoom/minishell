@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exec.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 16:30:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/18 13:45:58 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int is_builtin(char *cmd);
 int exec_builtin(t_cmd *cmd, t_env **env_list);
 
 /* OH LA TUILE*/
-void    apply_redirections(t_redirect *redir_list);
+int    apply_redirections(t_redirect *redir_list);
 char    **env_to_tab(t_env *env_list);
 char *get_path(char *cmd, t_env *m_env_list);
 int read_heredoc(char *lim);

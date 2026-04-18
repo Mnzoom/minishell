@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:04:28 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/04/13 16:48:45 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/18 13:28:05 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,31 @@ void    t_env_update_var(t_env **m_env_list, char *key, char *new_val)
         curr = curr->next;
     }
 }
-
 int builtin_cd(char **args, t_env **env_list)
 {
     char cwd[4096];
     char *old_pwd_val;
 
     if (!args[1])
+    {
+        return (1); 
+    }
+    if (args[2])
+    {
+        ft_putendl_fd("minishell: cd: too many arguments", 2);
         return (1);
+    }
+
+    //change dir
     old_pwd_val = t_env__get_val(*env_list, "PWD");
     if (chdir(args[1]) != 0)
     {
-        perror("minishell: cd");
+        ft_putstr_fd("minishell: cd: ", 2);
+        perror(args[1]);
         return (1);
     }
+
+    // maj env
     if (getcwd(cwd, sizeof(cwd)) != NULL)
     {
         if (old_pwd_val)

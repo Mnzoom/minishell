@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:23:12 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/10 15:48:31 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/18 13:47:37 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "mini_bridge.h"
 #include "mini_exec.h"
 
-void    apply_redirections(t_redirect *redir_list)
+int    apply_redirections(t_redirect *redir_list)
 {
     int fd;
+
     while (redir_list)
     {
+        fd = -1;
         if (redir_list->type == INFILE)
             fd = open(redir_list->m_value, O_RDONLY);
         else if (redir_list->type == OVERRIDE)
@@ -30,8 +32,10 @@ void    apply_redirections(t_redirect *redir_list)
 
         if (fd == -1) 
         {
-            perror("minishell");
-            return ;
+            // Affiche l'erreur système exacte (Permission denied, etc.)
+            ft_putstr_fd("minishell: ", 2);
+            perror(redir_list->m_value);
+            return (-1); // CRUCIAL : on arrête la boucle et on signale l'erreur
         }
         
         if (redir_list->type == INFILE || redir_list->type == HEREDOC)
@@ -41,4 +45,5 @@ void    apply_redirections(t_redirect *redir_list)
         close(fd);
         redir_list = redir_list->next;
     }
+    return (0); // Succès
 }

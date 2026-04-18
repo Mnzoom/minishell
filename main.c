@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 16:39:27 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/18 13:34:21 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_bridge.h"
 #include "libft.h" 
-
-int mini_exec(t_cmd *cmd_list, t_env **env_list);
 
 int g_lastsignal = 0;
 
@@ -38,8 +36,9 @@ int main(int argc, char **argv, char **envp)
             cmd_list = mini_parse(line, m_env_list);
             if (cmd_list)
 			{
-    			mini_exec(cmd_list, &m_env_list);
-    			t_list__clear_nodes((t_list **)&cmd_list); 
+    			g_lastsignal = mini_exec(cmd_list, &m_env_list);
+    			free_cmd_list(cmd_list);
+                cmd_list = NULL;
 			}
         }
         free(line);

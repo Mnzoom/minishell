@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/18 13:41:10 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/20 14:13:46 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_redirect
 	/** Can be in/out filename OR heredoc limiter */
 	char					*m_value;
 	t_token_type			type;
+	int						heredoc_fd;
 	struct s_redirect		*next;
 }	t_redirect;
 

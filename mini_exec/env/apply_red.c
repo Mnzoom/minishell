@@ -6,7 +6,7 @@
 /*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:23:12 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/20 14:11:12 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/20 15:48:54 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int    apply_redirections(t_redirect *redir_list)
         else if (redir_list->type == APPEND)
             fd = open(redir_list->m_value, O_WRONLY | O_CREAT | O_APPEND, 0644);
         else if (redir_list->type == HEREDOC)
-            fd = redir_list->heredoc_fd;
+            fd = read_heredoc(redir_list->m_value);
         if (fd == -1) 
         {
             ft_putstr_fd("minishell: ", 2);

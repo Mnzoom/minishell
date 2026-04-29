@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_env_sorted_print.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:18:12 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/11 15:46:22 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:55:13 by cn-goie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	handle_env_sorted_print(t_env *m_env_list, int fd)
 	i = 0;
 	while (i < env_count)
 	{
-		ft_putstr_fd("declare -x ", fd);
+		ft_putstr_fd("export -x ", fd);
 		ft_putstr_fd(m_sort[i]->m_key, fd);
 		if (m_sort[i]->m_val != NULL)
 		{

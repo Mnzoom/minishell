@@ -6,15 +6,15 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:16:31 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/29 10:54:03 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/29 11:25:09 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_gc.h"
 #include <stddef.h>
 
-/*create a "gc node" on the heap, hold "void *" of the malloc requested */
-/* return's (malloc(data_size)); */
+/* Malloc data and put it in the GC list (malloc associated GC node )*/
+/* returns malloc'ed data */
 void	*t_gc__malloc(t_gc **m_list, size_t data_size)
 {
 	t_gc	*m_node;

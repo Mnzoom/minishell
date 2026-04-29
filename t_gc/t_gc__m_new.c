@@ -6,23 +6,24 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:09:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/29 10:53:54 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/29 11:22:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_gc.h"
 #include <stdlib.h>
 
-/* Malloc's "t_gc *node" and attach the "void *ptr" at init*/
-/* return's (t_gc * node)*/
+/* Mallocs a node struct and initialize it */
+/* returns the new node initialized */
 t_gc	*t_gc__m_new(void *ptr)
 {
-	t_gc	*node;
+	t_gc	*m_node;
 
-	node = malloc(sizeof(t_gc));
-	if (node == NULL)
+	m_node = malloc(sizeof(t_gc));
+	if (m_node == NULL)
 		return (NULL);
-	node->ptr = ptr;
-	node->next = NULL;
-	return (node);
+	m_node->ptr = ptr;
+	m_node->next = NULL;
+	m_node->prev = NULL;
+	return (m_node);
 }

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:23:12 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 19:03:34 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 20:08:51 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,16 @@ static int	_get_redirection_fd(t_redirect *redir_list)
 
 int	apply_redirections(t_redirect *redir_list)
 {
-	int	fd;
+	t_redirect	*m_node;
+	int			fd;
 
-	while (redir_list)
+	m_node = redir_list;
+	while (m_node)
 	{
-		fd = _get_redirection_fd(redir_list);
+		fd = _get_redirection_fd(m_node);
 		if (fd == -1)
-		{
-			ft_putstr_fd("minishell: ", 2);
-			perror(redir_list->m_value);
-			return (-1);
-		}
-		if (redir_list->type == INFILE || redir_list->type == HEREDOC)
+			return (ft_puterr(PRE_OUT), perror(m_node->m_value), -1);
+		if (m_node->type == INFILE || m_node->type == HEREDOC)
 		{
 			if (dup2(fd, STDIN_FILENO) == -1)
 				return (perror("dup2 stdin"), close(fd), -1);
@@ -51,7 +49,7 @@ int	apply_redirections(t_redirect *redir_list)
 		else if (dup2(fd, STDOUT_FILENO) == -1)
 			return (perror("dup2 stdout"), close(fd), -1);
 		close(fd);
-		redir_list = redir_list->next;
+		m_node = m_node->next;
 	}
 	return (0);
 }

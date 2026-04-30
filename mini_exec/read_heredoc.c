@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 13:33:34 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 19:00:31 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 19:57:19 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ int	read_heredoc(char *lim)
 	char	*line;
 
 	if (pipe(fd) == -1)
-	{
-		perror("pipe heredoc");
-		return (-1);
-	}
-	while (1)
+		return (perror("pipe heredoc"), -1);
+	while (TRUE)
 	{
 		line = readline("> ");
 		if (!line)

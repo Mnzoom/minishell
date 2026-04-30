@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_child.c                                       :+:      :+:    :+:   */
+/*   exec_child_process.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 18:48:28 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 19:03:49 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 20:17:23 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,15 @@ void	exec_child_process(t_cmd *cmd, t_env *m_env_list)
 	if (!cmd->m_args || !cmd->m_args[0] || cmd->m_args[0][0] == '\0')
 		exit(0);
 	if (is_builtin(cmd->m_args[0]))
-	{
-		exec_builtin(cmd, &m_env_list);
-		exit(0);
-	}
+		return (exec_builtin(cmd, &m_env_list), exit(0), (void) 0);
 	path = get_path(cmd->m_args[0], m_env_list);
 	if (!path || access(path, F_OK) == -1)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd->m_args[0], 2);
-		ft_putendl_fd(": command not found", 2);
-		exit(127);
-	}
+		return (ft_puterr2(PRE_OUT, cmd->m_args[0], ERR_NFOUND), exit(127));
 	if (access(path, X_OK) == -1)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		perror(cmd->m_args[0]);
-		exit(126);
-	}
+		return (ft_puterr(PRE_OUT), perror(cmd->m_args[0]), exit(126));
 	envp = t_env__to_array(m_env_list);
 	execve(path, cmd->m_args, envp);
-	ft_putstr_fd("minishell: ", 2);
+	ft_puterr(PRE_OUT);
 	perror(cmd->m_args[0]);
 	exit(126);
 }

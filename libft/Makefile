@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/03 18:59:12 by thantoni          #+#    #+#              #
-#    Updated: 2026/03/12 12:53:21 by thantoni         ###   ########.fr        #
+#    Updated: 2026/04/30 20:11:36 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SRCS =	ft_isalpha.c							\
 		extras/ft_free.c						\
 		extras/ft_clamp.c						\
 		extras/invoke_f_list.c					\
+		extras/ft_puterr.c						\
 		maths/powx.c							\
 		maths/sqrt.c							\
 		maths/lerp.c							\

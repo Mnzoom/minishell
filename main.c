@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 19:08:17 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 19:58:05 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **envp)
 	setup_inputs_signals();
 	while (TRUE)
 	{
-		line = readline(PROMPT_INPUT_STR);
+		line = readline(PRE_OUT);
 		if (handle_input_line_exit(line))
 			break ;
 		if (!line)

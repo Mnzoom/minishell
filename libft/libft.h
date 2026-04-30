@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:13:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 13:18:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 20:11:25 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ void			*ter_p(int con, void *val_true, void *val_false);
 char			*ter_s(int con, char *val_true, char *val_false);
 double			ter_f(int con, double val_true, double val_false);
 void			invoke_f_list(t_list *f_list, void *value);
+void			ft_puterr(char *err_msg);
+void			ft_puterr1(char *s1, char *s2);
+void			ft_puterr2(char *s1, char *s2, char *s3);
+void			ft_puterr3(char *s1, char *s2, char *s3, char *s4);
 
 double			powx(double value, int pow);
 double			pow2(double value);

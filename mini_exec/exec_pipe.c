@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 18:55:34 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 19:02:04 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 20:03:25 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	exec_pipe(t_cmd *cmd_list, t_env *env_list)
 			close(pipe_fd[0]);
 			close(pipe_fd[1]);
 			exec_child_process(cmd_list, env_list);
-			exit(1); 
+			exit(1);
 		}
 		else
 		{

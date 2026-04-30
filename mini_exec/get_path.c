@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:51 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/10 14:50:50 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 18:09:23 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_bridge.h"
 #include "minishell.h"
 #include "mini_exec.h"
-
 
 static char *join_path_cmd(char *path, char *cmd)
 {

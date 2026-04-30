@@ -6,92 +6,96 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/04/30 17:35:59 by thantoni         ###   ########.fr        #
+#    Updated: 2026/04/30 18:32:46 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = minishell
+NAME	=	minishell
 
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3
-RM          = rm -rf
+CMD_CC	=	cc -Wall -Wextra -Werror -g3
+CMD_RM	=	rm -rf
 
-INC_DIR     = includes
-LIBFT_DIR   = libft
+FLAGS_INCLUDES	=	-I includes -I libft
+FLAGS_READLINE	=	-lreadline
 
-LIBFT       = $(LIBFT_DIR)/libft.a
-IFLAGS      = -I $(INC_DIR) -I $(LIBFT_DIR)
-LDFLAGS     = -lreadline
+PATH_LIBFT = libft/
 
-EXEC_PATH   = mini_exec/env/
-HERE_PATH   = mini_exec/heredocs/
+LIBFT	=	$(PATH_LIBFT)libft.a
 
-EXEC_SRCS   = mini_exec/env/apply_red.c		\
-			  mini_exec/env/exec_builtin.c 	\
-			  mini_exec/env/env.c 			\
-			  mini_exec/env/exec_child.c	\
-			  mini_exec/env/exec_cmd.c 		\
-			  mini_exec/env/get_path.c		\
-			  mini_exec/env/pipe.c
+SRCS__MAIN			=	main.c														\
+						main_cache_envp.c											\
+						main_inputs_handling.c
 
-HERE_SRCS   = mini_exec/heredocs/read_heredoc.c
+SRCS__ENV_PARSING	=	utils/env_parsing/env_extract_m_key.c 						\
+						utils/env_parsing/env_extract_m_value.c 					\
+						utils/env_parsing/env_is_key_valid.c
 
-BUILTINS_SRCS = mini_builtsin/is_builtin.c	\
-				mini_builtsin/mini_echo.c 	\
-				mini_builtsin/mini_cd.c 	\
-				mini_builtsin/mini_unset.c	\
-				mini_builtsin/mini_pwd.c 	\
-				mini_builtsin/builtin_env.c \
-				mini_builtsin/mini_export.c	\
-				mini_builtsin/mini_exit.c
+SRCS__T_ENV			=	t_env/t_env__add_back.c 									\
+						t_env/t_env__extract_by_key.c 								\
+						t_env/t_env__free_all.c 									\
+						t_env/t_env__free.c											\
+						t_env/t_env__get_by_key.c 									\
+						t_env/t_env__get_size.c 									\
+						t_env/t_env__m_new.c 										\
+						t_env/t_env__print_all.c 									\
+						t_env/t_env__print.c 										\
+						t_env/t_env__remove_by_key.c 								\
+						t_env/t_env__to_array.c										\
 
-SRCS        = main.c														\
-			  main_cache_envp.c												\
-			  main_inputs_handling.c 										\
-			  mini_bridge/mini_exec.c 										\
-			  mini_bridge/mini_parse.c 										\
-			  mini_bridge/t_cmd/t_cmd__add_m_redirect.c 					\
-			  mini_bridge/t_cmd/t_cmd__m_new.c 								\
-			  mini_bridge/t_cmd/t_cmd__print.c 								\
-			  mini_bridge/t_redirect/t_redirect__m_new.c 					\
-			  mini_bridge/t_token_type/t_token_type__is_redirection.c 		\
-			  mini_bridge/t_token_type/t_token_type__to_str.c 				\
-			  mini_builtsin/mini_export/handle_env_export.c 				\
-			  mini_builtsin/mini_export/handle_env_sorted_print.c 			\
-			  mini_parse/cmd_shipper/cmd_shipper.c 							\
-			  mini_parse/t_token/t_token__m_free_all.c 						\
-			  mini_parse/t_token/t_token__m_free.c 							\
-			  mini_parse/t_token/t_token__m_new.c 							\
-			  mini_parse/t_token/t_token__parse_value_str.c 				\
-			  mini_parse/t_token/t_token__print.c							\
-			  mini_parse/token_refinery/token_refinery.c 					\
-			  mini_parse/token_refinery/handle_modifs.c 					\
-			  mini_parse/token_refinery/compute_modifs_len.c 				\
-			  mini_parse/token_refinery/get_var_name_len.c 					\
-			  mini_parse/token_refinery/get_lastsig_len.c 					\
-			  mini_parse/token_refinery/ft_isenvpattern.c 					\
-			  mini_parse/token_refinery/ft_issigpattern.c 					\
-			  mini_parse/token_refinery/ft_isenvchar.c 						\
-			  mini_parse/token_verifier/token_verifier.c 					\
-			  mini_parse/tokenizer/tokenizer.c 								\
-			  t_env/t_env__add_back.c 										\
-			  t_env/t_env__extract_by_key.c 								\
-			  t_env/t_env__free_all.c 										\
-			  t_env/t_env__free.c											\
-			  t_env/t_env__get_by_key.c 									\
-			  t_env/t_env__get_size.c 										\
-			  t_env/t_env__m_new.c 											\
-			  t_env/t_env__print_all.c 										\
-			  t_env/t_env__print.c 											\
-			  t_env/t_env__remove_by_key.c 									\
-			  utils/env_parsing/env_extract_m_key.c 						\
-			  utils/env_parsing/env_extract_m_value.c 						\
-			  utils/env_parsing/env_is_key_valid.c							\
-			  $(EXEC_SRCS)													\
-			  $(HERE_SRCS)													\
-			  $(BUILTINS_SRCS)
-			  
-OBJS        = $(SRCS:.c=.o)
+SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 						\
+						mini_parse/t_token/t_token__m_free_all.c 					\
+						mini_parse/t_token/t_token__m_free.c 						\
+						mini_parse/t_token/t_token__m_new.c 						\
+						mini_parse/t_token/t_token__parse_value_str.c 				\
+						mini_parse/t_token/t_token__print.c							\
+						mini_parse/token_refinery/token_refinery.c 					\
+						mini_parse/token_refinery/handle_modifs.c 					\
+						mini_parse/token_refinery/compute_modifs_len.c 				\
+						mini_parse/token_refinery/get_var_name_len.c 				\
+						mini_parse/token_refinery/get_lastsig_len.c 				\
+						mini_parse/token_refinery/ft_isenvpattern.c 				\
+						mini_parse/token_refinery/ft_issigpattern.c 				\
+						mini_parse/token_refinery/ft_isenvchar.c 					\
+						mini_parse/token_verifier/token_verifier.c 					\
+						mini_parse/tokenizer/tokenizer.c 							\
+
+SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c								\
+						mini_exec/exec_builtin.c 									\
+						mini_exec/exec_child.c										\
+						mini_exec/exec_cmd.c 										\
+						mini_exec/get_path.c										\
+						mini_exec/pipe.c											\
+						mini_exec/heredocs/read_heredoc.c
+
+SRCS__MINI_BRIDGE	=	mini_bridge/mini_exec.c 									\
+						mini_bridge/mini_parse.c 									\
+						mini_bridge/t_cmd/t_cmd__add_m_redirect.c 					\
+						mini_bridge/t_cmd/t_cmd__m_new.c 							\
+						mini_bridge/t_cmd/t_cmd__print.c 							\
+						mini_bridge/t_redirect/t_redirect__m_new.c 					\
+						mini_bridge/t_token_type/t_token_type__is_redirection.c 	\
+						mini_bridge/t_token_type/t_token_type__to_str.c
+
+SRCS__MINI_BUILTSIN	=	mini_builtsin/is_builtin.c									\
+						mini_builtsin/mini_echo.c 									\
+						mini_builtsin/mini_cd.c 									\
+						mini_builtsin/mini_unset.c									\
+						mini_builtsin/mini_pwd.c 									\
+						mini_builtsin/builtin_env.c 								\
+						mini_builtsin/mini_export.c									\
+						mini_builtsin/mini_export/handle_env_export.c 				\
+						mini_builtsin/mini_export/handle_env_sorted_print.c 		\
+						mini_builtsin/mini_exit.c
+
+SRCS				=	$(SRCS__MAIN)												\
+						$(SRCS__ENV_PARSING)										\
+						$(SRCS__T_ENV)												\
+						$(SRCS__MINI_PARSE)											\
+						$(SRCS__MINI_EXEC)											\
+						$(SRCS__MINI_BRIDGE)										\
+						$(SRCS__MINI_BUILTSIN)
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
@@ -100,21 +104,21 @@ macOS: LDFLAGS += -L$(shell brew --prefix readline)/lib
 macOS: all
 
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(PATH_LIBFT)
 
 $(NAME): $(LIBFT) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LDFLAGS) -o $(NAME)
+	$(CMD_CC) $(OBJS) $(LIBFT) $(FLAGS_READLINE) -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+	$(CMD_CC) $(FLAGS_INCLUDES) -c $< -o $@
 
 clean:
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(RM) $(OBJS)
+	$(MAKE) -C $(PATH_LIBFT) clean
+	$(CMD_RM) $(OBJS)
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(RM) $(NAME)
+	$(MAKE) -C $(PATH_LIBFT) fclean
+	$(CMD_RM) $(NAME)
 
 re: fclean all
 

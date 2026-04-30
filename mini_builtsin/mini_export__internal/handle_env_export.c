@@ -6,13 +6,13 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:20:36 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 17:26:01 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 18:47:37 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "mini_export__internal.h"
-#include "env_parsing.h"
+#include "t_env__internal.h"
 #include "libft.h"
 
 int	_print_export_error(char *arg, char *key)

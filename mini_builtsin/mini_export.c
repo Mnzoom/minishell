@@ -6,11 +6,11 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 17:36:11 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 18:45:33 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_export/mini_export__internal.h"
+#include "mini_export__internal.h"
 
 static int	_is_valid_identifier(char *str)
 {

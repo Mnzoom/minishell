@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/04/30 18:32:46 by thantoni         ###   ########.fr        #
+#    Updated: 2026/04/30 18:47:10 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,77 +22,75 @@ PATH_LIBFT = libft/
 
 LIBFT	=	$(PATH_LIBFT)libft.a
 
-SRCS__MAIN			=	main.c														\
-						main_cache_envp.c											\
+SRCS__MAIN			=	main.c																	\
+						main_cache_envp.c														\
 						main_inputs_handling.c
 
-SRCS__ENV_PARSING	=	utils/env_parsing/env_extract_m_key.c 						\
-						utils/env_parsing/env_extract_m_value.c 					\
-						utils/env_parsing/env_is_key_valid.c
+SRCS__T_ENV			=	t_env/t_env__add_back.c 												\
+						t_env/t_env__extract_by_key.c 											\
+						t_env/t_env__free_all.c 												\
+						t_env/t_env__free.c														\
+						t_env/t_env__get_by_key.c 												\
+						t_env/t_env__get_size.c 												\
+						t_env/t_env__m_new.c 													\
+						t_env/t_env__print_all.c 												\
+						t_env/t_env__print.c 													\
+						t_env/t_env__remove_by_key.c 											\
+						t_env/env_is_key_valid.c												\
+						t_env/t_env__to_array.c													\
+						t_env/t_env__internal/env_extract_m_key.c 								\
+						t_env/t_env__internal/env_extract_m_value.c
 
-SRCS__T_ENV			=	t_env/t_env__add_back.c 									\
-						t_env/t_env__extract_by_key.c 								\
-						t_env/t_env__free_all.c 									\
-						t_env/t_env__free.c											\
-						t_env/t_env__get_by_key.c 									\
-						t_env/t_env__get_size.c 									\
-						t_env/t_env__m_new.c 										\
-						t_env/t_env__print_all.c 									\
-						t_env/t_env__print.c 										\
-						t_env/t_env__remove_by_key.c 								\
-						t_env/t_env__to_array.c										\
+SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 									\
+						mini_parse/t_token/t_token__m_free_all.c 								\
+						mini_parse/t_token/t_token__m_free.c 									\
+						mini_parse/t_token/t_token__m_new.c 									\
+						mini_parse/t_token/t_token__parse_value_str.c 							\
+						mini_parse/t_token/t_token__print.c										\
+						mini_parse/token_refinery/token_refinery.c 								\
+						mini_parse/token_refinery/handle_modifs.c 								\
+						mini_parse/token_refinery/compute_modifs_len.c 							\
+						mini_parse/token_refinery/get_var_name_len.c 							\
+						mini_parse/token_refinery/get_lastsig_len.c 							\
+						mini_parse/token_refinery/ft_isenvpattern.c 							\
+						mini_parse/token_refinery/ft_issigpattern.c 							\
+						mini_parse/token_refinery/ft_isenvchar.c 								\
+						mini_parse/token_verifier/token_verifier.c 								\
+						mini_parse/tokenizer/tokenizer.c 										\
 
-SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 						\
-						mini_parse/t_token/t_token__m_free_all.c 					\
-						mini_parse/t_token/t_token__m_free.c 						\
-						mini_parse/t_token/t_token__m_new.c 						\
-						mini_parse/t_token/t_token__parse_value_str.c 				\
-						mini_parse/t_token/t_token__print.c							\
-						mini_parse/token_refinery/token_refinery.c 					\
-						mini_parse/token_refinery/handle_modifs.c 					\
-						mini_parse/token_refinery/compute_modifs_len.c 				\
-						mini_parse/token_refinery/get_var_name_len.c 				\
-						mini_parse/token_refinery/get_lastsig_len.c 				\
-						mini_parse/token_refinery/ft_isenvpattern.c 				\
-						mini_parse/token_refinery/ft_issigpattern.c 				\
-						mini_parse/token_refinery/ft_isenvchar.c 					\
-						mini_parse/token_verifier/token_verifier.c 					\
-						mini_parse/tokenizer/tokenizer.c 							\
-
-SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c								\
-						mini_exec/exec_builtin.c 									\
-						mini_exec/exec_child.c										\
-						mini_exec/exec_cmd.c 										\
-						mini_exec/get_path.c										\
-						mini_exec/pipe.c											\
+SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c											\
+						mini_exec/exec_builtin.c 												\
+						mini_exec/exec_child.c													\
+						mini_exec/exec_cmd.c 													\
+						mini_exec/get_path.c													\
+						mini_exec/pipe.c														\
 						mini_exec/heredocs/read_heredoc.c
 
-SRCS__MINI_BRIDGE	=	mini_bridge/mini_exec.c 									\
-						mini_bridge/mini_parse.c 									\
-						mini_bridge/t_cmd/t_cmd__add_m_redirect.c 					\
-						mini_bridge/t_cmd/t_cmd__m_new.c 							\
-						mini_bridge/t_cmd/t_cmd__print.c 							\
-						mini_bridge/t_redirect/t_redirect__m_new.c 					\
-						mini_bridge/t_token_type/t_token_type__is_redirection.c 	\
+SRCS__MINI_BRIDGE	=	mini_bridge/mini_exec.c 												\
+						mini_bridge/mini_parse.c 												\
+						mini_bridge/t_cmd/t_cmd__add_m_redirect.c 								\
+						mini_bridge/t_cmd/t_cmd__m_new.c 										\
+						mini_bridge/t_cmd/t_cmd__print.c 										\
+						mini_bridge/t_redirect/t_redirect__m_new.c 								\
+						mini_bridge/t_token_type/t_token_type__is_redirection.c 				\
 						mini_bridge/t_token_type/t_token_type__to_str.c
 
-SRCS__MINI_BUILTSIN	=	mini_builtsin/is_builtin.c									\
-						mini_builtsin/mini_echo.c 									\
-						mini_builtsin/mini_cd.c 									\
-						mini_builtsin/mini_unset.c									\
-						mini_builtsin/mini_pwd.c 									\
-						mini_builtsin/builtin_env.c 								\
-						mini_builtsin/mini_export.c									\
-						mini_builtsin/mini_export/handle_env_export.c 				\
-						mini_builtsin/mini_export/handle_env_sorted_print.c 		\
+SRCS__MINI_BUILTSIN	=	mini_builtsin/is_builtin.c												\
+						mini_builtsin/mini_echo.c 												\
+						mini_builtsin/mini_cd.c 												\
+						mini_builtsin/mini_unset.c												\
+						mini_builtsin/mini_pwd.c 												\
+						mini_builtsin/builtin_env.c 											\
+						mini_builtsin/mini_export.c												\
+						mini_builtsin/mini_export__internal/handle_env_export.c 				\
+						mini_builtsin/mini_export__internal/handle_env_sorted_print.c 			\
 						mini_builtsin/mini_exit.c
 
-SRCS				=	$(SRCS__MAIN)												\
-						$(SRCS__ENV_PARSING)										\
-						$(SRCS__T_ENV)												\
-						$(SRCS__MINI_PARSE)											\
-						$(SRCS__MINI_EXEC)											\
-						$(SRCS__MINI_BRIDGE)										\
+SRCS				=	$(SRCS__MAIN)															\
+						$(SRCS__T_ENV)															\
+						$(SRCS__MINI_PARSE)														\
+						$(SRCS__MINI_EXEC)														\
+						$(SRCS__MINI_BRIDGE)													\
 						$(SRCS__MINI_BUILTSIN)
 
 OBJS = $(SRCS:.c=.o)

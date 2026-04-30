@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 13:21:09 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 17:17:14 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 18:56:13 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    exec_cmds(t_cmd *cmd_list, t_env **env_list)
     }
     else
     {
-        g_lastsignal = execute_pipe(cmd_list, *env_list);
+        g_lastsignal = exec_pipe(cmd_list, *env_list);
     }
 }
 

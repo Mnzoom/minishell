@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 17:16:47 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 19:05:55 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <readline/history.h>
 # include "libft.h"
 # include "t_env.h"
+
+# define PROMPT_INPUT_STR "bash$"
 
 void	setup_inputs_signals(void);
 int		handle_input_line_exit(char *line);

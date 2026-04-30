@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_bridge.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/20 14:13:46 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 18:55:12 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,28 @@
 # define TRUE 1
 # define FALSE 0
 
+/* PIPE = '|' */
+/* OVERRIDE = '>' */
+/* APPEND = '>>' */
+/* INFILE = '<' */
+/* HEREDOC = '<<' */
+/* STR = anything that's not ' ', '\t' */
 typedef enum e_token_type
 {
-	PIPE = 0, // |
-	OVERRIDE = 1, // >
-	APPEND = 2, // >>
-	INFILE = 3, // <
-	HEREDOC = 4, // <<
-	STR = 5 // anything that's not ' ', '\t' 
+	PIPE = 0,
+	OVERRIDE = 1,
+	APPEND = 2,
+	INFILE = 3,
+	HEREDOC = 4,
+	STR = 5
 }	t_token_type;
 
-//forced to malloc, need to store name + type
+/* char *m_name; Can be in/out filename OR heredoc limiter */
+/* t_token_type type;*/
+/* int heredoc_fd;*/
+/* struct s_redirect *next;*/
 typedef struct s_redirect
 {
-	/** Can be in/out filename OR heredoc limiter */
 	char					*m_value;
 	t_token_type			type;
 	int						heredoc_fd;
@@ -50,7 +58,7 @@ typedef struct s_cmd
 }	t_cmd;
 
 t_cmd	*mini_parse(char *line, t_env *m_env_list);
-int    execute_pipe(t_cmd *cmd_list, t_env *env_list);
+int    exec_pipe(t_cmd *cmd_list, t_env *env_list);
 int    mini_exec(t_cmd *cmd_list, t_env **env_list);
 void free_cmd_list(t_cmd *lst);
 void	free_redirect_list(t_redirect *redir);

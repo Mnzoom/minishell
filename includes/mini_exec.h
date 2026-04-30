@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 18:03:35 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 18:55:12 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int read_heredoc(char *lim);
 /* EXEC*/
 void    exec_child_process(t_cmd *cmd, t_env *env_list);
 void    exec_cmds(t_cmd *cmd_list, t_env **env_list);
-int    execute_pipe(t_cmd *cmd_list, t_env *env_list);
+int    exec_pipe(t_cmd *cmd_list, t_env *env_list);
 
 char *get_path(char *cmd, t_env *m_env_list);
 int read_heredoc(char *lim);

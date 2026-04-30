@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:05:45 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 17:28:55 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 18:55:12 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	mini_exec(t_cmd *cmd_list, t_env **env_list)
 		close(save_stdin);
 	}
 	else
-		status = execute_pipe(cmd_list, *env_list);
+		status = exec_pipe(cmd_list, *env_list);
 	return (status);
 }

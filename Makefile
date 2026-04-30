@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/04/30 18:47:10 by thantoni         ###   ########.fr        #
+#    Updated: 2026/04/30 19:09:10 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,9 @@ SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 									\
 SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c											\
 						mini_exec/exec_builtin.c 												\
 						mini_exec/exec_child.c													\
-						mini_exec/exec_cmd.c 													\
+						mini_exec/exec_cmds.c 													\
 						mini_exec/get_path.c													\
-						mini_exec/pipe.c														\
+						mini_exec/exec_pipe.c													\
 						mini_exec/heredocs/read_heredoc.c
 
 SRCS__MINI_BRIDGE	=	mini_bridge/mini_exec.c 												\

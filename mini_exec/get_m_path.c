@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_path.c                                         :+:      :+:    :+:   */
+/*   get_m_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:51 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 19:02:46 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:23:26 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 #include "mini_exec.h"
 
-char	*get_path(char *cmd, t_env *m_env_list)
+char	*get_m_path(char *cmd, t_env *m_env_list)
 {
 	t_env	*path_node;
 	char	**all_paths;
@@ -27,8 +27,10 @@ char	*get_path(char *cmd, t_env *m_env_list)
 	if (!path_node || !path_node->m_val)
 		return (NULL);
 	all_paths = ft_split(path_node->m_val, ':');
+	if (all_paths == NULL)
+		return (NULL);
 	i = 0;
-	while (all_paths && all_paths[i])
+	while (all_paths[i])
 	{
 		exec_path = ft_strjoin3(all_paths[i], "/", cmd);
 		if (access(exec_path, X_OK) == 0)

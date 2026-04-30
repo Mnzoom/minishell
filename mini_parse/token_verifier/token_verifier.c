@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:22:25 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 13:00:18 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:17:28 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ int	token_verifier(t_token *m_token_list)
 		return (TRUE);
 	m_token = m_token_list;
 	if (m_token->type == PIPE)
-		return (ft_putstr_fd(ERR_SYNTAX_PIPE, FD_ERR), FALSE);
+		return (ft_puterr1(PRE_OUT, ERR_SYNTAX_PIPE), FALSE);
 	while (m_token != NULL)
 	{
 		if (t_token_type__is_redirection(m_token->type))
 		{
 			if (m_token->next == NULL)
-				return (ft_putstr_fd(ERR_SYNTAX_NL, FD_ERR), FALSE);
+				return (ft_puterr1(PRE_OUT, ERR_SYNTAX_NL), FALSE);
 			if (m_token->next->type != STR)
-				return (ft_putstr_fd(ERR_SYNTAX_GENERIC, FD_ERR), FALSE);
+				return (ft_puterr1(PRE_OUT, ERR_SYNTAX_GENERIC), FALSE);
 		}
 		if (m_token->type == PIPE && (m_token->next == NULL || m_token->next->type == PIPE))
-			return (ft_putstr_fd(ERR_SYNTAX_PIPE, FD_ERR), FALSE);
+			return (ft_puterr1(PRE_OUT, ERR_SYNTAX_PIPE), FALSE);
 		if (!_verify_closed_quotes(m_token))
-			return (ft_putstr_fd(ERR_UNCLOSED_QUOTES, FD_ERR), FALSE);
+			return (ft_puterr1(PRE_OUT, ERR_UNCLOSED_QUOTES), FALSE);
 		m_token = m_token->next;
 	}
 	return (TRUE);

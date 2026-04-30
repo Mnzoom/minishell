@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 16:37:29 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:16:50 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include "libft.h"
 # include <stdio.h>
 
-# define ERR_SYNTAX_PIPE "minishell: syntax error near unexpected token `|'\n"
-# define ERR_SYNTAX_NL "minishell: syntax error near unexpected token `newline'\n"
-# define ERR_SYNTAX_GENERIC "minishell: syntax error near unexpected token\n"
-# define ERR_UNCLOSED_QUOTES "minishell: syntax error unclosed quotes\n"
+# define ERR_SYNTAX_PIPE "syntax error near unexpected token `|'\n"
+# define ERR_SYNTAX_NL "syntax error near unexpected token `newline'\n"
+# define ERR_SYNTAX_GENERIC "syntax error near unexpected token\n"
+# define ERR_UNCLOSED_QUOTES "syntax error unclosed quotes\n"
 
 typedef struct s_token
 {

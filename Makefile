@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/04/30 20:04:18 by thantoni         ###   ########.fr        #
+#    Updated: 2026/04/30 21:24:52 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS__T_ENV			=	t_env/t_env__add_back.c 												\
 						t_env/t_env__print.c 													\
 						t_env/t_env__remove_by_key.c 											\
 						t_env/env_is_key_valid.c												\
-						t_env/t_env__to_array.c													\
+						t_env/t_env__to_m_array.c												\
 						t_env/t_env__internal/env_extract_m_key.c 								\
 						t_env/t_env__internal/env_extract_m_value.c
 
@@ -60,9 +60,9 @@ SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 									\
 
 SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c											\
 						mini_exec/exec_builtin.c 												\
-						mini_exec/exec_child_process.c													\
+						mini_exec/exec_child_process.c											\
 						mini_exec/exec_cmds.c 													\
-						mini_exec/get_path.c													\
+						mini_exec/get_m_path.c													\
 						mini_exec/exec_pipe.c													\
 						mini_exec/read_heredoc.c
 

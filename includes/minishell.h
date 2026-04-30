@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 19:57:59 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:19:17 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft.h"
 # include "t_env.h"
 
-# define PRE_IN "bash$ "
+# define PRE_IN "bash-0.0$ "
 # define PRE_OUT "bash: "
 
 void	setup_inputs_signals(void);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__to_array.c                                  :+:      :+:    :+:   */
+/*   t_env__to_m_array.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 17:54:59 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 18:07:18 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:24:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "mini_exec.h"
 #include "t_env.h"
 
-char	**t_env__to_array(t_env *m_env_list)
+char	**t_env__to_m_array(t_env *m_env_list)
 {
 	t_env	*node;
 	char	**array;

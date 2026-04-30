@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 20:13:43 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:22:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		exec_builtin(t_cmd *cmd, t_env **env_list);
 /* OH LA TUILE*/
 int		apply_redirections(t_redirect *redir_list);
 char	**env_to_tab(t_env *env_list);
-char	*get_path(char *cmd, t_env *m_env_list);
+char	*get_m_path(char *cmd, t_env *m_env_list);
 int		read_heredoc(char *lim);
 
 /* EXEC*/
@@ -36,7 +36,7 @@ void	exec_child_process(t_cmd *cmd, t_env *env_list);
 void	exec_cmds(t_cmd *cmd_list, t_env **env_list);
 int		exec_pipe(t_cmd *cmd_list, t_env *env_list);
 
-char	*get_path(char *cmd, t_env *m_env_list);
+char	*get_m_path(char *cmd, t_env *m_env_list);
 int		read_heredoc(char *lim);
 int		mini_export(char **args, t_env **env_list, int fd);
 char	*t_env__get_val(t_env *m_env_list, char *key);

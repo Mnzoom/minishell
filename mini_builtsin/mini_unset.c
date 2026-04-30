@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:07:16 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/04/10 15:32:20 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:34:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_exec.h"
 
-int builtin_unset(char **args, t_env **env_list)
+int mini_unset(char **args, t_env **env_list)
 {
 	int i;
 

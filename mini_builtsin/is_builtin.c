@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_is_key_valid.c                                 :+:      :+:    :+:   */
+/*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/12 12:44:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 17:26:48 by thantoni         ###   ########.fr       */
+/*   Created: 2026/04/30 16:26:23 by thantoni          #+#    #+#             */
+/*   Updated: 2026/04/30 17:20:26 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "env_parsing.h"
 
-int	env_is_key_valid(char *key)
+int	is_builtin(char *cmd)
 {
-	int	i;
-
-	if (key == NULL || !key[0] || (!ft_isalpha(key[0]) && key[0] != '_'))
+	if (cmd == NULL)
 		return (FALSE);
-	i = 1;
-	while (key[i])
-	{
-		if (!ft_isalnum(key[i]) && key[i] != '_')
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	return \
+	(
+		ft_strcmp(cmd, "echo") == 0
+		|| ft_strcmp(cmd, "cd") == 0
+		|| ft_strcmp(cmd, "pwd") == 0
+		|| ft_strcmp(cmd, "export") == 0
+		|| ft_strcmp(cmd, "unset") == 0
+		|| ft_strcmp(cmd, "env") == 0
+		|| ft_strcmp(cmd, "exit") == 0
+	);
 }

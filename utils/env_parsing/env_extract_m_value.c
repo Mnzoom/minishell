@@ -6,12 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:30:49 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:31:52 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 17:26:37 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/env_parsing.h"
-#include "stdlib.h"
+#include "env_parsing.h"
+#include <stdlib.h>
 
 char	*_skip_key(char *env_var)
 {

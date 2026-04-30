@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_export.h                                      :+:      :+:    :+:   */
+/*   mini_export__internal.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:17:02 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/18 12:45:19 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:22:08 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_EXPORT_H
-# define MINI_EXPORT_H
+#ifndef MINI_EXPORT__INTERNAL_H
+# define MINI_EXPORT__INTERNAL_H
 
 # include "minishell.h"
 # include "libft.h"

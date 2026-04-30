@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   mini_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/18 12:48:29 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:36:11 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_builtsin/mini_export.h"
+#include "mini_export/mini_export__internal.h"
 
-int	is_valid_identifier(char *str)
+static int	_is_valid_identifier(char *str)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	if (!str[i] || (!ft_isalpha(str[i]) && str[i] != '_'))
 		return (0);
@@ -26,8 +27,8 @@ int	is_valid_identifier(char *str)
 		i++;
 	}
 	return (1);
-	
-} 
+}
+
 int	mini_export(char **args, t_env **m_env_list, int fd)
 {
 	size_t	i;
@@ -39,7 +40,7 @@ int	mini_export(char **args, t_env **m_env_list, int fd)
 	status = 0;
 	while (args[i] != NULL)
 	{
-		if (!is_valid_identifier(args[i]))
+		if (!_is_valid_identifier(args[i]))
 		{
 			ft_putstr_fd("minishell: export: `", 2);
 			ft_putstr_fd(args[i], 2);

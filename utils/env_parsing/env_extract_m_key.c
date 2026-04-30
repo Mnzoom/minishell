@@ -6,11 +6,11 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:32:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:35:01 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 17:26:22 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/env_parsing.h"
+#include "env_parsing.h"
 #include "stdlib.h"
 
 char	*env_extract_m_key(char *env_var)

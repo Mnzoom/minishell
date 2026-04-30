@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 13:21:09 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/20 15:06:28 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:17:14 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_bridge.h"
 #include "mini_exec.h"
+
+extern int g_lastsignal;
 
 void    exec_cmds(t_cmd *cmd_list, t_env **env_list)
 {

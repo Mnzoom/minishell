@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_exec.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/18 13:45:58 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:13:22 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ int    execute_pipe(t_cmd *cmd_list, t_env *env_list);
 char *get_path(char *cmd, t_env *m_env_list);
 int read_heredoc(char *lim);
 int mini_export(char **args, t_env **env_list, int fd);
-int    builtin_echo(char **args);
-int    builtin_cd(char **args, t_env **env_list);
-int    builtin_pwd(t_env *env_list);
-int    builtin_export(char **args, t_env **env_list);
-int    builtin_unset(char **args, t_env **env_list);
-int    builtin_env(t_env *env_list);
-int    builtin_exit(char **args);
 char    *t_env__get_val(t_env *m_env_list, char *key);
 void    t_env__update_var(t_env **m_env_list, char *key, char *new_val);
 

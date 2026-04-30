@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:04:28 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/04/18 13:28:05 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:35:12 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,76 +15,71 @@
 #include <unistd.h>
 #include <stdio.h> 
 
-char    *t_env__get_val(t_env *m_env_list, char *key)
+char	*t_env__get_val(t_env *m_env_list, char *key)
 {
-    t_env   *curr;
-    size_t  target_len;
+	t_env	*curr;
+	size_t	target_len;
 
-    if (!m_env_list || !key)
-        return (NULL);
-    target_len = ft_strlen(key);
-    curr = m_env_list;
-    while (curr)
-    {
-        if (curr->key_len == target_len && 
-            ft_strncmp(curr->m_key, key, target_len) == 0)
-            return (curr->m_val);
-        curr = curr->next;
-    }
-    return (NULL);
+	if (!m_env_list || !key)
+		return (NULL);
+	target_len = ft_strlen(key);
+	curr = m_env_list;
+	while (curr)
+	{
+		if (curr->key_len == target_len
+			&& ft_strncmp(curr->m_key, key, target_len) == 0)
+			return (curr->m_val);
+		curr = curr->next;
+	}
+	return (NULL);
 }
 
-void    t_env_update_var(t_env **m_env_list, char *key, char *new_val)
+void	t_env_update_var(t_env **m_env_list, char *key, char *new_val)
 {
-    t_env   *curr;
-    size_t  k_len;
+	t_env	*curr;
+	size_t	k_len;
 
-    if (!m_env_list || !key || !new_val)
-        return;
-    k_len = ft_strlen(key);
-    curr = *m_env_list;
-    while (curr)
-    {
-        if (curr->key_len == k_len && ft_strncmp(curr->m_key, key, k_len) == 0)
-        {
-            free(curr->m_val);
-            curr->m_val = ft_strdup(new_val);
-            curr->val_len = ft_strlen(new_val);
-            return;
-        }
-        curr = curr->next;
-    }
+	if (!m_env_list || !key || !new_val)
+		return ;
+	k_len = ft_strlen(key);
+	curr = *m_env_list;
+	while (curr)
+	{
+		if (curr->key_len == k_len && ft_strncmp(curr->m_key, key, k_len) == 0)
+		{
+			free(curr->m_val);
+			curr->m_val = ft_strdup(new_val);
+			curr->val_len = ft_strlen(new_val);
+			return ;
+		}
+		curr = curr->next;
+	}
 }
-int builtin_cd(char **args, t_env **env_list)
+
+int	mini_cd(char **args, t_env **env_list)
 {
-    char cwd[4096];
-    char *old_pwd_val;
+	char	cwd[4096];
+	char	*old_pwd_val;
 
-    if (!args[1])
-    {
-        return (1); 
-    }
-    if (args[2])
-    {
-        ft_putendl_fd("minishell: cd: too many arguments", 2);
-        return (1);
-    }
-
-    //change dir
-    old_pwd_val = t_env__get_val(*env_list, "PWD");
-    if (chdir(args[1]) != 0)
-    {
-        ft_putstr_fd("minishell: cd: ", 2);
-        perror(args[1]);
-        return (1);
-    }
-
-    // maj env
-    if (getcwd(cwd, sizeof(cwd)) != NULL)
-    {
-        if (old_pwd_val)
-            t_env_update_var(env_list, "OLDPWD", old_pwd_val);
-        t_env_update_var(env_list, "PWD", cwd);
-    }
-    return (0);
+	if (!args[1])
+		return (TRUE);
+	if (args[2])
+	{
+		ft_putendl_fd("minishell: cd: too many arguments", 2);
+		return (TRUE);
+	}
+	old_pwd_val = t_env__get_val(*env_list, "PWD");
+	if (chdir(args[1]) != 0)
+	{
+		ft_putstr_fd("minishell: cd: ", 2);
+		perror(args[1]);
+		return (TRUE);
+	}
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	{
+		if (old_pwd_val)
+			t_env_update_var(env_list, "OLDPWD", old_pwd_val);
+		t_env_update_var(env_list, "PWD", cwd);
+	}
+	return (FALSE);
 }

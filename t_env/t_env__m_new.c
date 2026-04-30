@@ -6,12 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:34:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 17:26:16 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "utils/env_parsing.h"
+#include "env_parsing.h"
 
 t_env	*t_env__m_new(char *env_var)
 {

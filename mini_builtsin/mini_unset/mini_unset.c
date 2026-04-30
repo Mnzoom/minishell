@@ -6,12 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:01:30 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/12 12:58:54 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/04/30 17:26:08 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "utils/env_parsing.h"
+#include "env_parsing.h"
 #include "libft.h"
 
 int	mini_unset(char **args, t_env **m_env_list)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_env_sorted_print.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cn-goie <cn-goie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:18:12 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/20 15:55:13 by cn-goie          ###   ########.fr       */
+/*   Updated: 2026/04/30 17:23:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_builtsin/mini_export.h"
+#include "mini_export__internal.h"
 #include "libft.h"
 #include <stdlib.h>
 

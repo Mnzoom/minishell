@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_bridge.h                                      :+:      :+:    :+:   */
+/*   t_cmd.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:58:58 by thantoni         ###   ########.fr       */
+/*   Created: 2026/05/01 21:58:15 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/01 22:06:47 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_BRIDGE_H
-# define MINI_BRIDGE_H
+#ifndef T_CMD_H
+# define T_CMD_H
 
 # include <stddef.h>
-# include <stdlib.h>
-# include "minishell.h"
+# include "t_token.h"
 # include "t_redirect.h"
-# include "t_cmd.h"
 
-# define EXIT_SUCCESS 0
-# define EXIT_ERROR 1
-# define TRUE 1
-# define FALSE 0
+typedef struct s_cmd
+{
+	char			**m_args;
+	t_redirect		*m_redirect_list;
+	struct s_cmd	*next;
+}	t_cmd;
 
-t_cmd	*mini_parse(char *line, t_env *m_env_list);
-int    exec_pipe(t_cmd *cmd_list, t_env *env_list);
-int    mini_exec(t_cmd *cmd_list, t_env **env_list);
-// void free_cmd_list(t_cmd *lst);
-// void	free_redirect_list(t_redirect *redir);
-// void	free_tab(char **tab);
+t_cmd		*t_cmd__m_new(size_t arg_count);
+t_token		*t_cmd__add_m_redirect(t_cmd *m_cmd, t_token *m_token);
+void		t_cmd__free(t_cmd *m_cmd);
+void		t_cmd__freeall(t_cmd *m_cmd_list);
+void		t_cmd__print(t_cmd *cmd);
 
 #endif

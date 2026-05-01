@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 19:13:16 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 20:11:25 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 21:45:51 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char			*get_next_line(int fd);
 int				ft_printf(char const *format, ...);
 
 char			*ft_arraytostr(char **array);
-void			ft_freesplit(char **split);
+void			ft_freearray(char **split);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strjoin3(char const *s1, char const *s2, char const *s3);
 size_t			ft_strlen_eol(char *s, char eol);

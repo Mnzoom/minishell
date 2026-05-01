@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_redirect__m_new.c                                :+:      :+:    :+:   */
+/*   t_redirect__free.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 14:05:37 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:57:53 by thantoni         ###   ########.fr       */
+/*   Created: 2026/05/01 21:46:58 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/01 21:57:48 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_redirect.h"
 #include <stdlib.h>
 
-t_redirect	*t_redirect__m_new(char *m_name, t_token_type type)
+void	t_redirect__free(t_redirect *m_redirect)
 {
-	t_redirect	*m_redirect;
-
-	m_redirect = malloc(sizeof(t_redirect));
-	m_redirect->m_value = m_name;
-	m_redirect->type = type;
-	m_redirect->next = NULL;
-	return (m_redirect);
+	if (m_redirect == NULL)
+		return;
+	if (m_redirect->m_value != NULL)
+		free(m_redirect->m_value);
+	free(m_redirect);
 }

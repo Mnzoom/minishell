@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 17:09:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 21:56:42 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int argc, char **argv, char **envp)
 			if (m_cmd_list)
 			{
 				g_lastsignal = mini_exec(m_cmd_list, &m_env_list);
-				free_cmd_list(m_cmd_list);
+				t_cmd__freeall(m_cmd_list);
 				m_cmd_list = NULL;
 			}
 		}

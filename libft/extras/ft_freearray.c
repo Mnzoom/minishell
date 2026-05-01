@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freesplit.c                                     :+:      :+:    :+:   */
+/*   ft_freearray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:32:08 by thantoni          #+#    #+#             */
-/*   Updated: 2025/12/12 10:01:55 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 22:04:21 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	ft_freesplit(char **split)
+void	ft_freearray(char **array)
 {
 	size_t	i;
 
-	if (split == NULL)
+	if (array == NULL)
 		return ;
 	i = 0;
-	while (split[i])
+	while (array[i])
 	{
-		free(split[i]);
+		free(array[i]);
 		i++;
 	}
-	free(split);
+	free(array);
 }

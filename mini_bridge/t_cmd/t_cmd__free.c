@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_redirect__m_new.c                                :+:      :+:    :+:   */
+/*   t_cmd__free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 14:05:37 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:57:53 by thantoni         ###   ########.fr       */
+/*   Created: 2026/05/01 21:57:17 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/01 22:05:07 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_redirect.h"
-#include <stdlib.h>
+#include "t_cmd.h"
+#include "libft.h"
 
-t_redirect	*t_redirect__m_new(char *m_name, t_token_type type)
+void	t_cmd__free(t_cmd *m_cmd)
 {
-	t_redirect	*m_redirect;
-
-	m_redirect = malloc(sizeof(t_redirect));
-	m_redirect->m_value = m_name;
-	m_redirect->type = type;
-	m_redirect->next = NULL;
-	return (m_redirect);
+	if (m_cmd == NULL)
+		return ;
+	ft_freearray(m_cmd->m_args);
+	t_redirect__freeall(m_cmd->m_redirect_list);
 }

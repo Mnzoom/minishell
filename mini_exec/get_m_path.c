@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:51 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/04/30 21:23:26 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 21:45:51 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_m_path(char *cmd, t_env *m_env_list)
 	{
 		exec_path = ft_strjoin3(all_paths[i], "/", cmd);
 		if (access(exec_path, X_OK) == 0)
-			return (ft_freesplit(all_paths), exec_path);
+			return (ft_freearray(all_paths), exec_path);
 		free(exec_path);
 		i++;
 	}

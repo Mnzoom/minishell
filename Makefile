@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/05/01 17:20:21 by thantoni         ###   ########.fr        #
+#    Updated: 2026/05/01 22:07:30 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,17 +62,21 @@ SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 									\
 SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c											\
 						mini_exec/exec_builtin.c 												\
 						mini_exec/exec_child_process.c											\
-						mini_exec/exec_cmds.c 													\
 						mini_exec/get_m_path.c													\
 						mini_exec/exec_pipe.c													\
-						mini_exec/read_heredoc.c
+						mini_exec/read_heredoc.c												\
+# 						mini_exec/exec_cmds.c
 
 SRCS__MINI_BRIDGE	=	mini_bridge/mini_exec.c 												\
 						mini_bridge/mini_parse.c 												\
-						mini_bridge/t_cmd/t_cmd__add_m_redirect.c 								\
 						mini_bridge/t_cmd/t_cmd__m_new.c 										\
+						mini_bridge/t_cmd/t_cmd__free.c 										\
+						mini_bridge/t_cmd/t_cmd__freeall.c 										\
 						mini_bridge/t_cmd/t_cmd__print.c 										\
+						mini_bridge/t_cmd/t_cmd__add_m_redirect.c 								\
 						mini_bridge/t_redirect/t_redirect__m_new.c 								\
+						mini_bridge/t_redirect/t_redirect__free.c 								\
+						mini_bridge/t_redirect/t_redirect__freeall.c 							\
 						mini_bridge/t_token_type/t_token_type__is_redirection.c 				\
 						mini_bridge/t_token_type/t_token_type__to_str.c
 

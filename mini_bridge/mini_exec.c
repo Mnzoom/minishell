@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:05:45 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 17:13:32 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 22:22:49 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list)
 	{
 		save_stdout = dup(STDOUT_FILENO);
 		save_stdin = dup(STDIN_FILENO);
-		apply_redirections(m_cmd_list->m_redirect_list);
-		status = exec_builtin(m_cmd_list, m_env_list);
+		if (apply_redirections(m_cmd_list->m_redirect_list) == -1)
+			status = 1;
+		else
+			status = exec_builtin(m_cmd_list, m_env_list);
 		dup2(save_stdout, STDOUT_FILENO);
 		dup2(save_stdin, STDIN_FILENO);
 		close(save_stdout);

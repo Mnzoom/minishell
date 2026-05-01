@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:17:09 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:58:58 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 22:11:45 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@
 # define FALSE 0
 
 t_cmd	*mini_parse(char *line, t_env *m_env_list);
-int    exec_pipe(t_cmd *cmd_list, t_env *env_list);
-int    mini_exec(t_cmd *cmd_list, t_env **env_list);
-// void free_cmd_list(t_cmd *lst);
-// void	free_redirect_list(t_redirect *redir);
-// void	free_tab(char **tab);
+int		mini_exec(t_cmd *cmd_list, t_env **env_list);
 
 #endif

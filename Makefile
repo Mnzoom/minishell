@@ -6,17 +6,18 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/04/30 21:24:52 by thantoni         ###   ########.fr        #
+#    Updated: 2026/05/01 17:20:21 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 
-CMD_CC	=	cc -Wall -Wextra -Werror -g3
+CMD_CC	=	cc -Wall -Wextra -Werror
 CMD_RM	=	rm -rf
 
 FLAGS_INCLUDES	=	-I includes -I libft
 FLAGS_READLINE	=	-lreadline
+FLAGS_DEBUG		=	-g3 -fsanitize=thread
 
 PATH_LIBFT = libft/
 
@@ -96,6 +97,9 @@ SRCS				=	$(SRCS__MAIN)															\
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
+
+dbg: $(LIBFT) $(OBJS)
+	$(CMD_CC) $(FLAGS_DEBUG) $(OBJS) $(LIBFT) $(FLAGS_READLINE) -o $(NAME)
 
 macOS: IFLAGS += -I$(shell brew --prefix readline)/include
 macOS: LDFLAGS += -L$(shell brew --prefix readline)/lib

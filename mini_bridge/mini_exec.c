@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:05:45 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 19:35:49 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 17:13:32 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list)
 	int	save_stdin;
 
 	status = 0;
-	if (!m_cmd_list || !m_cmd_list->m_args || !m_cmd_list->m_args[0])
+	if (!m_cmd_list || !m_cmd_list->m_args)
 		return (0);
 	if (m_cmd_list && !m_cmd_list->next && is_builtin(m_cmd_list->m_args[0]))
 	{

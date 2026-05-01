@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:46:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 18:55:52 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 20:12:51 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ size_t	_get_args_count(t_token *m_token_list)
 			m_token = m_token->next->next;
 		else
 		{
-			arg_count++;
+			if (!m_token->is_ignored)
+				arg_count++;
 			m_token = m_token->next;
 		}
 	}
@@ -55,6 +56,11 @@ t_cmd	*cmd_shipper(t_token *m_token_list)
 	args_i = 0;
 	while (m_token != NULL)
 	{
+		if (m_token->is_ignored)
+		{
+			m_token = m_token->next;
+			continue ;
+		}
 		if (t_token_type__is_redirection(m_token->type))
 			m_token = t_cmd__add_m_redirect(m_cmd, m_token);
 		else if (m_token->type == PIPE)

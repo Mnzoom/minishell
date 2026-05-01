@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 19:47:55 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 20:15:37 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,5 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 			exp_i++;
 		}
 	}
+	m_token->is_ignored = exp_i == 0;
 }

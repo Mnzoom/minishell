@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 17:07:27 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/01 19:47:55 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 			_expand_env(m_token, m_env_list, &raw_i, &exp_i);
 		else if (!in_single && ft_issigpattern(&m_token->raw[raw_i]))
 			_expand_sig(m_token, &raw_i, &exp_i);
-		else
+		else if (raw_i < m_token->raw_len)
 		{
 			m_token->m_value[exp_i] = m_token->raw[raw_i];
 			raw_i++;

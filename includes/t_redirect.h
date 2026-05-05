@@ -6,13 +6,14 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:52:29 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 22:00:59 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 16:13:15 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_REDIRECT_H
 # define T_REDIRECT_H
 
+# include "t_gc.h"
 # include "t_token_type.h"
 
 /* char *m_name; Can be in/out filename OR heredoc limiter */

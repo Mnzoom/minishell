@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_pwd.c                                         :+:      :+:    :+:   */
+/*   minishell_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/10 15:05:30 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/04/30 17:34:34 by thantoni         ###   ########.fr       */
+/*   Created: 2026/05/05 18:45:02 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/05 19:15:07 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "mini_exec.h"
-#include <unistd.h>
-#include <stdio.h>
 
-int	mini_pwd(t_env *env_list)
+void	minishell_exit(int status)
 {
-	char	*pwd_value;
-	char	cwd[4096];
-
-	pwd_value = t_env__get_val(env_list, "PWD");
-	if (pwd_value == NULL)
-		return (0);
-	if (pwd_value)
-	{
-		ft_putendl_fd(pwd_value, 1);
-		return (0);
-	}
-
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-	{
-		ft_putendl_fd(cwd, 1); 
-		return (0);
-	}
-	perror("pwd");
-	return (1);
+	t_gc__freeall();
+	rl_clear_history();
+	exit(status);
 }

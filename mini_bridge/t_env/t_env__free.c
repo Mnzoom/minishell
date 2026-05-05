@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_redirect__free.c                                 :+:      :+:    :+:   */
+/*   t_env__free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 21:46:58 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 16:18:02 by thantoni         ###   ########.fr       */
+/*   Created: 2026/03/11 15:16:46 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/05 16:53:57 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_redirect.h"
+#include "minishell.h"
 #include <stdlib.h>
 
-void	t_redirect__free(t_redirect *m_redirect)
+void	t_env__free(t_env *m_env)
 {
-	if (m_redirect == NULL)
+	if (m_env == NULL)
 		return ;
-	if (m_redirect->m_value != NULL)
-		t_gc__free1(m_redirect->m_value);
-	t_gc__free1(m_redirect);
+	if (m_env->m_key != NULL)
+		t_gc__free1(m_env->m_key);
+	if (m_env->m_val != NULL)
+		t_gc__free1(m_env->m_val);
+	t_gc__free1(m_env);
 }

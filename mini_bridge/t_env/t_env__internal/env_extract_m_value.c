@@ -6,11 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:30:49 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 18:44:06 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 17:00:19 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "t_gc.h"
 
 char	*_skip_key(char *env_var)
 {
@@ -34,7 +35,7 @@ char	*env_extract_m_value(char *env_var)
 	val_len = 0;
 	while (env_var[val_len])
 		val_len++;
-	m_val = malloc(sizeof(char) * (val_len + 1));
+	m_val = t_gc__malloc(sizeof(char) * (val_len + 1));
 	if (m_val == NULL)
 		return (NULL);
 	m_val[val_len] = '\0';
@@ -57,7 +58,7 @@ char	*env_extract_m_value1(char *env_var, size_t *return_val_len)
 	val_len = 0;
 	while (env_var[val_len])
 		val_len++;
-	m_val = malloc(sizeof(char) * (val_len + 1));
+	m_val = t_gc__malloc(sizeof(char) * (val_len + 1));
 	if (m_val == NULL)
 		return (*return_val_len = val_len, NULL);
 	m_val[val_len] = '\0';

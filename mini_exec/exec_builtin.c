@@ -6,14 +6,13 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 12:54:41 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/01 17:02:03 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 15:46:17 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_bridge.h"
 #include "mini_exec.h"
-
 #include "mini_builtsin.h"
 
 int	exec_builtin(t_cmd *cmd, t_env **env_list)

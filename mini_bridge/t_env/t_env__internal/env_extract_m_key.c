@@ -6,11 +6,12 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:32:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 18:43:58 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 17:00:01 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "t_gc.h"
 
 char	*env_extract_m_key(char *env_var)
 {
@@ -21,7 +22,7 @@ char	*env_extract_m_key(char *env_var)
 	key_len = 0;
 	while (env_var[key_len] && env_var[key_len] != '=')
 		key_len++;
-	m_key = malloc(sizeof(char) * (key_len + 1));
+	m_key = t_gc__malloc(sizeof(char) * (key_len + 1));
 	if (m_key == NULL)
 		return (NULL);
 	m_key[key_len] = '\0';
@@ -43,7 +44,7 @@ char	*env_extract_m_key1(char *env_var, size_t *return_key_len)
 	key_len = 0;
 	while (env_var[key_len] && env_var[key_len] != '=')
 		key_len++;
-	m_key = malloc(sizeof(char) * (key_len + 1));
+	m_key = t_gc__malloc(sizeof(char) * (key_len + 1));
 	if (m_key == NULL)
 		return (*return_key_len = key_len, NULL);
 	m_key[key_len] = '\0';

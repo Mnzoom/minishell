@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:58:15 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 22:06:47 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 16:10:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define T_CMD_H
 
 # include <stddef.h>
+# include "t_gc.h"
 # include "t_token.h"
 # include "t_redirect.h"
 

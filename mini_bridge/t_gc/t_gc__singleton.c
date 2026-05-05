@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_gc__add.c                                        :+:      :+:    :+:   */
+/*   t_gc__singleton.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 10:12:38 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/29 11:19:37 by thantoni         ###   ########.fr       */
+/*   Created: 2026/05/05 14:14:25 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/05 16:48:14 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_gc.h"
-#include <stdlib.h>
 
-/* Add front m_node. */
-/* Fewer operations avoiding "while()" iterator */
-void	t_gc__add(t_gc **m_list, t_gc *m_node)
+t_gc	**t_gc__singleton(void)
 {
-	t_gc	*old_first_node;
-	
-	if (*m_list == NULL)
-		return (m_list = m_node, (void) 0);
-	old_first_node = *m_list;
-	*m_list = m_node;
-	m_node->next = old_first_node;
-	
+	static t_gc	*m_gc = NULL;
+
+	return (&m_gc);
 }

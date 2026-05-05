@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 18:55:34 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/01 18:57:59 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 19:19:00 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int exec_pipe(t_cmd *m_cmd_list, t_env *m_env_list)
 				close(pipe_fd[1]);
 			}
 			exec_child_process(m_cmd_list, m_env_list);
-			exit(1);
+			minishell_exit(1);
 		}
 		else
 		{

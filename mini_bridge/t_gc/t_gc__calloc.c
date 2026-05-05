@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_env__free.c                                      :+:      :+:    :+:   */
+/*   t_gc__calloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/11 15:16:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 13:22:18 by thantoni         ###   ########.fr       */
+/*   Created: 2026/04/29 10:16:31 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/05 18:43:20 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "t_gc.h"
+#include "libft.h"
+#include <stddef.h>
 #include <stdlib.h>
 
-void	t_env__free(t_env *m_env)
+/* Calloc data and put it in the GC list (malloc associated GC node )*/
+/* returns malloc'ed data */
+void	*t_gc__calloc(size_t nmemb, size_t size)
 {
-	if (m_env == NULL)
-		return ;
-	if (m_env->m_key != NULL)
-		free(m_env->m_key);
-	if (m_env->m_val != NULL)
-		free(m_env->m_val);
-	free(m_env);
+	void	*m_data;
+
+	m_data = ft_calloc(nmemb, size);
+	if (m_data == NULL)
+		return (NULL);
+	t_gc__m_new(m_data);
+	return (m_data);
 }

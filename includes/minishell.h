@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 18:41:09 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 19:16:00 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 # include <readline/history.h>
 # include "libft.h"
 # include "t_env.h"
+# include "t_gc.h"
 
 # define PRE_IN "bash-mini.shell$ "
 # define PRE_OUT "bash: "
 
 void	setup_inputs_signals(void);
 int		handle_input_line_exit(char *line);
+void	minishell_exit(int status);
 
 t_env	*main_cache_envp(char **envp);
 

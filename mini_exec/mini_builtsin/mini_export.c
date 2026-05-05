@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 18:45:33 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 15:05:40 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	mini_export(char **args, t_env **m_env_list, int fd)
 	{
 		if (!_is_valid_identifier(args[i]))
 		{
-			ft_putstr_fd("minishell: export: `", 2);
-			ft_putstr_fd(args[i], 2);
-			ft_putendl_fd("': not a valid identifier", 2);
+			ft_puterr3(PRE_OUT, "export: `", args[i], "': not a valid identifier\n");
 			status = 1;
 		}
 		else if (handle_env_export(m_env_list, args[i]) == 1)

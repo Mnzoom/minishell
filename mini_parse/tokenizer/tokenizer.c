@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:14:27 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:10:17 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/04 14:05:41 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_token	*tokenize(char *line)
 			break ;
 		current = _get_current_token(&line[i]);
 		if (current == NULL)
-			return (t_token__m_free_all(first, TRUE), NULL);
+			return (t_token__m_free_all(first), NULL);
 		if (first == NULL)
 			first = current;
 		else

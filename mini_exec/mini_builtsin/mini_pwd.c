@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_refinery.c                                   :+:      :+:    :+:   */
+/*   mini_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/09 10:52:38 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/04 13:55:16 by thantoni         ###   ########.fr       */
+/*   Created: 2026/04/10 15:05:30 by cn-goie           #+#    #+#             */
+/*   Updated: 2026/05/05 15:01:15 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_parse.h"
+#include "minishell.h"
+#include "mini_exec.h"
+#include <unistd.h>
+#include <stdio.h>
 
-void	token_refinery(t_token *m_token_list, t_env *m_env_list)
+int	mini_pwd(t_env *env_list)
 {
-	t_token	*m_token;
+	char	*pwd_value;
+	char	cwd[4096];
 
-	m_token = m_token_list;
-	while (m_token != NULL)
+	pwd_value = t_env__get_val(env_list, "PWD");
+	if (pwd_value == NULL)
+		return (0);
+	if (pwd_value)
 	{
-		if (m_token->type == STR)
-		{
-			compute_modifs_len(m_token, m_env_list);
-			handle_modifs(m_token, m_env_list);
-		}
-		m_token = m_token->next;
+		ft_putendl_fd(pwd_value, 1);
+		return (0);
 	}
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	{
+		ft_putendl_fd(cwd, 1); 
+		return (0);
+	}
+	perror("pwd");
+	return (1);
 }

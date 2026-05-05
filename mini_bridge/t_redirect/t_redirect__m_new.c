@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 14:05:37 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:57:53 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 16:19:18 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_redirect	*t_redirect__m_new(char *m_name, t_token_type type)
 {
 	t_redirect	*m_redirect;
 
-	m_redirect = malloc(sizeof(t_redirect));
-	m_redirect->m_value = m_name;
+	m_redirect = t_gc__malloc(sizeof(t_redirect));
+	m_redirect->m_value = t_gc__strdup(m_name);
 	m_redirect->type = type;
 	m_redirect->next = NULL;
 	return (m_redirect);

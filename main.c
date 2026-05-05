@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:56:42 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/05 19:16:37 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	g_lastsignal = 0;
 
 int main(int argc, char **argv, char **envp)
 {
-	t_env	*m_env_list;
-	char	*line;
-	t_cmd	*m_cmd_list;
+	t_env	*m_env_list = NULL;
+	t_cmd	*m_cmd_list = NULL;
+	char	*line = NULL;
 
 	(void)argc, (void)argv;
 	m_env_list = main_cache_envp(envp);
@@ -29,14 +29,17 @@ int main(int argc, char **argv, char **envp)
 	{
 		line = readline(PRE_IN);
 		if (handle_input_line_exit(line))
+		{
+			free(line);
 			break ;
+		}
 		if (!line)
-			return (t_env__free_all(m_env_list), EXIT_FAILURE);
+			return (minishell_exit(EXIT_SUCCESS), EXIT_FAILURE);
 		if (*line)
 		{
 			add_history(line);
 			m_cmd_list = mini_parse(line, m_env_list);
-			if (m_cmd_list)
+			if (m_cmd_list != NULL)
 			{
 				g_lastsignal = mini_exec(m_cmd_list, &m_env_list);
 				t_cmd__freeall(m_cmd_list);
@@ -45,5 +48,8 @@ int main(int argc, char **argv, char **envp)
 		}
 		free(line);
 	}
-	return (t_env__free_all(m_env_list), EXIT_SUCCESS);
+	// printf("exit Ctrl + D\n"), fflush(stdout);
+	// // rl_clear_history();
+	// t_gc__freeall();
+	return (minishell_exit(EXIT_SUCCESS), EXIT_SUCCESS);
 }

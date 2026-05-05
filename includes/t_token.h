@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:59:29 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 22:02:05 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/04 14:05:19 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_token
 }	t_token;
 
 t_token		*t_token__m_new(char *start, size_t len, t_token_type type);
-void		t_token__m_free(t_token *m_token, int destroy_value);
-void		t_token__m_free_all(t_token *m_token_list, int destroy_value);
+void		t_token__m_free(t_token *m_token);
+void		t_token__m_free_all(t_token *m_token_list);
 void		t_token__print(t_token *token);
 t_token		*t_token__parse_value_str(char *start);
 

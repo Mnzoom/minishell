@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:04:28 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/04/30 17:35:12 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 12:19:15 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,11 @@ int	mini_cd(char **args, t_env **env_list)
 	if (!args[1])
 		return (TRUE);
 	if (args[2])
-	{
-		ft_putendl_fd("minishell: cd: too many arguments", 2);
-		return (TRUE);
-	}
+		return (ft_puterr1(PRE_OUT, "cd: too many arguments"), TRUE);
 	old_pwd_val = t_env__get_val(*env_list, "PWD");
 	if (chdir(args[1]) != 0)
 	{
-		ft_putstr_fd("minishell: cd: ", 2);
+		ft_puterr1(PRE_OUT, "cd: ");
 		perror(args[1]);
 		return (TRUE);
 	}

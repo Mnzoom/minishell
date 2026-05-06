@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:20:36 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 18:47:37 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 12:20:14 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 
 int	_print_export_error(char *arg, char *key)
 {
-	ft_putstr_fd("minishell: export: `", FD_ERR);
-	ft_putstr_fd(arg, FD_ERR);
-	ft_putstr_fd("': not a valid identifier\n", FD_ERR);
+	ft_puterr3(PRE_OUT, "export: `", arg, "': not a valid identifier\n");
 	free(key);
 	return (EXIT_ERROR);
 }

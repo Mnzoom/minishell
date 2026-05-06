@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 18:48:28 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/05 19:18:58 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 12:27:41 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_child_process(t_cmd *cmd, t_env *m_env_list)
 
 	if (apply_redirections(cmd->m_redirect_list) == -1)
 		minishell_exit(1);
-	if (!cmd->m_args || !cmd->m_args[0] || cmd->m_args[0][0] == '\0')
+	if (!cmd->m_args || !cmd->m_args[0])// || cmd->m_args[0][0] == '\0')
 		minishell_exit(0);
 	if (is_builtin(cmd->m_args[0]))
 		return (exec_builtin(cmd, &m_env_list), minishell_exit(0), (void) 0);

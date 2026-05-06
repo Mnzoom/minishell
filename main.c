@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 19:16:37 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 12:36:36 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,5 @@ int main(int argc, char **argv, char **envp)
 		}
 		free(line);
 	}
-	// printf("exit Ctrl + D\n"), fflush(stdout);
-	// // rl_clear_history();
-	// t_gc__freeall();
 	return (minishell_exit(EXIT_SUCCESS), EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:46:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 16:49:27 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 12:54:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ t_cmd	*cmd_shipper(t_token *m_token_list)
 			m_token = _pipe_new_cmd(m_token, &m_cmd, &args_i);
 		else
 		{
-			// m_cmd->m_args[args_i] = ft_strdup(m_token->m_value);
 			m_cmd->m_args[args_i] = t_gc__strdup(m_token->m_value);
 			m_token = m_token->next;
 			args_i++;

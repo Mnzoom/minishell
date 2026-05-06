@@ -6,58 +6,18 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:04:28 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/06 12:19:15 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 13:09:58 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_bridge.h"
+#include "t_env.h"
 #include <unistd.h>
-#include <stdio.h> 
-
-char	*t_env__get_val(t_env *m_env_list, char *key)
-{
-	t_env	*curr;
-	size_t	target_len;
-
-	if (!m_env_list || !key)
-		return (NULL);
-	target_len = ft_strlen(key);
-	curr = m_env_list;
-	while (curr)
-	{
-		if (curr->key_len == target_len
-			&& ft_strncmp(curr->m_key, key, target_len) == 0)
-			return (curr->m_val);
-		curr = curr->next;
-	}
-	return (NULL);
-}
-
-void	t_env_update_var(t_env **m_env_list, char *key, char *new_val)
-{
-	t_env	*curr;
-	size_t	k_len;
-
-	if (!m_env_list || !key || !new_val)
-		return ;
-	k_len = ft_strlen(key);
-	curr = *m_env_list;
-	while (curr)
-	{
-		if (curr->key_len == k_len && ft_strncmp(curr->m_key, key, k_len) == 0)
-		{
-			free(curr->m_val);
-			curr->m_val = ft_strdup(new_val);
-			curr->val_len = ft_strlen(new_val);
-			return ;
-		}
-		curr = curr->next;
-	}
-}
 
 int	mini_cd(char **args, t_env **env_list)
 {
+	t_env	*m_found;
 	char	cwd[4096];
 	char	*old_pwd_val;
 
@@ -65,7 +25,8 @@ int	mini_cd(char **args, t_env **env_list)
 		return (TRUE);
 	if (args[2])
 		return (ft_puterr1(PRE_OUT, "cd: too many arguments"), TRUE);
-	old_pwd_val = t_env__get_val(*env_list, "PWD");
+	m_found = t_env__get_by_key(*env_list, "PWD");
+	old_pwd_val = m_found->m_val;
 	if (chdir(args[1]) != 0)
 	{
 		ft_puterr1(PRE_OUT, "cd: ");
@@ -75,8 +36,8 @@ int	mini_cd(char **args, t_env **env_list)
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 	{
 		if (old_pwd_val)
-			t_env_update_var(env_list, "OLDPWD", old_pwd_val);
-		t_env_update_var(env_list, "PWD", cwd);
+			t_env__get_by_key(*env_list, "OLDPWD")->m_val = old_pwd_val;
+		t_env__get_by_key(*env_list, "PWD")->m_val = cwd;
 	}
 	return (FALSE);
 }

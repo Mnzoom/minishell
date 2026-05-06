@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:05:30 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/05 15:01:15 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 13:07:40 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	mini_pwd(t_env *env_list)
 	char	*pwd_value;
 	char	cwd[4096];
 
-	pwd_value = t_env__get_val(env_list, "PWD");
+	pwd_value = t_env__get_by_key(env_list, "PWD")->m_val;
 	if (pwd_value == NULL)
 		return (0);
 	if (pwd_value)

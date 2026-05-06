@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:16:31 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/06 12:41:53 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 13:10:06 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stddef.h>
 #include <stdlib.h>
-#include <stdio.h>
+
 /* Calloc data and put it in the GC list (malloc associated GC node )*/
 /* returns malloc'ed data */
 void	*t_gc__calloc(size_t nmemb, size_t size)

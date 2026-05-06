@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/06 13:12:33 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 13:19:08 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include "mini_bridge.h"
-
-# define ERR_NFOUND ": command not found\n"
 
 /* BUILTIN GESTION*/
 int		is_builtin(char *cmd);

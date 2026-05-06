@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 19:16:00 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 13:32:26 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "t_env.h"
 # include "t_gc.h"
 
-# define PRE_IN "bash-mini.shell$ "
-# define PRE_OUT "bash: "
+# define PRE_IN "minishell$ "
+# define PRE_OUT "minishell: "
 
 void	setup_inputs_signals(void);
 int		handle_input_line_exit(char *line);

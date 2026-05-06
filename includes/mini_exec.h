@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 21:40:23 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/06 13:12:33 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,5 @@ int		exec_pipe(t_cmd *cmd_list, t_env *env_list);
 char	*get_m_path(char *cmd, t_env *m_env_list);
 int		read_heredoc(char *lim);
 int		mini_export(char **args, t_env **env_list, int fd);
-char	*t_env__get_val(t_env *m_env_list, char *key);
-void	t_env__update_var(t_env **m_env_list, char *key, char *new_val);
 
 #endif

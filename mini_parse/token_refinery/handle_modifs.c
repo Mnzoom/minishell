@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/07 20:00:27 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/07 21:10:11 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,15 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 	size_t	exp_i;
 	int		in_single;
 	int		in_double;
+	int		had_quotes;
 
-	if (!ft_malloc((void **)&m_token->m_value, sizeof(char) * (m_token->raw_len + m_token->modifs_len)))
+	if (!ft_malloc((void **)&m_token->m_value, sizeof(char) * (m_token->raw_len + m_token->modifs_len + 1)))
 		return ;
 	raw_i = 0;
 	exp_i = 0;
 	in_single = FALSE;
 	in_double = FALSE;
+	had_quotes = FALSE;
 	while (m_token->raw[raw_i] && raw_i < m_token->raw_len)
 	{
 		if (!in_single && m_token->raw[raw_i] == '\\'
@@ -135,6 +137,8 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 			&& raw_i + 1 < m_token->raw_len && (m_token->raw[raw_i + 1] == '\''
 				|| m_token->raw[raw_i + 1] == '\"'))
 			raw_i++;
+		if ((m_token->raw[raw_i] == '\'' && !in_double) || (m_token->raw[raw_i] == '\"' && !in_single))
+			had_quotes = TRUE;
 		raw_i += _handle_quote_skip(&m_token->raw[raw_i], &in_single, &in_double);
 		if (!in_single && ft_isenvpattern(&m_token->raw[raw_i]))
 			_expand_env(m_token, m_env_list, &raw_i, &exp_i);
@@ -147,5 +151,6 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 			exp_i++;
 		}
 	}
-	m_token->is_ignored = exp_i == 0;
+	m_token->m_value[exp_i] = '\0';
+	m_token->is_ignored = (exp_i == 0 && !had_quotes);
 }

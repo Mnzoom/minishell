@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/13 16:53:05 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/07 19:38:39 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,13 @@ void	compute_modifs_len(t_token *m_token, t_env *m_env_list)
 	in_double = FALSE;
 	while (raw[i] && i < m_token->raw_len)
 	{
-		if (!in_single && (ft_issigpattern(&raw[i]) || ft_isenvpattern(&raw[i])))
+		if (!in_single && !in_double && raw[i] == '$' && i + 1 < m_token->raw_len
+			&& (raw[i + 1] == '\'' || raw[i + 1] == '\"'))
+		{
+			m_token->modifs_len--;
+			i++;
+		}
+		else if (!in_single && (ft_issigpattern(&raw[i]) || ft_isenvpattern(&raw[i])))
 			i += _compute_expansion_size(m_token, &m_token->raw[i + 1], m_env_list);
 		else
 		{

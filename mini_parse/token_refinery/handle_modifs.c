@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/07 19:38:43 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/07 20:00:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,16 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 	in_double = FALSE;
 	while (m_token->raw[raw_i] && raw_i < m_token->raw_len)
 	{
+		if (!in_single && m_token->raw[raw_i] == '\\'
+			&& raw_i + 1 < m_token->raw_len && (!in_double
+				|| (m_token->raw[raw_i + 1] == '$'
+					|| m_token->raw[raw_i + 1] == '\"'
+					|| m_token->raw[raw_i + 1] == '\\')))
+		{
+			raw_i++;
+			m_token->m_value[exp_i++] = m_token->raw[raw_i++];
+			continue ;
+		}
 		if (!in_single && !in_double && m_token->raw[raw_i] == '$'
 			&& raw_i + 1 < m_token->raw_len && (m_token->raw[raw_i + 1] == '\''
 				|| m_token->raw[raw_i + 1] == '\"'))

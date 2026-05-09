@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/07 21:10:11 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/09 07:32:18 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 extern int g_lastsignal;
 
-static size_t	_insert_var(char *holder, char *var_start, t_env *m_env_list)
+static size_t	_insert_var(char *holder, char *raw, t_env *m_env_list)
 {
 	t_env	*m_found_env;
 	size_t	insert_i;
 
 	insert_i = 0;
-	m_found_env = t_env__get_by_key1(m_env_list, var_start, get_var_name_len(var_start));
+	m_found_env = t_env__get_by_key1(m_env_list, raw, get_var_name_len(raw));
 	if (m_found_env != NULL)
 	{
 		while (m_found_env->m_val[insert_i])
@@ -32,9 +32,9 @@ static size_t	_insert_var(char *holder, char *var_start, t_env *m_env_list)
 	return (insert_i);
 }
 
-static void	_expand_env(t_token *m_token, t_env *env, size_t *raw_i, size_t *exp_i)
+static void	_expand_env(t_token *m_token, t_env *m_env_list, size_t *raw_i, size_t *exp_i)
 {
-	*exp_i += _insert_var(&m_token->m_value[*exp_i], &m_token->raw[*raw_i + 1], env);
+	*exp_i += _insert_var(&m_token->m_value[*exp_i], &m_token->raw[*raw_i + 1], m_env_list);
 	*raw_i += get_var_name_len(&m_token->raw[*raw_i + 1]) + 1;
 }
 
@@ -97,16 +97,7 @@ static size_t	_handle_quote_skip(char *raw, int *in_single, int *in_double)
 	return (skip_i);
 }
 
-//compute_modifs_len
-//
-//handle_modifs
-//- malloc pour:
-//	1. modifs_len
-//
-//- fill malloc
-//	1. get_env
-//	2. sig
-void	handle_modifs(t_token *m_token, t_env *m_env_list)
+void	handle_modifs(t_token *m_token, t_env *m_env_list, int exp, int strip)
 {
 	size_t	raw_i;
 	size_t	exp_i;
@@ -123,7 +114,7 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 	had_quotes = FALSE;
 	while (m_token->raw[raw_i] && raw_i < m_token->raw_len)
 	{
-		if (!in_single && m_token->raw[raw_i] == '\\'
+		if (strip && !in_single && m_token->raw[raw_i] == '\\'
 			&& raw_i + 1 < m_token->raw_len && (!in_double
 				|| (m_token->raw[raw_i + 1] == '$'
 					|| m_token->raw[raw_i + 1] == '\"'
@@ -133,16 +124,21 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 			m_token->m_value[exp_i++] = m_token->raw[raw_i++];
 			continue ;
 		}
-		if (!in_single && !in_double && m_token->raw[raw_i] == '$'
+		if (strip && !in_single && !in_double && m_token->raw[raw_i] == '$'
 			&& raw_i + 1 < m_token->raw_len && (m_token->raw[raw_i + 1] == '\''
 				|| m_token->raw[raw_i + 1] == '\"'))
 			raw_i++;
 		if ((m_token->raw[raw_i] == '\'' && !in_double) || (m_token->raw[raw_i] == '\"' && !in_single))
 			had_quotes = TRUE;
-		raw_i += _handle_quote_skip(&m_token->raw[raw_i], &in_single, &in_double);
-		if (!in_single && ft_isenvpattern(&m_token->raw[raw_i]))
+		if (strip)
+			raw_i += _handle_quote_skip(&m_token->raw[raw_i], &in_single, &in_double);
+		else if (m_token->raw[raw_i] == '\'' && !in_double)
+			in_single = !in_single;
+		else if (m_token->raw[raw_i] == '\"' && !in_single)
+			in_double = !in_double;
+		if (exp && !in_single && ft_isenvpattern(&m_token->raw[raw_i]))
 			_expand_env(m_token, m_env_list, &raw_i, &exp_i);
-		else if (!in_single && ft_issigpattern(&m_token->raw[raw_i]))
+		else if (exp && !in_single && ft_issigpattern(&m_token->raw[raw_i]))
 			_expand_sig(m_token, &raw_i, &exp_i);
 		else if (raw_i < m_token->raw_len)
 		{
@@ -153,4 +149,5 @@ void	handle_modifs(t_token *m_token, t_env *m_env_list)
 	}
 	m_token->m_value[exp_i] = '\0';
 	m_token->is_ignored = (exp_i == 0 && !had_quotes);
+	m_token->had_quotes = had_quotes;
 }

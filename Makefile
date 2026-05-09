@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/05/05 19:15:36 by thantoni         ###   ########.fr        #
+#    Updated: 2026/05/09 07:14:22 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c											\
 						mini_exec/exec_child_process.c											\
 						mini_exec/get_m_path.c													\
 						mini_exec/exec_pipe.c													\
-						mini_exec/read_heredoc.c												\
+						mini_exec/handle_heredocs.c												\
 						mini_exec/mini_builtsin/is_builtin.c									\
 						mini_exec/mini_builtsin/mini_echo.c 									\
 						mini_exec/mini_builtsin/mini_cd.c 										\
@@ -108,8 +108,8 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-macOS: IFLAGS += -I$(shell brew --prefix readline)/include
-macOS: LDFLAGS += -L$(shell brew --prefix readline)/lib
+macOS: FLAGS_INCLUDES += -I$(shell brew --prefix readline)/include
+macOS: FLAGS_READLINE += -L$(shell brew --prefix readline)/lib
 macOS: all
 
 $(LIBFT):

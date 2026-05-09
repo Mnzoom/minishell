@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 15:40:58 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 20:11:05 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/08 01:36:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ t_token	*t_token__m_new(char *start, size_t len, t_token_type type)
 	m_token->m_value = NULL;
 	m_token->modifs_len = 0;
 	m_token->is_ignored = 0;
+	m_token->had_quotes = 0;
 	m_token->type = type;
+	m_token->prev = NULL;
 	m_token->next = NULL;
 	return (m_token);
 }

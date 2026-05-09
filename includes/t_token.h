@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:59:29 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/04 14:05:19 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/08 01:36:36 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ typedef struct s_token
 	char			*m_value;
 	int				modifs_len;
 	int				is_ignored;
+	int				had_quotes;
 	t_token_type	type;
+	struct s_token	*prev;
 	struct s_token	*next;
 }	t_token;
 

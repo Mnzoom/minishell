@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:52:29 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 16:13:15 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/08 01:36:37 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_redirect
 	char					*m_value;
 	t_token_type			type;
 	int						heredoc_fd;
+	int						had_quotes;
 	struct s_redirect		*next;
 }	t_redirect;
 

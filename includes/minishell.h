@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:15:56 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/06 13:32:26 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/09 07:30:20 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,15 @@
 # define PRE_IN "minishell$ "
 # define PRE_OUT "minishell: "
 
+typedef struct s_line_input
+{
+	char	**m_lines;
+	int		current;
+	int		count;
+}	t_line_input;
+
 void	setup_inputs_signals(void);
+void	set_sigaction(int signal, void (*f)(int));
 int		handle_input_line_exit(char *line);
 void	minishell_exit(int status);
 

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:05:45 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 22:22:49 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/09 07:29:41 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mini_exec.h"
 #include "mini_builtsin.h"
 
-int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list)
+int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list, t_line_input *input)
 {
 	int	status;
 	int	save_stdout;
@@ -23,6 +23,8 @@ int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list)
 	status = 0;
 	if (!m_cmd_list || !m_cmd_list->m_args)
 		return (0);
+	if (handle_heredocs(m_cmd_list, *m_env_list, input) == -1)
+		return (130);
 	if (m_cmd_list && !m_cmd_list->next && is_builtin(m_cmd_list->m_args[0]))
 	{
 		save_stdout = dup(STDOUT_FILENO);

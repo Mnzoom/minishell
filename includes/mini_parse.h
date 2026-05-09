@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:16:24 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 22:03:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/09 07:35:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ t_token		*tokenize(char *line);
 
 //--- token_verifier
 int			token_verifier(t_token *m_token_list);
-void		compute_modifs_len(t_token *m_token, t_env *m_env_list);
+void		compute_modifs_len(t_token *m_token, t_env *m_env_list, int exp, int strip);
 int			ft_isenvpattern(char *str);
 int			ft_issigpattern(char *str);
 int			ft_isenvchar(char c);
-void		handle_modifs(t_token *m_token, t_env *m_env_list);
+void		handle_modifs(t_token *m_token, t_env *m_env_list, int exp, int strip);
 
 //--- token_refinery
 void		token_refinery(t_token *m_token_list, t_env *m_env_list);

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:23:12 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/01 17:07:42 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/09 07:04:33 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 #include "mini_bridge.h"
 #include "mini_exec.h"
 
-static int	_get_redirection_fd(t_redirect *redir_list)
+static int	_get_redirection_fd(t_redirect *m_red)
 {
 	int	fd;
 
 	fd = -1;
-	if (redir_list->type == INFILE)
-		fd = open(redir_list->m_value, O_RDONLY);
-	else if (redir_list->type == OVERRIDE)
-		fd = open(redir_list->m_value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	else if (redir_list->type == APPEND)
-		fd = open(redir_list->m_value, O_WRONLY | O_CREAT | O_APPEND, 0644);
-	else if (redir_list->type == HEREDOC)
-		fd = read_heredoc(redir_list->m_value);
+	if (m_red->type == INFILE)
+		fd = open(m_red->m_value, O_RDONLY);
+	else if (m_red->type == OVERRIDE)
+		fd = open(m_red->m_value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else if (m_red->type == APPEND)
+		fd = open(m_red->m_value, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else if (m_red->type == HEREDOC)
+		fd = m_red->heredoc_fd;
 	return (fd);
 }
 
-int	apply_redirections(t_redirect *redir_list)
+int	apply_redirections(t_redirect *m_red_list)
 {
 	t_redirect	*m_node;
 	int			fd;
 
-	m_node = redir_list;
+	m_node = m_red_list;
 	while (m_node)
 	{
 		fd = _get_redirection_fd(m_node);

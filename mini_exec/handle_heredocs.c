@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 13:33:34 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 07:33:35 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:29:06 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ extern int g_lastsignal;
 
 static char	*_expand_heredoc_line(char *m_line, t_env *m_env)
 {
-	t_token	m_tmp;
+	t_token	tmp;
 	char	*m_exp_line;
 
 	if (!m_line || !ft_strchr(m_line, '$'))
 		return (m_line);
-	ft_bzero(&m_tmp, sizeof(t_token));
-	m_tmp.raw = m_line;
-	m_tmp.raw_len = ft_strlen(m_line);
-	compute_modifs_len(&m_tmp, m_env, 1, 0);
-	handle_modifs(&m_tmp, m_env, 1, 0);
-	m_exp_line = ft_strdup(m_tmp.m_value);
-	free(m_tmp.m_value);
+	tmp = (t_token) { 0 };
+	tmp.raw = m_line;
+	tmp.raw_len = ft_strlen(m_line);
+	compute_modifs_len(&tmp, m_env, 1, 0);
+	handle_modifs(&tmp, m_env, 1, 0);
+	m_exp_line = ft_strdup(tmp.m_value);
+	free(tmp.m_value);
 	free(m_line);
 	return (m_exp_line);
 }
@@ -60,9 +60,9 @@ static void	_heredoc(t_redirect *m_red, t_line_input *input, int start_i, t_env 
 	char	*m_line;
 	int		is_interactive;
 	int		found;
-	int		line_count;
+	// int		line_count;
 
-	line_count = 1;
+	// line_count = 1;
 	found = 0;
 	is_interactive = isatty(STDIN_FILENO);
 	rl_catch_signals = 1;
@@ -82,7 +82,7 @@ static void	_heredoc(t_redirect *m_red, t_line_input *input, int start_i, t_env 
 			if (!m_red->had_quotes)
 				m_line = _expand_heredoc_line(m_line, m_env_list);
 			ft_putendl_fd(m_line, tmp_fd);
-			line_count++;
+			// line_count++;
 			free(m_line);
 		}
 	}
@@ -91,12 +91,12 @@ static void	_heredoc(t_redirect *m_red, t_line_input *input, int start_i, t_env 
 		m_line = _get_line(is_interactive);
 		if (!m_line)
 		{
-			ft_puterr(PRE_OUT);
-			ft_puterr("warning: here-document at line ");
-			ft_putnbr_fd(line_count, 2);
-			ft_puterr(" delimited by end-of-file (wanted `");
-			ft_puterr(m_red->m_value);
-			ft_puterr("')\n");
+			// ft_puterr(PRE_OUT);
+			// ft_puterr("warning: here-document at line ");
+			// ft_putnbr_fd(line_count, 2);
+			// ft_puterr(" delimited by end-of-file (wanted `");
+			// ft_puterr(m_red->m_value);
+			// ft_puterr("')\n");
 			break ;
 		}
 		if (ft_strcmp(m_line, m_red->m_value) == 0)
@@ -107,10 +107,13 @@ static void	_heredoc(t_redirect *m_red, t_line_input *input, int start_i, t_env 
 		if (!m_red->had_quotes)
 			m_line = _expand_heredoc_line(m_line, m_env_list);
 		ft_putendl_fd(m_line, tmp_fd);
-		line_count++;
+		// line_count++;
 		free(m_line);
 	}
 	close(tmp_fd);
+	if (input && input->m_lines)
+		ft_freearray(input->m_lines);
+	t_env__free_all(m_env_list);
 	minishell_exit(0);
 }
 
@@ -130,10 +133,36 @@ static int	_setup_heredoc(t_redirect *m_red, t_line_input *input, int start_i, t
 	tmp_fd = open(m_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	pid = fork();
 	if (pid == 0)
+	{
+		free(m_name);
 		_heredoc(m_red, input, start_i, m_env_list, tmp_fd);
+	}
 	close(tmp_fd);
 	set_sigaction(SIGINT, SIG_IGN);
 	waitpid(pid, &status, 0);
+	if (!WIFSIGNALED(status) && !isatty(STDIN_FILENO))
+	{
+		char	*discard;
+		size_t	len;
+		int		match;
+
+		while (1)
+		{
+			discard = get_next_line(STDIN_FILENO);
+			if (!discard)
+				break ;
+			len = ft_strlen(discard);
+			if (len > 0 && discard[len - 1] == '\n')
+				discard[len - 1] = '\0';
+			len = ft_strlen(discard);
+			if (len > 0 && discard[len - 1] == '\r')
+				discard[len - 1] = '\0';
+			match = (ft_strcmp(discard, m_red->m_value) == 0);
+			free(discard);
+			if (match)
+				break ;
+		}
+	}
 	fd_rd = open(m_name, O_RDONLY);
 	unlink(m_name);
 	free(m_name);

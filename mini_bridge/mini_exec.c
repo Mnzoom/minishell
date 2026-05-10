@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:05:45 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/09 07:29:41 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 03:58:01 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list, t_line_input *input)
 	int	status;
 	int	save_stdout;
 	int	save_stdin;
+	t_cmd		*tmp_cmd;
+	t_redirect	*tmp_red;
 
 	status = 0;
 	if (!m_cmd_list || !m_cmd_list->m_args)
@@ -40,5 +42,17 @@ int	mini_exec(t_cmd *m_cmd_list, t_env **m_env_list, t_line_input *input)
 	}
 	else
 		status = exec_pipe(m_cmd_list, *m_env_list);
+	tmp_cmd = m_cmd_list;
+	while (tmp_cmd)
+	{
+		tmp_red = tmp_cmd->m_redirect_list;
+		while (tmp_red)
+		{
+			if (tmp_red->type == HEREDOC && tmp_red->heredoc_fd != -1)
+				close(tmp_red->heredoc_fd);
+			tmp_red = tmp_red->next;
+		}
+		tmp_cmd = tmp_cmd->next;
+	}
 	return (status);
 }

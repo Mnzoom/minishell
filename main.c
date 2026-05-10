@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/09 07:43:31 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:44:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	_handle_line_input(t_line_input *input)
 	m_line = readline(PRE_IN);
 	if (!m_line)
 	{
+		if (input->m_lines)
+			ft_freearray(input->m_lines);
 		input->m_lines = NULL;
 		printf("exit\n");
 		return ;
@@ -41,13 +43,14 @@ static void	_handle_line_input(t_line_input *input)
 
 int main(int argc, char **argv, char **envp)
 {
-	t_env			*m_env_list = NULL;
-	t_cmd			*m_cmd_list = NULL;
+	t_env			*m_env_list;
+	t_cmd			*m_cmd_list;
 	t_line_input	input;
 
 	(void)argc, (void)argv;
 	input = (t_line_input) { 0 };
 	m_env_list = main_cache_envp(envp);
+	m_cmd_list = NULL;
 	setup_inputs_signals();
 	while (TRUE)
 	{
@@ -64,5 +67,5 @@ int main(int argc, char **argv, char **envp)
 			t_cmd__freeall(m_cmd_list);
 		}
 	}
-	return (minishell_exit(EXIT_SUCCESS), EXIT_SUCCESS);
+	return (minishell_exit(g_lastsignal), g_lastsignal);
 }

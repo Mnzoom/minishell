@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 15:05:40 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:34:39 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,12 @@ int	mini_export(char **args, t_env **m_env_list, int fd)
 	status = 0;
 	while (args[i] != NULL)
 	{
-		if (!_is_valid_identifier(args[i]))
+		if (args[i][0] == '-')
+		{
+			ft_puterr3(PRE_OUT, "export: ", args[i], ": invalid option\n");
+			status = 2;
+		}
+		else if (!_is_valid_identifier(args[i]))
 		{
 			ft_puterr3(PRE_OUT, "export: `", args[i], "': not a valid identifier\n");
 			status = 1;

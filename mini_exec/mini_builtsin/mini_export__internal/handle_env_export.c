@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:20:36 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/06 13:00:17 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 03:20:25 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ int	handle_env_export(t_env **m_env_list, char *arg)
 			if (m_found->m_val != NULL)
 				t_gc__free1(m_found->m_val);
 			m_found->m_val = env_extract_m_value(arg);
+			if (m_found->m_val)
+				m_found->val_len = ft_strlen(m_found->m_val);
+			else
+				m_found->val_len = 0;
 		}
 	}
 	else

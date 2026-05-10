@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/09 07:32:43 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:20:27 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ static size_t _compute_expansion_size(t_token *m_token, char *raw, t_env *m_env_
 	return (var_name_len + 1);
 }
 
-static void	_toggle_quote(t_token *m_token, int *quote_bool, int strip)
+static void	_toggle_quote(t_token *m_token, int *quote_bool, int rm_quotes)
 {
-	if (strip)
+	if (rm_quotes)
 		m_token->modifs_len--;
 	*quote_bool = !*quote_bool;
 }
 
-void	compute_modifs_len(t_token *m_token, t_env *m_env_list, int exp, int strip)
+void	compute_modifs_len(t_token *m_token, t_env *m_env_list, int exp, int rm_quotes)
 {
 	size_t	i;
 	char	*raw;
@@ -57,27 +57,27 @@ void	compute_modifs_len(t_token *m_token, t_env *m_env_list, int exp, int strip)
 	in_double = FALSE;
 	while (raw[i] && i < m_token->raw_len)
 	{
-		if (strip && !in_single && raw[i] == '\\' && i + 1 < m_token->raw_len
+		if (rm_quotes && !in_single && raw[i] == '\\' && i + 1 < m_token->raw_len
 			&& (!in_double || (raw[i + 1] == '$' || raw[i + 1] == '\"'
 					|| raw[i + 1] == '\\')))
 		{
 			m_token->modifs_len--;
 			i += 2;
 		}
-		else if (strip && !in_single && !in_double && raw[i] == '$' && i + 1 < m_token->raw_len
+		else if (rm_quotes && !in_single && !in_double && raw[i] == '$' && i + 1 < m_token->raw_len
 			&& (raw[i + 1] == '\'' || raw[i + 1] == '\"'))
 		{
 			m_token->modifs_len--;
 			i++;
 		}
-		else if (exp && !in_single && (ft_issigpattern(&raw[i]) || ft_isenvpattern(&raw[i])))
+		else if (exp && !in_single && (ft_issigpattern(&raw[i]) || (ft_isenvpattern(&raw[i]) && get_var_name_len(&raw[i + 1]) > 0)))
 			i += _compute_expansion_size(m_token, &m_token->raw[i + 1], m_env_list);
 		else
 		{
 			if (!in_double && raw[i] == '\'')
-				_toggle_quote(m_token, &in_single, strip);
+				_toggle_quote(m_token, &in_single, rm_quotes);
 			else if (!in_single && raw[i] == '\"')
-				_toggle_quote(m_token, &in_double, strip);
+				_toggle_quote(m_token, &in_double, rm_quotes);
 			i++;
 		}
 	}

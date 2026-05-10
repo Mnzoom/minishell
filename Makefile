@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/05/09 07:14:22 by thantoni         ###   ########.fr        #
+#    Updated: 2026/05/10 09:45:18 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,16 @@ SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 									\
 						mini_parse/t_token/t_token__print.c										\
 						mini_parse/token_refinery/token_refinery.c 								\
 						mini_parse/token_refinery/handle_modifs.c 								\
+						mini_parse/token_refinery/modif_expand_env.c							\
+						mini_parse/token_refinery/modif_expand_sig.c							\
+						mini_parse/token_refinery/modif_handle_quote_skip.c						\
 						mini_parse/token_refinery/compute_modifs_len.c 							\
 						mini_parse/token_refinery/get_var_name_len.c 							\
 						mini_parse/token_refinery/get_lastsig_len.c 							\
 						mini_parse/token_refinery/ft_isenvpattern.c 							\
 						mini_parse/token_refinery/ft_issigpattern.c 							\
 						mini_parse/token_refinery/ft_isenvchar.c 								\
+						mini_parse/token_refinery/token_splitter.c								\
 						mini_parse/token_verifier/token_verifier.c 								\
 						mini_parse/tokenizer/tokenizer.c
 

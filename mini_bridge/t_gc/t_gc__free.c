@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:43 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/06 12:35:57 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 00:01:55 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	t_gc__free1(void *ptr)
 		return ;
 	m_node = t_gc__extract(ptr);
 	if (m_node == NULL)
+	{
+		free(ptr);
 		return ;
+	}
 	if (m_node->ptr != NULL)
 	{
 		free(m_node->ptr);

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 22:00:31 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/01 22:02:24 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:54:37 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 /* STR = anything that's not ' ', '\t' */
 typedef enum e_token_type
 {
-	PIPE = 0,
-	OVERRIDE = 1,
-	APPEND = 2,
-	INFILE = 3,
-	HEREDOC = 4,
-	STR = 5
+	PIPE = '|',
+	OVERRIDE = '>',
+	APPEND = '>'*'>',
+	INFILE = '<',
+	HEREDOC = '<'*'<',
+	STR = 's'+'t'+'r'
 }	t_token_type;
 
 int			t_token_type__is_redirection(t_token_type t);

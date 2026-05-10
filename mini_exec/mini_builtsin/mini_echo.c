@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 13:55:42 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 17:35:02 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:35:56 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,20 @@
 
 int	mini_echo(char **args)
 {
-	int	i;
 	int	n_flag;
+	int	i;
+	int	j;
 
 	i = 1;
-	n_flag = 0;
-	if (args[i] && ft_strcmp(args[i], "-n") == 0)
+	n_flag = FALSE;
+	while (args[i] && args[i][0] == '-' && args[i][1] == 'n')
 	{
-		n_flag = 1;
+		j = 1;
+		while (args[i][j] == 'n')
+			j++;
+		if (args[i][j] != '\0')
+			break ;
+		n_flag = TRUE;
 		i++;
 	}
 	while (args[i])

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 14:55:54 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 16:50:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 07:20:44 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ t_env	*t_env__m_new(char *env_var)
 	if (m_env->m_key == NULL)
 		return (t_env__free(m_env), NULL);
 	m_env->m_val = env_extract_m_value1(env_var, &m_env->val_len);
-	if (m_env->m_val == NULL)
-		return (t_env__free(m_env), NULL);
 	m_env->next = NULL;
 	m_env->prev = NULL;
 	return (m_env);

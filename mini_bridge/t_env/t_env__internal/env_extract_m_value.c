@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:30:49 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 17:00:19 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 07:20:43 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*_skip_key(char *env_var)
 		i++;
 	if (env_var[i] == '=')
 		i++;
+	else
+		return (NULL);
 	return (&env_var[i]);
 }
 
@@ -32,6 +34,8 @@ char	*env_extract_m_value(char *env_var)
 	char	*m_val;
 
 	env_var = _skip_key(env_var);
+	if (!env_var)
+		return (NULL);
 	val_len = 0;
 	while (env_var[val_len])
 		val_len++;
@@ -55,6 +59,11 @@ char	*env_extract_m_value1(char *env_var, size_t *return_val_len)
 	char	*m_val;
 
 	env_var = _skip_key(env_var);
+	if (!env_var)
+	{
+		*return_val_len = 0;
+		return (NULL);
+	}
 	val_len = 0;
 	while (env_var[val_len])
 		val_len++;

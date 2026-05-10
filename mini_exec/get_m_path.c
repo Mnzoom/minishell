@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 19:09:51 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/09 07:38:11 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:37:13 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*get_m_path(char *m_cmd, t_env *m_env_list)
 	char	*m_exec_path;
 	int		i;
 
-	if (m_cmd && (m_cmd[0] == '/' || m_cmd[0] == '.'))
-		return (ft_strdup(m_cmd));
+	if (!m_cmd || m_cmd[0] == '\0')
+		return (NULL);
 	m_node_path = t_env__get_by_key(m_env_list, "PATH");
 	if (!m_node_path || !m_node_path->m_val)
 		return (NULL);

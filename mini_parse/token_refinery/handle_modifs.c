@@ -6,148 +6,81 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:40:23 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/09 07:32:18 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:31:49 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-extern int g_lastsignal;
-
-static size_t	_insert_var(char *holder, char *raw, t_env *m_env_list)
+static int	_handle_escape(t_token *m_token, t_parse_info *info)
 {
-	t_env	*m_found_env;
-	size_t	insert_i;
-
-	insert_i = 0;
-	m_found_env = t_env__get_by_key1(m_env_list, raw, get_var_name_len(raw));
-	if (m_found_env != NULL)
+	if (info->rm_quotes && !info->in_single && m_token->raw[info->raw_i] == '\\'
+		&& info->raw_i + 1 < m_token->raw_len && (!info->in_double
+			|| (m_token->raw[info->raw_i + 1] == '$'
+				|| m_token->raw[info->raw_i + 1] == '\"'
+				|| m_token->raw[info->raw_i + 1] == '\\')))
 	{
-		while (m_found_env->m_val[insert_i])
-		{
-			holder[insert_i] = m_found_env->m_val[insert_i];
-			insert_i++;
-		}
+		info->raw_i++;
+		m_token->m_value[info->exp_i++] = m_token->raw[info->raw_i++];
+		return (1);
 	}
-	return (insert_i);
+	return (0);
 }
 
-static void	_expand_env(t_token *m_token, t_env *m_env_list, size_t *raw_i, size_t *exp_i)
+static int	_handle_quotes(t_token *m_token, t_parse_info *info)
 {
-	*exp_i += _insert_var(&m_token->m_value[*exp_i], &m_token->raw[*raw_i + 1], m_env_list);
-	*raw_i += get_var_name_len(&m_token->raw[*raw_i + 1]) + 1;
-}
+	size_t	skip_len;
 
-static size_t _insert_sig(char *holder)
-{
-	size_t	len;
-	size_t	i;
-	long	num;
-
-	num = g_lastsignal;
-	len = get_lastsig_len();
-	i = len;
-	if (num < 0)
+	if ((m_token->raw[info->raw_i] == '\'' && !info->in_double)
+		|| (m_token->raw[info->raw_i] == '\"' && !info->in_single))
+		info->has_quotes = 1;
+	if (info->rm_quotes)
 	{
-		holder[0] = '-';
-		num = -num;
+		skip_len = modif_handle_quote_skip(&m_token->raw[info->raw_i],
+				&info->in_single, &info->in_double);
+		info->raw_i += skip_len;
+		if (skip_len > 0)
+			return (1);
 	}
-	if (num == 0)
-		holder[0] = '0';
-	while (num > 0)
-	{
-		i--;
-		holder[i] = (num % 10) + '0';
-		num = num / 10;
-	}
-	return (len);
+	else if (m_token->raw[info->raw_i] == '\'' && !info->in_double)
+		info->in_single = !info->in_single;
+	else if (m_token->raw[info->raw_i] == '\"' && !info->in_single)
+		info->in_double = !info->in_double;
+	return (0);
 }
 
-static void	_expand_sig(t_token *m_token, size_t *raw_i, size_t *exp_i)
+static void	_process_char(t_token *m_token, t_env *m_env_list, t_parse_info *info)
 {
-	*exp_i += _insert_sig(&m_token->m_value[*exp_i]);
-	*raw_i += 1 + 1;
-}
-
-static size_t	_skip(char *raw, char c_quote, int *bool)
-{
-	size_t	skip_i;
-
-	skip_i = 0;
-	while (raw[skip_i] == c_quote)
-	{
-		*bool = !*bool;
-		skip_i++;
-	}
-	return (skip_i);
-}
-
-static size_t	_handle_quote_skip(char *raw, int *in_single, int *in_double)
-{
-	size_t	skip_i;
-
-	skip_i = 0;
-	while ((raw[skip_i] == '\'' && !*in_double) || (raw[skip_i] == '\"' && !*in_single))
-	{
-		if (raw[skip_i] == '\'' && !*in_double)
-			skip_i += _skip(&raw[skip_i], '\'', in_single);
-		else if (raw[skip_i] == '\"' && !*in_single)
-			skip_i += _skip(&raw[skip_i], '\"', in_double);
-	}
-	return (skip_i);
-}
-
-void	handle_modifs(t_token *m_token, t_env *m_env_list, int exp, int strip)
-{
-	size_t	raw_i;
-	size_t	exp_i;
-	int		in_single;
-	int		in_double;
-	int		had_quotes;
-
-	if (!ft_malloc((void **)&m_token->m_value, sizeof(char) * (m_token->raw_len + m_token->modifs_len + 1)))
+	if (_handle_escape(m_token, info))
 		return ;
-	raw_i = 0;
-	exp_i = 0;
-	in_single = FALSE;
-	in_double = FALSE;
-	had_quotes = FALSE;
-	while (m_token->raw[raw_i] && raw_i < m_token->raw_len)
-	{
-		if (strip && !in_single && m_token->raw[raw_i] == '\\'
-			&& raw_i + 1 < m_token->raw_len && (!in_double
-				|| (m_token->raw[raw_i + 1] == '$'
-					|| m_token->raw[raw_i + 1] == '\"'
-					|| m_token->raw[raw_i + 1] == '\\')))
-		{
-			raw_i++;
-			m_token->m_value[exp_i++] = m_token->raw[raw_i++];
-			continue ;
-		}
-		if (strip && !in_single && !in_double && m_token->raw[raw_i] == '$'
-			&& raw_i + 1 < m_token->raw_len && (m_token->raw[raw_i + 1] == '\''
-				|| m_token->raw[raw_i + 1] == '\"'))
-			raw_i++;
-		if ((m_token->raw[raw_i] == '\'' && !in_double) || (m_token->raw[raw_i] == '\"' && !in_single))
-			had_quotes = TRUE;
-		if (strip)
-			raw_i += _handle_quote_skip(&m_token->raw[raw_i], &in_single, &in_double);
-		else if (m_token->raw[raw_i] == '\'' && !in_double)
-			in_single = !in_single;
-		else if (m_token->raw[raw_i] == '\"' && !in_single)
-			in_double = !in_double;
-		if (exp && !in_single && ft_isenvpattern(&m_token->raw[raw_i]))
-			_expand_env(m_token, m_env_list, &raw_i, &exp_i);
-		else if (exp && !in_single && ft_issigpattern(&m_token->raw[raw_i]))
-			_expand_sig(m_token, &raw_i, &exp_i);
-		else if (raw_i < m_token->raw_len)
-		{
-			m_token->m_value[exp_i] = m_token->raw[raw_i];
-			raw_i++;
-			exp_i++;
-		}
-	}
-	m_token->m_value[exp_i] = '\0';
-	m_token->is_ignored = (exp_i == 0 && !had_quotes);
-	m_token->had_quotes = had_quotes;
+	if (info->rm_quotes && !info->in_single && !info->in_double && m_token->raw[info->raw_i] == '$'
+		&& info->raw_i + 1 < m_token->raw_len && (m_token->raw[info->raw_i + 1] == '\''
+			|| m_token->raw[info->raw_i + 1] == '\"'))
+		info->raw_i++;
+	if (_handle_quotes(m_token, info))
+		return ;
+	if (info->is_exp && !info->in_single && ft_isenvpattern(&m_token->raw[info->raw_i])
+		&& get_var_name_len(&m_token->raw[info->raw_i + 1]) > 0)
+		modif_expand_env(m_token, m_env_list, info);
+	else if (info->is_exp && !info->in_single && ft_issigpattern(&m_token->raw[info->raw_i]))
+		modif_expand_sig(m_token, info);
+	else if (info->raw_i < m_token->raw_len)
+		m_token->m_value[info->exp_i++] = m_token->raw[info->raw_i++];
+}
+
+void	handle_modifs(t_token *m_token, t_env *m_env_list, int exp, int rm_quotes)
+{
+	t_parse_info	info;
+
+	if (!ft_malloc((void **)&m_token->m_value,
+			sizeof(char) * (m_token->raw_len + m_token->modifs_len + 1)))
+		return ;
+	info = (t_parse_info) { 0 };
+	info.is_exp = exp;
+	info.rm_quotes = rm_quotes;
+	while (m_token->raw[info.raw_i] && info.raw_i < m_token->raw_len)
+		_process_char(m_token, m_env_list, &info);
+	m_token->m_value[info.exp_i] = '\0';
+	m_token->is_ignored = (info.exp_i == 0 && !info.has_quotes);
+	m_token->had_quotes = info.has_quotes;
 }

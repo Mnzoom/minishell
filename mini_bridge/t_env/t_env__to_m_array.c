@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 17:54:59 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/30 21:24:29 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 09:38:38 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,24 @@
 
 char	**t_env__to_m_array(t_env *m_env_list)
 {
-	t_env	*node;
-	char	**array;
+	t_env	*m_node;
+	char	**m_array;
 	int		i;
 
-	array = malloc(sizeof(char *) * (t_env__get_size(m_env_list) + 1));
-	if (!array)
+	m_array = malloc(sizeof(char *) * (t_env__get_size(m_env_list) + 1));
+	if (!m_array)
 		return (NULL);
-	node = m_env_list;
+	m_node = m_env_list;
 	i = 0;
-	while (node != NULL)
+	while (m_node != NULL)
 	{
-		array[i] = ft_strjoin3(node->m_key, "=", node->m_val);
-		node = node->next;
-		i++;
+		if (m_node->m_val != NULL)
+		{
+			m_array[i] = ft_strjoin3(m_node->m_key, "=", m_node->m_val);
+			i++;
+		}
+		m_node = m_node->next;
 	}
-	array[i] = NULL;
-	return (array);
+	m_array[i] = NULL;
+	return (m_array);
 }

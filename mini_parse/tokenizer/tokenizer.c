@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:14:27 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/09 06:57:45 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/10 01:37:14 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static t_token	*_get_current_token(char *m_line)
 		return (t_token__m_new(m_line, 2, APPEND));
 	if (m_line[0] == '<' && m_line[1] == '<')
 		return (t_token__m_new(m_line, 2, HEREDOC));
+	if (m_line[0] == '>' && m_line[1] == '|')
+		return (t_token__m_new(m_line, 2, OVERRIDE));
 	if (m_line[0] == '|')
 		return (t_token__m_new(m_line, 1, PIPE));
 	if (m_line[0] == '>')

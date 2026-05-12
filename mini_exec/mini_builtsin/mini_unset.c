@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:07:16 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/12 05:04:13 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:38:18 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	mini_unset(char **args, t_env **env_list)
 	{
 		if (!env_is_key_valid(args[i]))
 		{
-			ft_puterr3(PRE_OUT, "unset: `", args[i], "': not a valid identifier\n");
+			ft_puterr3(PRE_OUT, "unset: `", args[i], \
+				"': not a valid identifier\n");
 			status = 1;
 		}
 		else

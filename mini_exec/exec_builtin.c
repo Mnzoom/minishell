@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 12:54:41 by clementngoi       #+#    #+#             */
-/*   Updated: 2026/05/12 05:43:09 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:38:00 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 static void	_print_err_no_such_file_or_directory(t_cmd *m_cmd)
 {
-	ft_puterr3(PRE_OUT, "env: ", m_cmd->m_args[1], ": No such file or directory\n");
+	ft_puterr3(PRE_OUT, "env: ", m_cmd->m_args[1], \
+		": No such file or directory\n");
 }
 
 int	exec_builtin(t_cmd *m_cmd, t_env **m_env_list)

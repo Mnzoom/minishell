@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/12 11:19:08 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:40:42 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ static int	_handle_escape_chars(t_token *m_token, t_parse_info *info)
 	else if (!info->in_double && m_token->raw[info->raw_i] == '$')
 	{
 		if (c_next == '\'' || c_next == '\"')
-		{
-			m_token->modifs_len--;
-			info->raw_i++;
-			return (TRUE);
-		}
+			return (m_token->modifs_len--, info->raw_i++, TRUE);
 	}
 	return (FALSE);
 }
@@ -73,7 +69,10 @@ static void	_process_char_len(t_token *m_token, t_env *m_env_list, \
 {
 	if (_handle_escape_chars(m_token, info))
 		return ;
-	if (info->is_exp && !info->in_single && (ft_issigpattern(&m_token->raw[info->raw_i]) || (ft_isenvpattern(&m_token->raw[info->raw_i]) && get_var_name_len(&m_token->raw[info->raw_i + 1]) > 0)))
+	if (info->is_exp && !info->in_single
+		&& (ft_issigpattern(&m_token->raw[info->raw_i])
+			|| (ft_isenvpattern(&m_token->raw[info->raw_i])
+				&& get_var_name_len(&m_token->raw[info->raw_i + 1]) > 0)))
 		info->raw_i += _compute_expansion_size(m_token, \
 			&m_token->raw[info->raw_i + 1], m_env_list);
 	else

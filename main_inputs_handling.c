@@ -6,15 +6,15 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:31:42 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/08 04:16:15 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:37:26 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
-#define _POSIX_C_SOURCE 200809L
 #include "minishell.h"
+#define _POSIX_C_SOURCE 200809L
 
 extern int	g_lastsignal;
 

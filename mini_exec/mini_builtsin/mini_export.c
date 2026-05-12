@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 16:53:00 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/12 11:17:45 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:38:09 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	mini_export(char **args, t_env **m_env_list, int fd)
 		}
 		else if (!_is_valid_identifier(args[i]))
 		{
-			ft_puterr3(PRE_OUT, "export: `", args[i], "': not a valid identifier\n");
+			ft_puterr3(PRE_OUT, "export: `", args[i], \
+				"': not a valid identifier\n");
 			status = 1;
 		}
 		else if (handle_env_export(m_env_list, args[i]) == 1)

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:05:30 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/10 04:10:16 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 11:17:33 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	mini_pwd(t_env *env_list)
 	}
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 	{
-		ft_putendl_fd(cwd, 1); 
+		ft_putendl_fd(cwd, 1);
 		return (0);
 	}
 	perror("pwd");

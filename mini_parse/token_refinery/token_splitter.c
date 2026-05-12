@@ -6,13 +6,14 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/10 06:51:07 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/10 08:37:23 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 11:22:34 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
 
-static void	_link_nodes(t_token *m_node, t_token *m_og, t_token **m_start, char **sp)
+static void	_link_nodes(t_token *m_node, t_token *m_og, \
+	t_token **m_start, char **sp)
 {
 	if (m_node)
 		m_node->next = m_og->next;
@@ -24,25 +25,26 @@ static void	_link_nodes(t_token *m_node, t_token *m_og, t_token **m_start, char 
 		*m_start = NULL;
 }
 
-static void	_insert_new_nodes(t_token *m_og, char **m_val_split, t_token **m_token_list)
+static void	_insert_new_nodes(t_token *m_og, char **m_val_split, \
+	t_token **m_token_list)
 {
 	t_token	*m_node;
-	t_token	*new_n;
+	t_token	*m_insert;
 	int		i;
 
 	m_node = m_og->prev;
 	i = 0;
 	while (m_val_split[i])
 	{
-		new_n = t_token__m_new(NULL, 0, STR);
-		new_n->m_value = ft_strdup(m_val_split[i]);
-		new_n->had_quotes = m_og->had_quotes;
-		new_n->prev = m_node;
+		m_insert = t_token__m_new(NULL, 0, STR);
+		m_insert->m_value = ft_strdup(m_val_split[i]);
+		m_insert->had_quotes = m_og->had_quotes;
+		m_insert->prev = m_node;
 		if (m_node)
-			m_node->next = new_n;
+			m_node->next = m_insert;
 		else
-			*m_token_list = new_n;
-		m_node = new_n;
+			*m_token_list = m_insert;
+		m_node = m_insert;
 		i++;
 	}
 	_link_nodes(m_node, m_og, m_token_list, m_val_split);

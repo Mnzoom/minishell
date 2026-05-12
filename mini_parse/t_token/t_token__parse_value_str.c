@@ -6,11 +6,20 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 16:09:20 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/08 21:35:25 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 04:40:23 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_parse.h"
+
+static int	_is_delimiter(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\r')
+		return (1);
+	if (c == '|' || c == '<' || c == '>')
+		return (1);
+	return (0);
+}
 
 t_token	*t_token__parse_value_str(char *start)
 {
@@ -29,10 +38,7 @@ t_token	*t_token__parse_value_str(char *start)
 			is_inside_double = !is_inside_double;
 		else if (is_inside_single == 0 && is_inside_double == 0)
 		{
-			if (start[len] == ' ' || start[len] == '\t'
-				|| start[len] == '\n' || start[len] == '\r')
-				break ;
-			if (start[len] == '|' || start[len] == '<' || start[len] == '>')
+			if (_is_delimiter(start[len]))
 				break ;
 		}
 		len++;

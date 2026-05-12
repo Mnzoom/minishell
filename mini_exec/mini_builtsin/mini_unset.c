@@ -6,17 +6,17 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 15:07:16 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/10 03:20:27 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 05:04:13 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "mini_exec.h"
 
-int mini_unset(char **args, t_env **env_list)
+int	mini_unset(char **args, t_env **env_list)
 {
-	int i;
-	int status;
+	int	i;
+	int	status;
 
 	if (!args[1])
 		return (0);

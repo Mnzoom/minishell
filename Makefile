@@ -6,7 +6,7 @@
 #    By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/25 11:10:07 by thantoni          #+#    #+#              #
-#    Updated: 2026/05/10 09:45:18 by thantoni         ###   ########.fr        #
+#    Updated: 2026/05/12 05:37:42 by thantoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ SRCS__MAIN			=	main.c																	\
 						minishell_exit.c
 
 SRCS__MINI_PARSE	=	mini_parse/cmd_shipper/cmd_shipper.c 									\
+						mini_parse/t_parse_info/t_parse_info__init.c 							\
 						mini_parse/t_token/t_token__m_free_all.c 								\
 						mini_parse/t_token/t_token__m_free.c 									\
 						mini_parse/t_token/t_token__m_new.c 									\
 						mini_parse/t_token/t_token__parse_value_str.c 							\
-						mini_parse/t_token/t_token__print.c										\
 						mini_parse/token_refinery/token_refinery.c 								\
 						mini_parse/token_refinery/handle_modifs.c 								\
 						mini_parse/token_refinery/modif_expand_env.c							\
@@ -53,7 +53,9 @@ SRCS__MINI_EXEC		=	mini_exec/apply_redirections.c											\
 						mini_exec/exec_child_process.c											\
 						mini_exec/get_m_path.c													\
 						mini_exec/exec_pipe.c													\
-						mini_exec/handle_heredocs.c												\
+						mini_exec/t_heredoc_info/t_heredoc_info__init.c							\
+						mini_exec/heredoc_handler/handle_heredocs.c								\
+						mini_exec/heredoc_handler/handle_heredocs_child.c						\
 						mini_exec/mini_builtsin/is_builtin.c									\
 						mini_exec/mini_builtsin/mini_echo.c 									\
 						mini_exec/mini_builtsin/mini_cd.c 										\
@@ -70,7 +72,6 @@ SRCS__MINI_BRIDGE	=	mini_bridge/mini_exec.c 												\
 						mini_bridge/t_cmd/t_cmd__m_new.c 										\
 						mini_bridge/t_cmd/t_cmd__free.c 										\
 						mini_bridge/t_cmd/t_cmd__freeall.c 										\
-						mini_bridge/t_cmd/t_cmd__print.c 										\
 						mini_bridge/t_cmd/t_cmd__add_m_redirect.c 								\
 						mini_bridge/t_redirect/t_redirect__m_new.c 								\
 						mini_bridge/t_redirect/t_redirect__free.c 								\

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 12:43:06 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/10 09:20:27 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 11:19:08 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static size_t	_exp_sig(t_token *m_token)
 	return (2);
 }
 
-static size_t _compute_expansion_size(t_token *m_token, char *raw, t_env *m_env_list)
+static size_t	_compute_expansion_size(t_token *m_token, char *raw, \
+	t_env *m_env_list)
 {
 	size_t	var_name_len;
 	t_env	*m_found_env;
@@ -37,48 +38,68 @@ static size_t _compute_expansion_size(t_token *m_token, char *raw, t_env *m_env_
 	return (var_name_len + 1);
 }
 
-static void	_toggle_quote(t_token *m_token, int *quote_bool, int rm_quotes)
+static int	_handle_escape_chars(t_token *m_token, t_parse_info *info)
 {
-	if (rm_quotes)
-		m_token->modifs_len--;
-	*quote_bool = !*quote_bool;
-}
+	char	c_next;
 
-void	compute_modifs_len(t_token *m_token, t_env *m_env_list, int exp, int rm_quotes)
-{
-	size_t	i;
-	char	*raw;
-	int		in_single;
-	int		in_double;
-
-	i = 0;
-	raw = m_token->raw;
-	in_single = FALSE;
-	in_double = FALSE;
-	while (raw[i] && i < m_token->raw_len)
+	if (!info->rm_quotes || info->in_single \
+		|| info->raw_i + 1 >= m_token->raw_len)
+		return (FALSE);
+	c_next = m_token->raw[info->raw_i + 1];
+	if (m_token->raw[info->raw_i] == '\\')
 	{
-		if (rm_quotes && !in_single && raw[i] == '\\' && i + 1 < m_token->raw_len
-			&& (!in_double || (raw[i + 1] == '$' || raw[i + 1] == '\"'
-					|| raw[i + 1] == '\\')))
+		if (!info->in_double || c_next == '$' \
+			|| c_next == '\"' || c_next == '\\')
 		{
 			m_token->modifs_len--;
-			i += 2;
-		}
-		else if (rm_quotes && !in_single && !in_double && raw[i] == '$' && i + 1 < m_token->raw_len
-			&& (raw[i + 1] == '\'' || raw[i + 1] == '\"'))
-		{
-			m_token->modifs_len--;
-			i++;
-		}
-		else if (exp && !in_single && (ft_issigpattern(&raw[i]) || (ft_isenvpattern(&raw[i]) && get_var_name_len(&raw[i + 1]) > 0)))
-			i += _compute_expansion_size(m_token, &m_token->raw[i + 1], m_env_list);
-		else
-		{
-			if (!in_double && raw[i] == '\'')
-				_toggle_quote(m_token, &in_single, rm_quotes);
-			else if (!in_single && raw[i] == '\"')
-				_toggle_quote(m_token, &in_double, rm_quotes);
-			i++;
+			info->raw_i += 2;
+			return (TRUE);
 		}
 	}
+	else if (!info->in_double && m_token->raw[info->raw_i] == '$')
+	{
+		if (c_next == '\'' || c_next == '\"')
+		{
+			m_token->modifs_len--;
+			info->raw_i++;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
+}
+
+static void	_process_char_len(t_token *m_token, t_env *m_env_list, \
+	t_parse_info *info)
+{
+	if (_handle_escape_chars(m_token, info))
+		return ;
+	if (info->is_exp && !info->in_single && (ft_issigpattern(&m_token->raw[info->raw_i]) || (ft_isenvpattern(&m_token->raw[info->raw_i]) && get_var_name_len(&m_token->raw[info->raw_i + 1]) > 0)))
+		info->raw_i += _compute_expansion_size(m_token, \
+			&m_token->raw[info->raw_i + 1], m_env_list);
+	else
+	{
+		if (!info->in_double && m_token->raw[info->raw_i] == '\'')
+		{
+			if (info->rm_quotes)
+				m_token->modifs_len--;
+			info->in_single = !info->in_single;
+		}
+		else if (!info->in_single && m_token->raw[info->raw_i] == '\"')
+		{
+			if (info->rm_quotes)
+				m_token->modifs_len--;
+			info->in_double = !info->in_double;
+		}
+		info->raw_i++;
+	}
+}
+
+void	compute_modifs_len(t_token *m_token, t_env *m_env_list, \
+	int exp, int rm_quotes)
+{
+	t_parse_info	info;
+
+	info = t_parse_info__init(exp, rm_quotes);
+	while (m_token->raw[info.raw_i] && info.raw_i < m_token->raw_len)
+		_process_char_len(m_token, m_env_list, &info);
 }

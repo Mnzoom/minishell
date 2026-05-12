@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:50:04 by thantoni          #+#    #+#             */
-/*   Updated: 2026/03/16 12:10:41 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 03:02:42 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	t_env__remove_by_key(t_env **m_env_list, char *key)
 	key_len = ft_strlen(key);
 	while (m_env != NULL)
 	{
-		if (ft_strncmp(m_env->m_key, key, key_len) == 0 && m_env->m_key[key_len] == '\0')
+		if (ft_strncmp(m_env->m_key, key, key_len) == 0
+			&& m_env->m_key[key_len] == '\0')
 		{
 			if (m_env->prev != NULL)
 				m_env->prev->next = m_env->next;

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:14:46 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/10 09:44:38 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 02:41:21 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static void	_handle_line_input(t_line_input *input)
 	free(m_line);
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_env			*m_env_list;
 	t_cmd			*m_cmd_list;
 	t_line_input	input;
 
 	(void)argc, (void)argv;
-	input = (t_line_input) { 0 };
+	input = (t_line_input){0};
 	m_env_list = main_cache_envp(envp);
 	m_cmd_list = NULL;
 	setup_inputs_signals();

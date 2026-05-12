@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:34:45 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/05 18:03:15 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 03:03:06 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	t_gc__freeall(void)
 	{
 		to_del = m_node;
 		m_node = m_node->next;
-		// t_gc__remove(to_del);
 		t_gc__free0(to_del);
 	}
 	*m_list = NULL;

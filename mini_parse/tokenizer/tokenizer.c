@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 17:14:27 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/10 01:37:14 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 04:43:28 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ static t_token	*_get_current_token(char *m_line)
 	return (t_token__parse_value_str(m_line));
 }
 
+static void	_link_token(t_token **m_first, t_token **m_last, t_token *m_node)
+{
+	if (*m_first == NULL)
+		*m_first = m_node;
+	else
+	{
+		m_node->prev = *m_last;
+		(*m_last)->next = m_node;
+	}
+	*m_last = m_node;
+}
+
 t_token	*tokenize(char *m_line)
 {
 	size_t	i;
@@ -48,14 +60,7 @@ t_token	*tokenize(char *m_line)
 		m_node = _get_current_token(&m_line[i]);
 		if (m_node == NULL)
 			return (t_token__m_free_all(m_first), NULL);
-		if (m_first == NULL)
-			m_first = m_node;
-		else
-		{
-			m_node->prev = m_last;
-			m_last->next = m_node;
-		}
-		m_last = m_node;
+		_link_token(&m_first, &m_last, m_node);
 		i += m_node->raw_len;
 	}
 	return (m_first);

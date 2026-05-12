@@ -6,14 +6,15 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:33:28 by thantoni          #+#    #+#             */
-/*   Updated: 2026/04/11 17:37:07 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 02:48:28 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-extern int g_lastsignal;
 
-size_t get_lastsig_len(void)
+extern int	g_lastsignal;
+
+size_t	get_lastsig_len(void)
 {
 	int			tmp_lastsignal;
 	size_t		len;

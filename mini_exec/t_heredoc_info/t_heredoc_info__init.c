@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   t_heredoc_info__init.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/10 15:05:43 by cn-goie           #+#    #+#             */
-/*   Updated: 2026/05/12 07:13:30 by thantoni         ###   ########.fr       */
+/*   Created: 2026/05/12 04:15:04 by thantoni          #+#    #+#             */
+/*   Updated: 2026/05/12 11:18:29 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "mini_exec.h"
+#include "t_heredoc_info.h"
 
-int	builtin_env(t_env *env_list)
+t_heredoc_info	t_heredoc_info__init(t_redirect *m_red, t_env *m_env_list, \
+	t_line_input *input)
 {
-	while (env_list)
-	{
-		if (env_list->m_val)
-		{
-			ft_putstr_fd(env_list->m_key, 1);
-			ft_putstr_fd("=", 1);
-			ft_putendl_fd(env_list->m_val, 1);
-		}
-		env_list = env_list->next;
-	}
-	return (0);
+	t_heredoc_info	info;
+
+	info = (t_heredoc_info){0};
+	info.m_red = m_red;
+	info.m_env = m_env_list;
+	info.input = input;
+	return (info);
 }

@@ -6,7 +6,7 @@
 /*   By: thantoni <thantoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:46:53 by thantoni          #+#    #+#             */
-/*   Updated: 2026/05/10 06:51:41 by thantoni         ###   ########.fr       */
+/*   Updated: 2026/05/12 04:39:05 by thantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ t_token	*_pipe_new_cmd(t_token *m_token, t_cmd **m_cmd, size_t *args_i)
 	return (m_token->next);
 }
 
+static t_token	*_ship_token(t_token *m_token, t_cmd **m_cmd, size_t *args_i)
+{
+	if (m_token->is_ignored)
+		return (m_token->next);
+	if (t_token_type__is_redirection(m_token->type))
+		return (t_cmd__add_m_redirect(*m_cmd, m_token));
+	if (m_token->type == PIPE)
+		return (_pipe_new_cmd(m_token, m_cmd, args_i));
+	(*m_cmd)->m_args[(*args_i)++] = t_gc__strdup(m_token->m_value);
+	return (m_token->next);
+}
+
 t_cmd	*cmd_shipper(t_token *m_token_list)
 {
 	t_cmd	*m_cmd_list;
@@ -55,21 +67,6 @@ t_cmd	*cmd_shipper(t_token *m_token_list)
 	m_cmd = m_cmd_list;
 	args_i = 0;
 	while (m_token != NULL)
-	{
-		if (m_token->is_ignored)
-		{
-			m_token = m_token->next;
-			continue ;
-		}
-		if (t_token_type__is_redirection(m_token->type))
-			m_token = t_cmd__add_m_redirect(m_cmd, m_token);
-		else if (m_token->type == PIPE)
-			m_token = _pipe_new_cmd(m_token, &m_cmd, &args_i);
-		else
-		{
-			m_cmd->m_args[args_i++] = t_gc__strdup(m_token->m_value);
-			m_token = m_token->next;
-		}
-	}
+		m_token = _ship_token(m_token, &m_cmd, &args_i);
 	return (m_cmd_list);
 }
